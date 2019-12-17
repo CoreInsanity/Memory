@@ -5,8 +5,8 @@ package Models;
  */
 public class Game {
     private long GameTime;
-    private int Score;
-    private Player Player;
+    private int Score = 0;
+    private Player Player = new Player();
 
     // Getters
     public int getScore() {
@@ -21,12 +21,10 @@ public class Game {
 
     // Setters
     public void setScore(int score) {
-        Score += score;
+        Score = score;
     }
+    public void adjustScore (int score) { Score += score; }
     public void setGameTime(long gameTime){
         GameTime = gameTime;
-    }
-    public void setPlayer(Player player){
-        Player = player;
     }
 }

@@ -11,15 +11,13 @@ public class Menu {
         var playedGames = new ArrayList<Models.Game>();
 
         while(true) {
-            var player = new Models.Player();
             var gameData = new Models.Game();
             var memory = new Memory(gameData);
 
             System.out.printf("Geef je naam in: ");
-            player.setName(input.nextLine());
-            System.out.printf("Hoe oud ben je %s? ", player.getName());
-            player.setAge(input.nextInt());
-            gameData.setPlayer(player);
+            gameData.getPlayer().setName(input.nextLine());
+            System.out.printf("Hoe oud ben je %s? ", gameData.getPlayer().getName());
+            gameData.getPlayer().setAge(input.nextInt());
 
             var gameRes = memory.start();
         }

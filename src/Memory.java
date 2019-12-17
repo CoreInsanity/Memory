@@ -1,5 +1,3 @@
-import Models.Game;
-
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -10,65 +8,77 @@ import java.util.*;
  */
 public class Memory {
     private Models.Game GameData;
-    private boolean[][] upDown = new boolean[4][4];
-    private int[][] cards;
+    private boolean[][] CardStatuses = new boolean[4][4];
+    private int[][] CardValues;
 
-    public Memory(Models.Game gameData){
+    public Memory(Models.Game gameData) {
         GameData = gameData;
-        cards = Helpers.Playfield.Fill();
+        CardValues = Helpers.Playfield.Fill();
     }
 
     public Models.Game start() {
         Scanner input = new Scanner(System.in);
-        int noDownCards = 16;
+        LocalDateTime startTime = LocalDateTime.now();
 
-        LocalDateTime timeEen = LocalDateTime.now();
+        int noDownCards = 0;
+        for (var row : CardValues) // Dynamically read playfield size
+            for (var card : row)
+                noDownCards++;
+
         while (noDownCards > 0) {
             displayBoard();
-            System.out.println("Enter co-oridinate 1");
+
+            System.out.println("-----------------------------------");
+            System.out.printf("Locatie 1: ");
             String g1 = input.next();
             int g1x = Integer.parseInt(g1.substring(0, 1)) - 1;
             int g1y = Integer.parseInt(g1.substring(1, 2)) - 1;
-            System.out.println(cards[g1x][g1y]);
+            System.out.printf("De kaart op deze positie is: %d %n", CardValues[g1x][g1y]);
 
-            System.out.println("Enter co-oridinate 2");
+            System.out.printf("Locatie 2: ");
             String g2 = input.next();
             int g2x = Integer.parseInt(g2.substring(0, 1)) - 1;
             int g2y = Integer.parseInt(g2.substring(1, 2)) - 1;
-            System.out.println(cards[g2x][g2y]);
-            if (cards[g1x][g1y] == cards[g2x][g2y]) {
-                System.out.println("You found a match");
-                upDown[g1x][g1y] = true;
-                upDown[g2x][g2y] = true;
-                noDownCards -= 2;
-                GameData.setScore(10);
+            System.out.printf("De kaart op deze positie is: %d %n", CardValues[g2x][g2y]);
 
-            } else {
-                GameData.setScore(-5);
-            }
+            if (CardValues[g1x][g1y] == CardValues[g2x][g2y]) {
+                CardStatuses[g1x][g1y] = true;
+                CardStatuses[g2x][g2y] = true;
+                noDownCards -= 2;
+                GameData.adjustScore(10);
+            } else GameData.adjustScore(-5);
+
+            System.out.printf("----------------------------------- %n %nDruk op een toets om verder te gaan");
+            input.next();
         }
 
         displayBoard();
         System.out.println("Je hebt gewonnen!");
 
-        var gameTime = Duration.between(timeEen, LocalDateTime.now());
+        var gameTime = Duration.between(startTime, LocalDateTime.now());
         GameData.setGameTime(gameTime.getSeconds());
 
         return GameData;
     }
 
-    private void displayBoard(){
-        System.out.println("     1 2 3 4 ");
-        System.out.println("---+---------");
-        for (int i = 0; i < 4; i++) {
-            System.out.print(" " + (i + 1) + " | ");
-            for (int a = 0; a < 4; a++) {
-                if (upDown[i][a]) {
-                    System.out.print(cards[i][a]);
-                    System.out.print(" ");
-                }
-                else
-                    System.out.print("* ");
+    private void clearConsole() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+        System.out.println("-----------------------------------------------------");
+        System.out.println();
+    }
+
+    private void displayBoard() {
+        clearConsole();
+
+        System.out.println("     1 2 3 4 "); // PRINT X AXIS
+        System.out.println("---+---------"); // PRINT X AXIS
+        for (int x = 0; x < 4; x++) {
+            System.out.print(" " + (x + 1) + " | "); // PRINT Y AXIS
+            for (int y = 0; y < 4; y++) {
+                if (CardStatuses[x][y]) System.out.print(CardValues[x][y] + " ");
+                else System.out.print("* ");
             }
             System.out.println();
         }
