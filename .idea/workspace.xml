@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Memory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/Bord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/Memory2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/MemorySpel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scoreboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/Speler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bla.txt" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,6 +59,7 @@
       <workItem from="1576237382287" duration="2961000" />
       <workItem from="1576245743012" duration="502000" />
       <workItem from="1576571731450" duration="632000" />
+      <workItem from="1576597836420" duration="616000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>
