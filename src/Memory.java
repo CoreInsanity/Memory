@@ -1,5 +1,6 @@
+import Models.Game;
+
 import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -8,26 +9,30 @@ import java.util.*;
  * 13/12/2019.
  */
 public class Memory {
-    public static void spelen(boolean[][] upDown, int[][] cards) {
-        Scanner keyboard = new Scanner(System.in);
-        int noDownCards = 16;
-        Bord.Vul();
+    private Models.Game GameData;
+    private boolean[][] upDown = new boolean[4][4];
+    private int[][] cards;
 
-        System.out.print("Geef je naam in: ");
-        String naam = keyboard.nextLine();
-        Speler speler = new Speler(naam);
+    public Memory(Models.Game gameData){
+        GameData = gameData;
+        cards = Helpers.Playfield.Fill();
+    }
+
+    public Models.Game start() {
+        Scanner input = new Scanner(System.in);
+        int noDownCards = 16;
 
         LocalDateTime timeEen = LocalDateTime.now();
         while (noDownCards > 0) {
-            Bord.displayBoard(upDown, cards);
+            displayBoard();
             System.out.println("Enter co-oridinate 1");
-            String g1 = keyboard.next();
+            String g1 = input.next();
             int g1x = Integer.parseInt(g1.substring(0, 1)) - 1;
             int g1y = Integer.parseInt(g1.substring(1, 2)) - 1;
             System.out.println(cards[g1x][g1y]);
 
             System.out.println("Enter co-oridinate 2");
-            String g2 = keyboard.next();
+            String g2 = input.next();
             int g2x = Integer.parseInt(g2.substring(0, 1)) - 1;
             int g2y = Integer.parseInt(g2.substring(1, 2)) - 1;
             System.out.println(cards[g2x][g2y]);
@@ -36,23 +41,37 @@ public class Memory {
                 upDown[g1x][g1y] = true;
                 upDown[g2x][g2y] = true;
                 noDownCards -= 2;
-                speler.setScore(10);
+                GameData.setScore(10);
 
             } else {
-                speler.setScore(-5);
+                GameData.setScore(-5);
             }
         }
 
-        LocalDateTime timeTwee = LocalDateTime.now();
-        Bord.displayBoard(upDown, cards);
-        System.out.println("You win");
-        //Tijdsduur spel berekenen
-        Duration tijdsduur = Duration.between(timeEen, timeTwee);
-        speler.SetTijd(tijdsduur.getSeconds());
-        System.out.println(tijdsduur.getSeconds());
+        displayBoard();
+        System.out.println("Je hebt gewonnen!");
 
-        Scoreboard scoreboard = new Scoreboard();
-        scoreboard.voegStatsToe(speler.toString());
-        System.out.println(scoreboard);
+        var gameTime = Duration.between(timeEen, LocalDateTime.now());
+        GameData.setGameTime(gameTime.getSeconds());
+
+        return GameData;
+    }
+
+    private void displayBoard(){
+        System.out.println("     1 2 3 4 ");
+        System.out.println("---+---------");
+        for (int i = 0; i < 4; i++) {
+            System.out.print(" " + (i + 1) + " | ");
+            for (int a = 0; a < 4; a++) {
+                if (upDown[i][a]) {
+                    System.out.print(cards[i][a]);
+                    System.out.print(" ");
+                }
+                else
+                    System.out.print("* ");
+            }
+            System.out.println();
+        }
+        System.out.println();
     }
 }
