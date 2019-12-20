@@ -1,7 +1,5 @@
-import Helpers.Scoreboard;
-
-import java.util.ArrayList;
-import java.util.List;
+import Models.Game;
+import java.util.Comparator;
 import java.util.Scanner;
 
 /**
@@ -35,6 +33,7 @@ public class Menu {
         Helpers.Playfield.clearConsole();
 
         var games = Helpers.Scoreboard.readScoreBoard(ScoreboardPath);
+        games.sort(Comparator.comparing(Game::getOrderScore)); // RANT: Why doesn't java have a good LINQ alternative???
 
         String formatEx = "| %-10s | %3d | %5d | %4d |%n";
         System.out.format("+------------+-----+-------+------+%n");
