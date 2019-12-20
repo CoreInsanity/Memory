@@ -14,7 +14,7 @@ public class Memory {
 
     public Memory(Models.Game gameData) {
         GameData = gameData;
-        CardValues = Helpers.Playfield.Fill();
+        CardValues = Helpers.Playfield.fill();
     }
 
     public Models.Game start() {
@@ -72,7 +72,7 @@ public class Memory {
         for (int x = 0; x < 4; x++) {
             System.out.print(" " + (x + 1) + " | "); // PRINT Y AXIS
             for (int y = 0; y < 4; y++) {
-                if (CardStatuses[x][y]) System.out.print(CardValues[x][y] + " ");
+                if (!CardStatuses[x][y]) System.out.print(CardValues[x][y] + " ");
                 else System.out.print("* ");
             }
             System.out.println();
