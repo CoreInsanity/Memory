@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helpers/Playfield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Playfield.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Memory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/Bord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Bord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/Memory2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/MemorySpel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Scoreboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/package/Speler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Game.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +49,20 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Menu" />
+      <module name="Memory" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Menu" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -68,6 +77,7 @@
       <workItem from="1576237382287" duration="2961000" />
       <workItem from="1576245743012" duration="502000" />
       <workItem from="1576571731450" duration="632000" />
+      <workItem from="1576597836420" duration="10812000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>
@@ -76,7 +86,21 @@
       <option name="project" value="LOCAL" />
       <updated>1576245780884</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Remove bla.txt">
+      <created>1576601099430</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1576601099430</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Code refactoring, small fixes">
+      <created>1576604964188</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1576604964188</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -97,6 +121,19 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testcommit" />
-    <option name="LAST_COMMIT_MESSAGE" value="testcommit" />
+    <MESSAGE value="Remove bla.txt" />
+    <MESSAGE value="Code refactoring, small fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code refactoring, small fixes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Menu.java</url>
+          <line>21</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
