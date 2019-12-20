@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scoreboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/scoreboard.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helpers/Playfield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Playfield.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Memory.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -138,7 +135,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576875873085</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Improved card value shuffling">
+      <created>1576877778476</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1576877778476</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -166,7 +170,8 @@
     <MESSAGE value="Now saving scoreboard in json format, since it's much easier to work with" />
     <MESSAGE value="Improved scoreboard presentation + code fixes" />
     <MESSAGE value="Now ordering results in scoreboard by (gameTime - score)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Now ordering results in scoreboard by (gameTime - score)" />
+    <MESSAGE value="Improved card value shuffling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved card value shuffling" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
