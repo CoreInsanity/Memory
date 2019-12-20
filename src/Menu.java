@@ -20,7 +20,10 @@ public class Menu {
             System.out.printf("Hoe oud ben je %s? ", gameData.getPlayer().getName());
             gameData.getPlayer().setAge(input.nextInt());
 
-            var gameRes = memory.start();
+            gameData.setGameTime(60);
+            gameData.setScore(420);
+            //var gameRes = memory.start();
+            Helpers.Scoreboard.addGameData(gameData);
         }
     }
 }
