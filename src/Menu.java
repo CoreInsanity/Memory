@@ -9,6 +9,7 @@ public class Menu {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         var playedGames = new ArrayList<Models.Game>();
+        Scoreboard.printScoreBoard();
 
         while(true) {
             var gameData = new Models.Game();

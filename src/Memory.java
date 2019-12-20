@@ -1,3 +1,5 @@
+import Models.Game;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -7,7 +9,7 @@ import java.util.*;
  * 13/12/2019.
  */
 public class Memory {
-    private Models.Game GameData;
+    private Game GameData;
     private boolean[][] CardStatuses = new boolean[4][4];
     private int[][] CardValues;
 
