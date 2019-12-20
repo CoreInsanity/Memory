@@ -59,21 +59,13 @@ public class Memory {
         System.out.println("Je hebt gewonnen!");
 
         var gameTime = Duration.between(startTime, LocalDateTime.now());
-        GameData.setGameTime(gameTime.getSeconds());
+        GameData.setGameTime((int)gameTime.getSeconds());
 
         return GameData;
     }
 
-    private void clearConsole() {
-        for (int i = 0; i < 50; i++) {
-            System.out.println();
-        }
-        System.out.println("-----------------------------------------------------");
-        System.out.println();
-    }
-
     private void displayBoard() {
-        clearConsole();
+        Helpers.Playfield.clearConsole();
 
         System.out.println("     1 2 3 4 "); // PRINT X AXIS
         System.out.println("---+---------"); // PRINT X AXIS

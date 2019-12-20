@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/gson-2.8.6.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scoreboard.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Memory.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Memory.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Helpers/Playfield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Playfield.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Helpers/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Scoreboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Memory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Game.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +119,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576842224764</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Now saving scoreboard in json format, since it's much easier to work with">
+      <created>1576871691489</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1576871691489</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,7 +151,8 @@
     <MESSAGE value="Remove bla.txt" />
     <MESSAGE value="Code refactoring, small fixes" />
     <MESSAGE value="Scoreboard rework" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scoreboard rework" />
+    <MESSAGE value="Now saving scoreboard in json format, since it's much easier to work with" />
+    <option name="LAST_COMMIT_MESSAGE" value="Now saving scoreboard in json format, since it's much easier to work with" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

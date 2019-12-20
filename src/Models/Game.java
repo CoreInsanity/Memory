@@ -4,7 +4,7 @@ package Models;
  * 17/12/2019.
  */
 public class Game {
-    private long GameTime;
+    private int GameTime;
     private int Score = 0;
     private Player Player = new Player();
 
@@ -12,7 +12,7 @@ public class Game {
     public int getScore() {
         return Score;
     }
-    public long getGameTime() {
+    public int getGameTime() {
         return GameTime;
     }
     public Player getPlayer() {
@@ -24,7 +24,7 @@ public class Game {
         Score = score;
     }
     public void adjustScore (int score) { Score += score; }
-    public void setGameTime(long gameTime){
+    public void setGameTime(int gameTime){
         GameTime = gameTime;
     }
 }

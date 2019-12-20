@@ -1,4 +1,7 @@
+import Helpers.Scoreboard;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -6,6 +9,8 @@ import java.util.Scanner;
  * 13/12/2019.
  */
 public class Menu {
+    private static String ScoreboardPath = "scoreboard.json";
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -18,12 +23,28 @@ public class Menu {
             System.out.printf("Hoe oud ben je %s? ", gameData.getPlayer().getName());
             gameData.getPlayer().setAge(input.nextInt());
 
-            gameData.setGameTime(60);
-            gameData.setScore(420);
-            //var gameRes = memory.start();
-            Helpers.Scoreboard.addGameData(gameData);
+            var gameRes = memory.start();
+            Helpers.Scoreboard.addGameData(gameRes, ScoreboardPath);
+
+            printScoreBoard();
 
             input.nextLine();
         }
+    }
+    private static void printScoreBoard(){
+        Helpers.Playfield.clearConsole();
+
+        var games = Helpers.Scoreboard.readScoreBoard(ScoreboardPath);
+
+        String formatEx = "| %-10s | %3d | %5d | %4d |%n";
+        System.out.format("+------------+-----+-------+------+%n");
+        System.out.format("| Name       | Age | Score | Time |%n");
+        System.out.format("+------------+-----+-------+------+%n");
+        for (var game: games){
+            System.out.format(formatEx, game.getPlayer().getName(), game.getPlayer().getAge(), game.getScore(), game.getGameTime());
+        }
+        System.out.format("+------------+-----+-------+------+%n");
+        System.out.println();
+        System.out.println("-----------------------------------------------------");
     }
 }
