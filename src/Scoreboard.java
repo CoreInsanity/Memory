@@ -5,20 +5,12 @@ import java.util.*;
  * 13/12/2019.
  */
 public class Scoreboard{
-    Set<String> scoreboard = new LinkedHashSet<>();
-    // TODO: 16/12/2019 versturen van score naar file + sorteren en ook ophalen
-    public void voegStatsToe(String stat) {
-        scoreboard.add(stat);
-    }
-
-    @Override
-    public String toString() {
-
-
-        for (Iterator<String> iterator = scoreboard.iterator(); iterator.hasNext(); ) {
-            String next = iterator.next();
-            return next+"\n";
-        }
-        return " ";
+    public static void addGameData(Models.Game){}
+    public static void readScoreBoard(){
+        var games = new Models.Game[4];
+        games[0].setScore(10);
+        games[0].setGameTime(120);
+        games[0].getPlayer().setAge(69);
+        games[0].getPlayer().setName("peter");
     }
 }
