@@ -49,7 +49,8 @@ public class Memory {
             } else GameData.adjustScore(-5);
 
             System.out.printf("----------------------------------- %n %nDruk op een toets om verder te gaan");
-            input.next();
+            input.nextLine();
+            input.nextLine();
         }
 
         displayBoard();
