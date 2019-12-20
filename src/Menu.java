@@ -8,8 +8,6 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        var playedGames = new ArrayList<Models.Game>();
-        Helpers.Scoreboard.printScoreBoard();
 
         while(true) {
             var gameData = new Models.Game();
@@ -24,6 +22,8 @@ public class Menu {
             gameData.setScore(420);
             //var gameRes = memory.start();
             Helpers.Scoreboard.addGameData(gameData);
+
+            input.nextLine();
         }
     }
 }

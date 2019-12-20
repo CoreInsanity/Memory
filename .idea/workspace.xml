@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/gson-2.8.6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scoreboard.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Memory.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Memory.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helpers/Playfield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Playfield.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Helpers/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Scoreboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Helpers/Scoreboard.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,11 +34,22 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1UvVxcXpkjY6dnGY2Rz2hutRP2A" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -125,6 +141,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="testcommit" />
     <MESSAGE value="Remove bla.txt" />
     <MESSAGE value="Code refactoring, small fixes" />
@@ -132,14 +149,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="Scoreboard rework" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Menu.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="jsonBuilder" language="JAVA" />
+        <watch expression="jsonBuilder.fromJson(rawText, Models.Game[].class)" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

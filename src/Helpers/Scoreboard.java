@@ -1,34 +1,56 @@
 package Helpers;
-
+import Models.Game;
+import com.google.gson.Gson;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+import java.nio.file.Files;
 import java.util.*;
 
 /**
  * Lars De Loenen
  * 13/12/2019.
  */
-public class Scoreboard{
-    public static void addGameData(Models.Game newGame){
-        var file = new File("scoreboard.txt");
-        try{
-            if(!file.exists()) file.createNewFile();
+public class Scoreboard {
+    private static String ScoreboardPath = "scoreboard.json";
 
-            var fw = new FileWriter(file);
-            fw.append(newGame.getPlayer().getName() + "\r\n");
-            fw.append(String.valueOf(newGame.getPlayer().getAge()) + "\r\n");
-            fw.append(String.valueOf(newGame.getGameTime()) + "\r\n");
-            fw.append(String.valueOf(newGame.getScore())+ "\r\n");
-            fw.append("--NEWGAME-- \r\n");
-            fw.flush();
-            fw.close();
-        }catch (Exception ex) {
+    public static void addGameData(Models.Game newGame) {
+        var file = new File(ScoreboardPath);
+
+        try {
+            if (!file.exists()) file.createNewFile();
+            Files.write(file.toPath(), modelToText(newGame).getBytes());
+        } catch (Exception ex) {
             //TODO: handle this
+            System.out.println(ex.getMessage());
         }
     }
 
-    public static void printScoreBoard(){
+    private static String modelToText(Models.Game newGame) {
+        Gson jsonBuilder = new Gson();
+        var currentRecords = new ArrayList<>(textToModel()); //Create a copy of the resulting list since arrays.aslist does not allow structural modification (weird java stuff)
+        currentRecords.add(newGame); //Add the new game
+
+        return jsonBuilder.toJson(currentRecords);
+    }
+
+    private static List<Models.Game> textToModel(){
+        String rawText;
+        var file = new File(ScoreboardPath);
+        Gson jsonBuilder = new Gson();
+
+        try {
+            if (!file.exists()) throw new FileNotFoundException();
+            rawText = new String (Files.readAllBytes(file.toPath()));
+        } catch (Exception ex) {
+            //TODO: handle this, ScoreboardPath probably doesnt exist
+            System.out.println(ex.getMessage());
+            return new ArrayList<>();
+        }
+        if(rawText.isEmpty() || rawText.isBlank()) return new ArrayList<Game>();
+        return Arrays.asList(jsonBuilder.fromJson(rawText, Models.Game[].class)); //Manually convert to list because gson can only handle arrays
+    }
+
+    public static void printScoreBoard() {
         var games = new Models.Game[4];
         games[0] = new Models.Game();
         games[0].setScore(10);
@@ -44,8 +66,8 @@ public class Scoreboard{
 
         System.out.println("==========================================");
         System.out.println("--Naam,Leeftijd------------ Tijd -- Score");
-        for(int i = 0 ;i<games.length;i++){
-            System.out.println(String.format("%d:%-8s %-3d ------------ %-4d -- %d\n",i+1,games[i].getPlayer().getName(),games[i].getPlayer().getAge(),games[i].getScore(),games[i].getGameTime()));
+        for (int i = 0; i < games.length; i++) {
+            //System.out.println(String.format("%d:%-8s %-3d ------------ %-4d -- %d\n",i+1,games[i].getPlayer().getName(),games[i].getPlayer().getAge(),games[i].getScore(),games[i].getGameTime()));
         }
     }
 }
