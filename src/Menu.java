@@ -1,5 +1,6 @@
 import models.Game;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -22,17 +23,32 @@ public class Menu {
             gameData.getPlayer().setAge(input.nextInt());
 
             var gameRes = memory.start();
-            helpers.Scoreboard.addGameData(gameRes, ScoreboardPath);
 
+            try {
+                helpers.Scoreboard.addGameData(gameRes, ScoreboardPath);
+            }catch (Exception ex){
+                System.out.println("Something went wrong saving your progress, here's the error: ");
+                System.out.println();
+                System.out.println(ex.getMessage());
+                input.nextLine();
+                continue;
+            }
             printScoreBoard();
-
             input.nextLine();
         }
     }
     private static void printScoreBoard(){
         helpers.Playfield.clearConsole();
+        List<Game> games;
 
-        var games = helpers.Scoreboard.readScoreBoard(ScoreboardPath);
+        try{
+            games = helpers.Scoreboard.readScoreBoard(ScoreboardPath);
+        }catch (Exception ex){
+            System.out.println("Something went wrong reading your savefile, here's the error: ");
+            System.out.println(ex.getMessage());
+            return;
+        }
+
         games.sort(Comparator.comparing(Game::getOrderScore)); // RANT: Why doesn't java have a good LINQ alternative???
 
         String formatEx = "| %-10s | %3d | %5d | %4d |%n";

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="">
+    <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="Improved card value shuffling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helpers/Playfield.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Playfield.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Helpers/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Scoreboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Memory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scoreboard.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Scoreboard.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,7 +92,7 @@
       <workItem from="1579112310725" duration="4000" />
       <workItem from="1579112414941" duration="32000" />
       <workItem from="1580903952146" duration="7000" />
-      <workItem from="1580904298124" duration="616000" />
+      <workItem from="1580904298124" duration="11007000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>
