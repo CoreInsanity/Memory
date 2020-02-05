@@ -1,6 +1,4 @@
-package Models;
-
-import Helpers.Scoreboard;
+package models;
 
 /**
  * Maxim Van den Eede

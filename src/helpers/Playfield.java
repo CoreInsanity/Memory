@@ -1,8 +1,6 @@
-package Helpers;
-import java.util.ArrayList;
+package helpers;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Random;
 
 /**
  * Lars De Loenen

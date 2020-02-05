@@ -1,5 +1,5 @@
-package Helpers;
-import Models.Game;
+package helpers;
+import models.Game;
 import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,7 +11,7 @@ import java.util.*;
  * 13/12/2019.
  */
 public class Scoreboard {
-    public static void addGameData(Models.Game newGame, String scoreboardPath) {
+    public static void addGameData(models.Game newGame, String scoreboardPath) {
         var file = new File(scoreboardPath);
 
         try {
@@ -23,7 +23,7 @@ public class Scoreboard {
         }
     }
 
-    public static List<Models.Game> readScoreBoard(String scoreboardPath){
+    public static List<models.Game> readScoreBoard(String scoreboardPath){
         String rawText = null;
         var file = new File(scoreboardPath);
         Gson jsonBuilder = new Gson();
@@ -36,10 +36,10 @@ public class Scoreboard {
             System.out.println(ex.getMessage());
         }
         if(rawText.isEmpty() || rawText.isBlank()) return new ArrayList<Game>();
-        return Arrays.asList(jsonBuilder.fromJson(rawText, Models.Game[].class)); //Manually convert to list because gson can only handle arrays
+        return Arrays.asList(jsonBuilder.fromJson(rawText, models.Game[].class)); //Manually convert to list because gson can only handle arrays
     }
 
-    private static String modelToText(Models.Game newGame, String scoreboardPath) {
+    private static String modelToText(models.Game newGame, String scoreboardPath) {
         Gson jsonBuilder = new Gson();
 
         //Current procedure is to read the current scoreboard.json file, add the new game model and overwrite the original file with the result

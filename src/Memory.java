@@ -1,4 +1,4 @@
-import Models.Game;
+import models.Game;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -12,12 +12,12 @@ public class Memory {
     private boolean[][] CardStatuses = new boolean[4][4];
     private int[][] CardValues;
 
-    public Memory(Models.Game gameData) {
+    public Memory(models.Game gameData) {
         GameData = gameData;
-        CardValues = Helpers.Playfield.fill();
+        CardValues = helpers.Playfield.fill();
     }
 
-    public Models.Game start() {
+    public models.Game start() {
         Scanner input = new Scanner(System.in);
         LocalDateTime startTime = LocalDateTime.now();
 
@@ -28,7 +28,7 @@ public class Memory {
 
         while (noDownCards > 0) {
             try {
-                displayBoard();
+                System.out.println(generateBoard());
 
                 System.out.println("-----------------------------------");
                 System.out.printf("Locatie 1: ");
@@ -64,19 +64,23 @@ public class Memory {
         return GameData;
     }
 
-    private void displayBoard() {
-        Helpers.Playfield.clearConsole();
+    private String generateBoard() {
+        var boardBuilder = new StringBuilder();
 
-        System.out.println("     1 2 3 4 "); // PRINT X AXIS
-        System.out.println("---+---------"); // PRINT X AXIS
+        helpers.Playfield.clearConsole();
+
+        boardBuilder.append("     1 2 3 4 \n"); // PRINT X AXIS
+        boardBuilder.append("---+---------\n"); // PRINT X AXIS
         for (int x = 0; x < 4; x++) {
-            System.out.print(" " + (x + 1) + " | "); // PRINT Y AXIS
+            boardBuilder.append(" " + (x + 1) + " | "); // PRINT Y AXIS
             for (int y = 0; y < 4; y++) {
-                if (CardStatuses[x][y]) System.out.print(CardValues[x][y] + " ");
-                else System.out.print("* ");
+                if (CardStatuses[x][y]) boardBuilder.append(CardValues[x][y] + " ");
+                else boardBuilder.append("* ");
             }
-            System.out.println();
+            boardBuilder.append("\n");
         }
-        System.out.println();
+        boardBuilder.append("\n");
+
+        return boardBuilder.toString();
     }
 }

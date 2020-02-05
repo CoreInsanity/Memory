@@ -1,4 +1,4 @@
-import Models.Game;
+import models.Game;
 import java.util.Comparator;
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class Menu {
         Scanner input = new Scanner(System.in);
 
         while(true) {
-            var gameData = new Models.Game();
+            var gameData = new models.Game();
             var memory = new Memory(gameData);
 
             System.out.printf("Geef je naam in: ");
@@ -22,7 +22,7 @@ public class Menu {
             gameData.getPlayer().setAge(input.nextInt());
 
             var gameRes = memory.start();
-            Helpers.Scoreboard.addGameData(gameRes, ScoreboardPath);
+            helpers.Scoreboard.addGameData(gameRes, ScoreboardPath);
 
             printScoreBoard();
 
@@ -30,9 +30,9 @@ public class Menu {
         }
     }
     private static void printScoreBoard(){
-        Helpers.Playfield.clearConsole();
+        helpers.Playfield.clearConsole();
 
-        var games = Helpers.Scoreboard.readScoreBoard(ScoreboardPath);
+        var games = helpers.Scoreboard.readScoreBoard(ScoreboardPath);
         games.sort(Comparator.comparing(Game::getOrderScore)); // RANT: Why doesn't java have a good LINQ alternative???
 
         String formatEx = "| %-10s | %3d | %5d | %4d |%n";

@@ -1,4 +1,4 @@
-package Models;
+package models;
 
 /**
  * Maxim Van den Eede
