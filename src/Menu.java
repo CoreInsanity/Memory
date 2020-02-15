@@ -19,11 +19,11 @@ public class Menu extends Application {
     public void start(Stage stage) throws Exception {
         Scene scene = new Scene(Tile.vul());
         stage.setScene(scene);
-        stage.setHeight(350);
-        stage.setWidth(325);
+        stage.setHeight(675);
+        stage.setWidth(525);
 
         stage.setResizable(false);
-        stage.setTitle("Memory");
+        stage.setTitle("Tarkov Memory");
         stage.show();
     }
 
