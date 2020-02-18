@@ -24,7 +24,7 @@ public class Menu extends Application {
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
         stage.setTitle("Tarkov Memory");
-        Player.showScene(stage);
+        Player.showScene(stage); //Display the profile generator
         stage.show();
     }
 

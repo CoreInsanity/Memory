@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="Improved card value shuffling">
-      <change afterPath="$PROJECT_DIR$/src/scenes/Memory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scenes/Player.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/scenes/Scoreboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scenes/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Player.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +104,7 @@
       <workItem from="1581684689042" duration="83000" />
       <workItem from="1581684780688" duration="4965000" />
       <workItem from="1581774944239" duration="7370000" />
-      <workItem from="1582035257474" duration="7968000" />
+      <workItem from="1582035257474" duration="9297000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>

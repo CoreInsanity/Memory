@@ -31,7 +31,7 @@ public class Player {
             var game = new Game();
             game.getPlayer().setAge(Integer.parseInt(txtAge.getText()));
             game.getPlayer().setName(txtName.getText());
-            Memory.showScene(window, game);
+            Memory.showScene(window, game); //Start the actual game
         });
         var playBtnBox = new HBox(10);
         playBtnBox.setAlignment(Pos.BOTTOM_RIGHT);
