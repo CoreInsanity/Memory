@@ -6,13 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.scene.image.Image;
 
-import java.awt.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.File;
@@ -20,36 +15,45 @@ import java.util.*;
 import java.util.List;
 
 public class Tile extends StackPane {
+    private static Integer lastClickedHash;
+    private static boolean secondClick;
+
     public Tile(Image img) throws FileNotFoundException {
-        var viewer = new ImageView(new Image(new FileInputStream("src\\imgs\\top\\top.png")));
+        var topImg = new Image(new FileInputStream("src\\imgs\\top\\top.png"));
+
+        var viewer = new ImageView(topImg);
 
         viewer.setX(128);
         viewer.setY(128);
         viewer.hoverProperty().addListener(m->getScene().setCursor(Cursor.HAND));
-        viewer.setOnMouseClicked(c -> viewer.setImage(img));
+
+        viewer.setOnMouseClicked(c -> onClick(viewer, img, topImg));
 
         setAlignment(Pos.CENTER);
         getChildren().add(viewer);
     }
 
-    public static Parent vul() throws FileNotFoundException{
-        Pane panel = new Pane();
+    private static void onClick(ImageView viewer, Image botImage, Image topImage){
+        viewer.setImage(botImage);
 
-        List<Tile> tiles = new ArrayList<>();
-        for (var file: new File("src\\imgs\\bottom").listFiles()) {
-            tiles.add(new Tile(new Image(new FileInputStream(file.getAbsolutePath()))));
-            tiles.add(new Tile(new Image(new FileInputStream(file.getAbsolutePath()))));
+        if(lastClickedHash == null){
+            lastClickedHash = botImage.hashCode();
+            secondClick = true;
         }
-
-        Collections.shuffle(tiles);
-
-        for (int i = 0; i < tiles.size(); i++) {
-            Tile tile = tiles.get(i);
-            tile.setTranslateX(128 * (i % 4));
-            tile.setTranslateY(128 * (i / 4));
-            panel.getChildren().add(tile);
+        else if(secondClick && lastClickedHash.equals(botImage.hashCode())) {
+            System.out.println("You found a match cyka");
+            lastClickedHash = null;
+            secondClick = false;
         }
+        else if (secondClick){
+            System.out.println("njet blyat");
 
-        return panel;
+            viewer.setImage(topImage);
+            secondClick = false;
+            lastClickedHash = null;
+        }
+        else secondClick = true;
+
+        lastClickedHash = botImage.hashCode();
     }
 }
