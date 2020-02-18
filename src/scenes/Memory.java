@@ -5,7 +5,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import models.Game;
-import view.Tile;
+import view.MemoryScreen.MemoryScreenView;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,12 +17,12 @@ public class Memory {
     public static void showScene(Stage window, Game game){
         configureWindow(window);
 
-        List<Tile> tiles = new ArrayList<>();
+        List<MemoryScreenView> tiles = new ArrayList<>();
         for (var file: new File("src\\imgs\\bottom").listFiles()) {
             try {
                 var img = new Image(new FileInputStream(file.getAbsolutePath())); //ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
-                tiles.add(new Tile(img));
-                tiles.add(new Tile(img));
+                tiles.add(new MemoryScreenView(img));
+                tiles.add(new MemoryScreenView(img));
             }catch (Exception ex){
                 System.out.println(ex.getMessage());
             }
@@ -32,7 +32,7 @@ public class Memory {
 
         Pane playField = new Pane();
         for (int i = 0; i < tiles.size(); i++) {
-            Tile tile = tiles.get(i);
+            MemoryScreenView tile = tiles.get(i);
             tile.setTranslateX(128 * (i % 4));
             tile.setTranslateY(128 * (i / 4));
             playField.getChildren().add(tile);
