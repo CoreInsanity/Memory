@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="Improved card value shuffling">
-      <change afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/scenes/Memory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scenes/Memory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/scenes/Scoreboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenView.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +49,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../MVP" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/MVP" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -110,6 +109,7 @@
       <workItem from="1581774944239" duration="7370000" />
       <workItem from="1582035257474" duration="9353000" />
       <workItem from="1582046258238" duration="2516000" />
+      <workItem from="1582116403266" duration="1612000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>

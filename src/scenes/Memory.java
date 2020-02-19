@@ -21,8 +21,8 @@ public class Memory {
         for (var file: new File("src\\imgs\\bottom").listFiles()) {
             try {
                 var img = new Image(new FileInputStream(file.getAbsolutePath())); //ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
-                tiles.add(new MemoryScreenView(img));
-                tiles.add(new MemoryScreenView(img));
+                //tiles.add(new MemoryScreenView(img));
+                //tiles.add(new MemoryScreenView(img));
             }catch (Exception ex){
                 System.out.println(ex.getMessage());
             }

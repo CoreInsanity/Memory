@@ -1,5 +1,7 @@
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
+import view.PlayerCreationScreen.PlayerCreationScreenPresenter;
 import view.PlayerCreationScreen.PlayerCreationScreenView;
 
 /**
@@ -12,7 +14,13 @@ public class Menu extends Application {
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
         stage.setTitle("Tarkov Memory");
-        PlayerCreationScreenView.showScene(stage); //Display the profile generator
+        var view = new PlayerCreationScreenView();
+        var presenter = new PlayerCreationScreenPresenter(view);
+
+        stage.setHeight(200);
+        stage.setWidth(275);
+        stage.setScene(new Scene(view));
+
         stage.show();
     }
 

@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import models.Game;
 import scenes.Memory;
 
-public class PlayerCreationScreenView {
+public class PlayerCreationScreenView extends BorderPane {
     private Label lblName;
     private TextField txtName;
     private Label lblAge;
