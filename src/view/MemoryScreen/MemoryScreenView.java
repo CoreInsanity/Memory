@@ -72,7 +72,7 @@ public class MemoryScreenView extends StackPane {
             tile.setTranslateY(128 * (i / 4));
             playField.getChildren().add(tile);
         }
-
+        super.getChildren().addAll(playField);
     }
 
     private void createImg(Image img) {
