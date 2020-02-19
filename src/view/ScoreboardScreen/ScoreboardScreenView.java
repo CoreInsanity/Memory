@@ -1,4 +1,6 @@
 package view.ScoreboardScreen;
 
-public class ScoreboardScreenView {
+import javafx.scene.layout.GridPane;
+
+public class ScoreboardScreenView extends GridPane {
 }

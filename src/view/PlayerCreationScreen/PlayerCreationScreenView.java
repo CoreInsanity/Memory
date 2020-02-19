@@ -18,7 +18,6 @@ public class PlayerCreationScreenView extends GridPane {
     private TextField txtName;
     private Label lblAge;
     private TextField txtAge;
-    //private GridPane grid;
     private Button playBtn;
     private HBox playBtnBox;
 

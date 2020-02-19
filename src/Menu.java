@@ -1,6 +1,9 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import scenes.Memory;
+import view.MainMenuScreen.MainMenuScreenPresenter;
+import view.MainMenuScreen.MainMenuScreenView;
 import view.PlayerCreationScreen.PlayerCreationScreenPresenter;
 import view.PlayerCreationScreen.PlayerCreationScreenView;
 
@@ -14,11 +17,11 @@ public class Menu extends Application {
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
         stage.setTitle("Tarkov Memory");
-        var view = new PlayerCreationScreenView();
-        var presenter = new PlayerCreationScreenPresenter(view);
+        var view = new MainMenuScreenView();
+        var presenter = new MainMenuScreenPresenter(view, stage);
 
-        stage.setHeight(200);
-        stage.setWidth(275);
+        stage.setHeight(400);
+        stage.setWidth(400);
         stage.setScene(new Scene(view));
 
         stage.show();
