@@ -18,18 +18,46 @@ import java.util.*;
 import java.util.List;
 
 public class MemoryScreenView extends StackPane {
-    private static Integer lastClickedHash;
-    private static boolean secondClick;
 
-    public MemoryScreenView(Stage window, Game game) {
-        configureWindow(window);
+    private ImageView view;
+    private List<ImageView> tiles;
+    private Image image;
 
-        List<MemoryScreenView> tiles = new ArrayList<>();
+
+    public MemoryScreenView() throws FileNotFoundException {
+        initNodes();
+        LayoutNodes();
+        playfield();
+
+    }
+    public void initNodes(){
+
+
+
+    }
+    public void LayoutNodes() throws FileNotFoundException {
+        var topImg = new Image(new FileInputStream("src\\imgs\\top\\top.png"));
+        var viewer = new ImageView(topImg);
+
+        viewer.setX(128);
+        viewer.setY(128);
+//        viewer.hoverProperty().addListener(m -> getScene().setCursor(Cursor.HAND));
+//        viewer.setOnMouseClicked(c -> onClick(viewer, img, topImg));
+
+        setAlignment(Pos.CENTER);
+        getChildren().add(viewer);
+
+    }
+
+
+    public void playfield(){
+
+        tiles = new ArrayList<>();
         for (var file : new File("src\\imgs\\bottom").listFiles()) {
             try {
-                var img = new Image(new FileInputStream(file.getAbsolutePath())); //ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
-                //tiles.add(new MemoryScreenView(img));
-                //tiles.add(new MemoryScreenView(img));
+                image = new Image(new FileInputStream(file.getAbsolutePath())); //ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
+                tiles.add(new ImageView(image));
+                tiles.add(new ImageView(image));
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
@@ -39,54 +67,25 @@ public class MemoryScreenView extends StackPane {
 
         Pane playField = new Pane();
         for (int i = 0; i < tiles.size(); i++) {
-            MemoryScreenView tile = tiles.get(i);
+            ImageView tile = tiles.get(i);
             tile.setTranslateX(128 * (i % 4));
             tile.setTranslateY(128 * (i / 4));
             playField.getChildren().add(tile);
         }
-        window.setScene(new Scene(playField));
-    }
 
-    private static void configureWindow(Stage window) {
-        //Configure the window here
-
-        window.setHeight(675);
-        window.setWidth(525);
     }
 
     private void createImg(Image img) throws FileNotFoundException {
-        var topImg = new Image(new FileInputStream("src\\imgs\\top\\top.png"));
 
-        var viewer = new ImageView(topImg);
 
-        viewer.setX(128);
-        viewer.setY(128);
-        viewer.hoverProperty().addListener(m -> getScene().setCursor(Cursor.HAND));
 
-        viewer.setOnMouseClicked(c -> onClick(viewer, img, topImg));
-
-        setAlignment(Pos.CENTER);
-        getChildren().add(viewer);
     }
 
-    private static void onClick(ImageView viewer, Image botImage, Image topImage) {
-        viewer.setImage(botImage);
+    public List<ImageView> getTiles() {
+        return tiles;
+    }
 
-        if (lastClickedHash == null) {
-            lastClickedHash = botImage.hashCode();
-            secondClick = true;
-        } else if (secondClick && lastClickedHash.equals(botImage.hashCode())) {
-            System.out.println("You found a match cyka");
-            lastClickedHash = null;
-            secondClick = false;
-        } else if (secondClick) {
-            System.out.println("njet blyat");
-
-            viewer.setImage(topImage);
-            secondClick = false;
-            lastClickedHash = null;
-        } else secondClick = true;
-
-        lastClickedHash = botImage.hashCode();
+    public Image getbotImage() {
+        return image;
     }
 }
