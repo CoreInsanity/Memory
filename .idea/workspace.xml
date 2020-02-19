@@ -2,26 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="Improved card value shuffling">
-      <change afterPath="$PROJECT_DIR$/resources/tarkov.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenPresenter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Memory.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Memory.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Fence.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Fence.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Jaeger.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Jaeger.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Killa.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Killa.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Mechanic.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Mechanic.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Peacekeeper.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Peacekeeper.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Pistoly.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Pistoly.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Prapor.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Prapor.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Ragman.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Ragman.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Skier.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Skier.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/bottom/Therapist.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/bottom/Therapist.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/imgs/top/top.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/top.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenPresenter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,7 +114,7 @@
       <workItem from="1582035257474" duration="9353000" />
       <workItem from="1582046258238" duration="2516000" />
       <workItem from="1582116403266" duration="3195000" />
-      <workItem from="1582123629317" duration="4396000" />
+      <workItem from="1582123629317" duration="5577000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>
