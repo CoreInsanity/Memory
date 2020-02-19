@@ -18,7 +18,7 @@ public class MainMenuScreenPresenter {
 
         view.getBtnNewGame().setOnMouseClicked(b-> {
             var pcView = new PlayerCreationScreenView();
-            new PlayerCreationScreenPresenter(pcView);
+            new PlayerCreationScreenPresenter(pcView, stage);
             stage.setScene(new Scene(pcView));
         });
         view.getBtnExit().setOnMouseClicked(b -> Platform.exit());

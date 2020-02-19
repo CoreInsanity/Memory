@@ -18,25 +18,18 @@ import java.util.*;
 import java.util.List;
 
 public class MemoryScreenView extends StackPane {
-
     private ImageView view;
     private List<ImageView> tiles;
     private Image image;
+    private Image topImg;
 
 
-    public MemoryScreenView() throws FileNotFoundException {
+    public MemoryScreenView(){
         initNodes();
-        LayoutNodes();
+        layoutNodes();
         playfield();
-
     }
-    public void initNodes(){
-
-
-
-    }
-    public void LayoutNodes() throws FileNotFoundException {
-        var topImg = new Image(new FileInputStream("src\\imgs\\top\\top.png"));
+    private void layoutNodes(){
         var viewer = new ImageView(topImg);
 
         viewer.setX(128);
@@ -48,12 +41,19 @@ public class MemoryScreenView extends StackPane {
         getChildren().add(viewer);
 
     }
+    private void initNodes(){
+        try {
+            var topImg = new Image(new FileInputStream("resources\\top.png"));
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+    }
 
 
-    public void playfield(){
+    private void playfield(){
 
         tiles = new ArrayList<>();
-        for (var file : new File("src\\imgs\\bottom").listFiles()) {
+        for (var file : new File("resources\\bottom").listFiles()) {
             try {
                 image = new Image(new FileInputStream(file.getAbsolutePath())); //ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
                 tiles.add(new ImageView(image));
@@ -75,10 +75,7 @@ public class MemoryScreenView extends StackPane {
 
     }
 
-    private void createImg(Image img) throws FileNotFoundException {
-
-
-
+    private void createImg(Image img) {
     }
 
     public List<ImageView> getTiles() {

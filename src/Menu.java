@@ -18,8 +18,9 @@ public class Menu extends Application {
     public void start(Stage stage) throws Exception {
         stage.setResizable(false);
         stage.setTitle("Tarkov Memory");
+
         var view = new MainMenuScreenView();
-        var presenter = new MainMenuScreenPresenter(view, stage);
+        new MainMenuScreenPresenter(view, stage);
 
         stage.setHeight(400);
         stage.setWidth(400);

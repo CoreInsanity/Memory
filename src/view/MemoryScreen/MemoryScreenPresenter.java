@@ -17,13 +17,10 @@ import java.util.EventListener;
  */
 public class MemoryScreenPresenter {
     private MemoryScreenView memoryScreenView;
-    private Tile tilemodel;
 
-    public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Tile tile) {
+    public MemoryScreenPresenter(MemoryScreenView memoryScreenView) {
         this.memoryScreenView = memoryScreenView;
-        this.tilemodel = tile;
         addEventHandlers();
-
     }
 
     private void addEventHandlers() {
