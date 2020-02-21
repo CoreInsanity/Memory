@@ -24,7 +24,6 @@ public class PlayerCreationScreenPresenter {
         view = plView;
         view.getPlayBtn().setOnAction(b -> {
             var viewer = new MemoryScreenView();
-            new MemoryScreenPresenter(viewer, stage);
             stage.setScene(new Scene(viewer));
         });
     }

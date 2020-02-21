@@ -14,7 +14,6 @@ public class Tile {
 
     public static void onClick(ImageView viewer, Image botImage, Image topImage) {
         viewer.setImage(botImage);
-
         if (lastClickedHash == null) {
             lastClickedHash = botImage.hashCode();
             secondClick = true;

@@ -1,3 +1,4 @@
+
 package view.MainMenuScreen;
 
 import javafx.geometry.Insets;
@@ -33,12 +34,13 @@ public class MainMenuScreenView extends BorderPane {
     private BorderPane topPane;
     private BorderPane botPane;
 
-    public MainMenuScreenView(){
+    public MainMenuScreenView() {
         initNodes();
         layoutNodes();
         initTooltips();
     }
-    private void initNodes(){
+
+    private void initNodes() {
         menuBox = new VBox();
         leftBox = new VBox();
         webLinks = new HBox();
@@ -48,12 +50,13 @@ public class MainMenuScreenView extends BorderPane {
         topPane = new BorderPane();
         botPane = new BorderPane();
 
-        try{
+        try {
             tarkovImg = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
             gitImg = new ImageView(new Image(new FileInputStream("resources\\github.png")));
             mTwitterImg = new ImageView(new Image(new FileInputStream("resources\\twitter.png")));
             lTwitterImg = new ImageView(new Image(new FileInputStream("resources\\twitter.png")));
-        }catch (Exception ex){}
+        } catch (Exception ex) {
+        }
 
         webLinks.getChildren().addAll(gitImg, new Rectangle(5, 0), lTwitterImg, new Rectangle(5, 0), mTwitterImg);
         topPane.setBottom(tarkovImg);
@@ -64,7 +67,8 @@ public class MainMenuScreenView extends BorderPane {
         setLeft(leftBox);
         setCenter(menuBox);
     }
-    private void layoutNodes(){
+
+    private void layoutNodes() {
         btnNewGame.setPrefWidth(100);
         btnScoreboard.setPrefWidth(100);
         btnNewGame.setPrefHeight(40);
@@ -95,7 +99,8 @@ public class MainMenuScreenView extends BorderPane {
         menuBox.setAlignment(Pos.CENTER);
         menuBox.setBackground(new Background(new BackgroundFill(Color.rgb(42, 45, 54), CornerRadii.EMPTY, Insets.EMPTY)));
     }
-    private void initTooltips(){
+
+    private void initTooltips() {
         Tooltip.install(gitImg, new Tooltip("Open the Github page for this project"));
         Tooltip.install(lTwitterImg, new Tooltip("Open the twitter page of L. De Loenen"));
         Tooltip.install(mTwitterImg, new Tooltip("Open the twitter page of M. Van den Eede"));
@@ -104,10 +109,28 @@ public class MainMenuScreenView extends BorderPane {
         Tooltip.install(btnScoreboard, new Tooltip("Show the scoreboard"));
         Tooltip.install(btnExit, new Tooltip("Close this application"));
     }
-    Button getBtnNewGame(){return btnNewGame;}
-    Button getBtnScoreboard(){return btnScoreboard;}
-    Button getBtnExit(){return  btnExit;}
-    ImageView getGitImg(){return gitImg;}
-    ImageView getmTwitterImg(){return mTwitterImg;}
-    ImageView getlTwitterImg(){return lTwitterImg;}
+
+    Button getBtnNewGame() {
+        return btnNewGame;
+    }
+
+    Button getBtnScoreboard() {
+        return btnScoreboard;
+    }
+
+    Button getBtnExit() {
+        return btnExit;
+    }
+
+    ImageView getGitImg() {
+        return gitImg;
+    }
+
+    ImageView getmTwitterImg() {
+        return mTwitterImg;
+    }
+
+    ImageView getlTwitterImg() {
+        return lTwitterImg;
+    }
 }

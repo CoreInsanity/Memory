@@ -5,7 +5,6 @@ import javafx.scene.Cursor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import models.Tile;
 
 import java.awt.*;
@@ -18,12 +17,11 @@ import java.util.EventListener;
  */
 public class MemoryScreenPresenter {
     private MemoryScreenView memoryScreenView;
+    private Tile tile;
 
-    public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage stage) {
-        stage.setHeight(675);
-        stage.setWidth(525);
-
+    public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Tile tile) {
         this.memoryScreenView = memoryScreenView;
+        this.tile = tile;
         addEventHandlers();
     }
 
@@ -34,7 +32,6 @@ public class MemoryScreenPresenter {
                 @Override
                 public void handle(MouseEvent event) {
                     Tile.onClick(tile, memoryScreenView.getbotImage(), tile.getImage());
-
                 }
             });
 

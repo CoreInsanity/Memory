@@ -26,7 +26,7 @@ public class Menu extends Application {
         stage.initStyle(StageStyle.UNDECORATED);
         
         stage.setScene(new Scene(view));
-
+        stage.setResizable(true);
         stage.show();
     }
 
