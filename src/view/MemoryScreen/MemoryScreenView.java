@@ -19,52 +19,34 @@ import java.io.InputStream;
 import java.util.*;
 import java.util.List;
 
-public class MemoryScreenView extends StackPane {
-    private ImageView view;
+public class MemoryScreenView extends BorderPane {
+    private ImageView topImg;
+
     private List<ImageView> tiles;
     private Image image;
-    private Image topImg;
-    private ArrayList<Image> botImg;
-    private BorderPane borderPane;
+    private StackPane playFieldStack;
 
 
     public MemoryScreenView() {
-//        initNodes();
+        initNodes();
         playfield();
         layoutNodes();
     }
-    private void layoutNodes(){
+    private void initNodes(){
         try {
-            topImg = new Image(new FileInputStream("Resources\\top.png"));
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            topImg = new ImageView(new Image(new FileInputStream("resources\\top.png")));
+        } catch (Exception ex){
+            System.out.println(ex.getMessage());
         }
-        var viewer = new ImageView(topImg);
-
-        viewer.setX(128);
-        viewer.setY(128);
-//        viewer.hoverProperty().addListener(m -> getScene().setCursor(Cursor.HAND));
-//        viewer.setOnMouseClicked(c -> onClick(viewer, img, topImg));
-
-        setAlignment(Pos.CENTER);
-        getChildren().add(viewer);
-
     }
-//    private void initNodes(){
-//        try {
-//            var topImg = new Image(new FileInputStream("resources\\top.png"));
-//        } catch (Exception ex){
-//            System.out.println(ex.getMessage());
-//        }
-//    }
-
-
+    private void layoutNodes(){
+    }
     private void playfield(){
-        tiles = new ArrayList<>();
-        for (var file : Objects.requireNonNull(new File("resources\\bottom").listFiles())) {
+        tiles = new ArrayList<ImageView>();
+
+        for (var file : new File("resources\\bottom").listFiles()) {
             try {
                 image = new Image(new FileInputStream(file.getAbsolutePath()));//ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
-                botImg.add(image);
                 tiles.add(new ImageView(image));
                 tiles.add(new ImageView(image));
             } catch (Exception ex) {
@@ -81,20 +63,10 @@ public class MemoryScreenView extends StackPane {
             tile.setTranslateY(128 * (i / 4));
             playField.getChildren().add(tile);
         }
-        borderPane.setCenter(playField);
-        borderPane.setPrefSize(1000,1000);
-
+        setCenter(playField);
+        setPrefSize(1000,1000);
     }
 
-     List<ImageView> getTiles() {
-        return tiles;
-    }
-
-     Image getbotImage() {
-        return image;
-    }
-
-    Image getTopImg() {
-        return topImg;
-    }
+    List<ImageView> getTiles(){return tiles;}
+    ImageView getTopImg() {return topImg;}
 }

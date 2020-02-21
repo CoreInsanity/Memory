@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import javafx.stage.StageStyle;
 import view.PlayerCreationScreen.PlayerCreationScreenPresenter;
 import view.PlayerCreationScreen.PlayerCreationScreenView;
 import view.ScoreboardScreen.ScoreboardScreenPresenter;
@@ -26,6 +27,8 @@ public class MainMenuScreenPresenter {
         Platform.setImplicitExit(true);
         view = mmView;
         stage = curStage;
+
+        stage.initStyle(StageStyle.UNDECORATED);
 
         setCursors();
         handleEvents();

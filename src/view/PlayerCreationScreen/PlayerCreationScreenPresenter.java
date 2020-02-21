@@ -4,6 +4,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import models.Tile;
 import scenes.Memory;
@@ -24,6 +25,7 @@ public class PlayerCreationScreenPresenter {
         view = plView;
         view.getPlayBtn().setOnAction(b -> {
             var viewer = new MemoryScreenView();
+            new MemoryScreenPresenter(viewer, stage);
             stage.setScene(new Scene(viewer));
         });
     }
