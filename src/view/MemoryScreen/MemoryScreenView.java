@@ -29,7 +29,6 @@ public class MemoryScreenView extends BorderPane {
 
     public MemoryScreenView() {
         initNodes();
-        playfield();
         layoutNodes();
     }
     private void initNodes(){
@@ -41,29 +40,8 @@ public class MemoryScreenView extends BorderPane {
     }
     private void layoutNodes(){
     }
-    private void playfield(){
-        tiles = new ArrayList<ImageView>();
-
-        for (var file : new File("resources\\bottom").listFiles()) {
-            try {
-                image = new Image(new FileInputStream(file.getAbsolutePath()));//ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
-                tiles.add(new ImageView(image));
-                tiles.add(new ImageView(image));
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
-
-        Collections.shuffle(tiles);
-
-        Pane playField = new Pane();
-        for (int i = 0; i < tiles.size(); i++) {
-            ImageView tile = tiles.get(i);
-            tile.setTranslateX(128 * (i % 4));
-            tile.setTranslateY(128 * (i / 4));
-            playField.getChildren().add(tile);
-        }
-        setCenter(playField);
+    public void initPlayfield(Pane pane){
+        setCenter(pane);
         setPrefSize(1000,1000);
     }
 
