@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="Improved card value shuffling">
+      <change afterPath="$PROJECT_DIR$/resources/github.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/twitter.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/tarkov.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/tarkov.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +60,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
@@ -63,6 +70,18 @@
       <recent name="C:\Users\maxim\IdeaProjects\git\Memory\resources\bottom" />
       <recent name="C:\Users\maxim\IdeaProjects\git\Memory\resources" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -78,18 +97,6 @@
         <item itemvalue="Application.Menu" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />

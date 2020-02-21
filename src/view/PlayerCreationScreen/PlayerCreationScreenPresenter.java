@@ -18,10 +18,13 @@ public class PlayerCreationScreenPresenter {
     private int age;
 
     public PlayerCreationScreenPresenter(PlayerCreationScreenView plView, Stage stage){
+        stage.setHeight(200);
+        stage.setWidth(275);
+
         view = plView;
         view.getPlayBtn().setOnAction(b -> {
             var viewer = new MemoryScreenView();
-            new MemoryScreenPresenter(viewer);
+            new MemoryScreenPresenter(viewer, stage);
             stage.setScene(new Scene(viewer));
         });
     }

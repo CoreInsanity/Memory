@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import scenes.Memory;
 import view.MainMenuScreen.MainMenuScreenPresenter;
 import view.MainMenuScreen.MainMenuScreenView;
@@ -22,8 +23,8 @@ public class Menu extends Application {
         var view = new MainMenuScreenView();
         new MainMenuScreenPresenter(view, stage);
 
-        stage.setHeight(400);
-        stage.setWidth(400);
+        stage.initStyle(StageStyle.UNDECORATED);
+        
         stage.setScene(new Scene(view));
 
         stage.show();
