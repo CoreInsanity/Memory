@@ -1,18 +1,27 @@
 package view.MemoryScreen;
 
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import models.Tile;
+import view.MainMenuScreen.MainMenuScreenPresenter;
+import view.MainMenuScreen.MainMenuScreenView;
+import view.PlayerCreationScreen.PlayerCreationScreenPresenter;
+import view.PlayerCreationScreen.PlayerCreationScreenView;
+import view.ScoreboardScreen.ScoreboardScreenPresenter;
+import view.ScoreboardScreen.ScoreboardScreenView;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.EventListener;
@@ -28,8 +37,9 @@ public class MemoryScreenPresenter {
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage) {
         stage = curStage;
-        stage.setHeight(675);
-        stage.setWidth(525);
+        stage.setHeight(700);
+        stage.setWidth(675);
+        stage.setResizable(true);
 
         view = memoryScreenView;
 
@@ -37,7 +47,6 @@ public class MemoryScreenPresenter {
     }
     private void genPlayfield(){
         var tiles = new ArrayList<ImageView>();
-
         for (var file : new File("resources\\bottom").listFiles()) {
             try {
                 var image = new Image(new FileInputStream(file.getAbsolutePath()));//ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
@@ -60,4 +69,22 @@ public class MemoryScreenPresenter {
         view.initPlayfield(playField);
     }
 
+    private void topImg() {
+
+    }
+
+    private void addEventHandler() {  //TODO menuitems aren't eligible for events so need to find a work around.
+        view.getMenu1().setOnAction(b -> {
+            var mmView = new MainMenuScreenView();
+            new MainMenuScreenPresenter(mmView, stage);
+            stage.setScene(new Scene(mmView));
+        });
+        view.getMenu2().setOnAction(b -> {
+            var sbView = new ScoreboardScreenView();
+            new ScoreboardScreenPresenter(sbView, stage);
+            stage.setScene(new Scene(sbView));
+        });
+
+        view.getMenu3().setOnAction(b -> Platform.exit());
+    }
 }

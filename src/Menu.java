@@ -22,7 +22,7 @@ public class Menu extends Application {
 
         var view = new MainMenuScreenView();
         new MainMenuScreenPresenter(view, stage);
-        
+
         stage.setScene(new Scene(view));
         stage.setResizable(true);
         stage.show();

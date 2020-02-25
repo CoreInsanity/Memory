@@ -28,7 +28,7 @@ public class MainMenuScreenPresenter {
         view = mmView;
         stage = curStage;
 
-        stage.initStyle(StageStyle.UNDECORATED);
+//        stage.initStyle(StageStyle.UNDECORATED);
 
         setCursors();
         handleEvents();

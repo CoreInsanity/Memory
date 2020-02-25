@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="Improved card value shuffling">
+    <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="Added MenuBar with eventhandler(not working yet)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" afterDir="false" />
     </list>
@@ -56,6 +58,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RecentsManager">
@@ -122,6 +125,9 @@
       <workItem from="1582123629317" duration="5577000" />
       <workItem from="1582146296142" duration="141000" />
       <workItem from="1582286179889" duration="1049000" />
+      <workItem from="1582311012301" duration="758000" />
+      <workItem from="1582618245996" duration="16855000" />
+      <workItem from="1582653343401" duration="8499000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>
