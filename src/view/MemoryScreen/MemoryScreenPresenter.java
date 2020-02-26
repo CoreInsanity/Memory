@@ -34,6 +34,7 @@ public class MemoryScreenPresenter {
     private Tile tile;
     private Stage stage;
     private MemoryScreenView view;
+    private Image topImg;
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage) {
         stage = curStage;
@@ -43,6 +44,12 @@ public class MemoryScreenPresenter {
 
         view = memoryScreenView;
 
+        try {
+            topImg = new Image(new FileInputStream("resources\\top.png"));
+        } catch (Exception ex){
+            // ¯\_(ツ)_/¯
+        }
+
         genPlayfield();
         addEventHandler();
     }
@@ -51,8 +58,15 @@ public class MemoryScreenPresenter {
         for (var file : new File("resources\\bottom").listFiles()) {
             try {
                 var image = new Image(new FileInputStream(file.getAbsolutePath()));//ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
-                tiles.add(new ImageView(image));
-                tiles.add(new ImageView(image));
+
+                var firstTile = new ImageView(topImg);
+                var secondTile = new ImageView(topImg);
+                firstTile.setOnMouseClicked(m -> onTileClick(image, firstTile));
+                secondTile.setOnMouseClicked(m -> onTileClick(image, secondTile));
+                firstTile.setCursor(Cursor.HAND);
+                secondTile.setCursor(Cursor.HAND);
+                tiles.add(firstTile);
+                tiles.add(secondTile);
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
@@ -70,8 +84,8 @@ public class MemoryScreenPresenter {
         view.initPlayfield(playField);
     }
 
-    private void topImg() {
-
+    private void onTileClick(Image originalImg, ImageView view){
+        view.setImage(originalImg);
     }
 
     private void addEventHandler() {
