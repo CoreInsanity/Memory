@@ -50,7 +50,6 @@ public class MemoryScreenPresenter {
             // ¯\_(ツ)_/¯
         }
 
-        genPlayfield();
         addEventHandler();
     }
     private void genPlayfield(){
@@ -81,7 +80,7 @@ public class MemoryScreenPresenter {
             tile.setTranslateY(128 * (i / 4));
             playField.getChildren().add(tile);
         }
-        view.initPlayfield(playField);
+        //view.initPlayfield(playField);
     }
 
     private void onTileClick(Image originalImg, ImageView view){
