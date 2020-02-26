@@ -37,12 +37,14 @@ public class MemoryScreenPresenter {
     private Image topImg;
     private Pane playField;
     private ArrayList<Image> botImgs;
+    private Integer lastClickIndex;
+    private Integer toRemoveIndex;
+    //private Integer toRemoveSecondIndex;
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage) {
         stage = curStage;
         stage.setHeight(700);
         stage.setWidth(675);
-        stage.setResizable(true);
         botImgs = new ArrayList<>();
         view = memoryScreenView;
         playField = view.getPlayField();
@@ -56,14 +58,7 @@ public class MemoryScreenPresenter {
         }
 
         setCursors();
-        addEventHandler();
-    }
-
-    private void setCursors(){
-        for (var observable:playField.getChildren()) {
-            var img = (ImageView) observable;
-            img.setCursor(Cursor.HAND);
-        }
+        addEventHandlers();
     }
     private void loadImgs() throws FileNotFoundException{
         topImg = new Image(new FileInputStream("resources\\top.png"));
@@ -74,11 +69,31 @@ public class MemoryScreenPresenter {
         }
         Collections.shuffle(botImgs);
     }
-    private void onTileClick(Image originalImg, ImageView view){
+    private void onTileClick(Image originalImg, ImageView view, Integer imgIndex){
         view.setImage(originalImg);
-    }
+        view.setCursor(Cursor.DEFAULT);
 
-    private void addEventHandler() {
+        if (toRemoveIndex != null && lastClickIndex != null){
+            var toRemoveImg = (ImageView) playField.getChildren().get(toRemoveIndex);
+            var toRemoveSecImg = (ImageView) playField.getChildren().get(lastClickIndex);
+            toRemoveImg.setImage(topImg);
+            toRemoveSecImg.setImage(topImg);
+            toRemoveIndex = null;
+            lastClickIndex = null;
+        }
+
+        if(lastClickIndex != null){
+            var lastClickedImg = (ImageView) playField.getChildren().get(lastClickIndex);
+            if(view.getImage().hashCode() != lastClickedImg.getImage().hashCode())
+                toRemoveIndex = imgIndex;
+            else
+                lastClickIndex = null;
+            return;
+        }
+
+        lastClickIndex = imgIndex;
+    }
+    private void addEventHandlers() {
         view.getMenu1().setOnAction(b -> {
             var mmView = new MainMenuScreenView();
             new MainMenuScreenPresenter(mmView, stage);
@@ -88,16 +103,21 @@ public class MemoryScreenPresenter {
             var sbView = new ScoreboardScreenView();
             new ScoreboardScreenPresenter(sbView, stage);
             stage.setScene(new Scene(sbView));
-            stage.show();
         });
         view.getMenu3().setOnAction(b -> Platform.exit());
 
         int i = 0;
         for (var observable:playField.getChildren()) {
+            var index = i;
             var img = (ImageView) observable;
-            var botImg = botImgs.get(i); //Fetch image here since this is not allowed in lambda expressions
-            img.setOnMouseClicked(m -> onTileClick(botImg, img));
+            img.setOnMouseClicked(m -> onTileClick(botImgs.get(index), img, index));
             i++;
+        }
+    }
+    private void setCursors(){
+        for (var observable:playField.getChildren()) {
+            var img = (ImageView) observable;
+            img.setCursor(Cursor.HAND);
         }
     }
 }

@@ -1,5 +1,6 @@
 package view.MemoryScreen;
 
+import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -45,10 +46,13 @@ public class MemoryScreenView extends BorderPane {
 
     private void initNodes() {
         try {
-            topImg = new Image(new FileInputStream("resources\\top.png"));
-            menulogo = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
-        } catch (Exception ex) {}
+            loadImgs();
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            Platform.exit();
+        }
 
+        //Define all the Menu Items
         menuBar = new MenuBar();
         menu = new Menu("Menu");
         menu1 = new MenuItem("Main menu");
@@ -57,11 +61,18 @@ public class MemoryScreenView extends BorderPane {
         menuBar.getMenus().add(menu);
         menu.getItems().addAll(menu1, menu2, menu3);
         menu.setGraphic(menulogo);
+
+        //Define the Timer and the Score labels
         timer = new Label("Timer: ");
         score = new Label("Score: ");
+
+        //Define the playField pane
         playField = new Pane();
     }
-
+    private void loadImgs() throws FileNotFoundException{
+        topImg = new Image(new FileInputStream("resources\\top.png"));
+        menulogo = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
+    }
     private void layoutNodes() {
         timer.setTextFill(Color.YELLOW);
         timer.setPrefWidth(50);
@@ -91,14 +102,6 @@ public class MemoryScreenView extends BorderPane {
         setCenter(playField);
         setLeft(timer);
         setRight(score);
-
-        ImageView firstTile = ((ImageView) playField.getChildren().get(0));
-
-        //try {
-        //    firstTile.setImage(new Image(new FileInputStream("resources\\tarkov.png")));
-       // }catch (Exception ex){
-
-        //}
     }
 
     public MenuItem getMenu1() {return menu1;}
