@@ -104,4 +104,5 @@ public class MemoryScreenView extends BorderPane {
     public MenuItem getMenu1() {return menu1;}
     public MenuItem getMenu2() {return menu2;}
     public MenuItem getMenu3() {return menu3;}
+    public Pane getPlayField() {return (Pane) getCenter();}
 }

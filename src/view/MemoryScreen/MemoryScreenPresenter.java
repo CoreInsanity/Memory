@@ -35,54 +35,45 @@ public class MemoryScreenPresenter {
     private Stage stage;
     private MemoryScreenView view;
     private Image topImg;
+    private Pane playField;
+    private ArrayList<Image> botImgs;
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage) {
         stage = curStage;
         stage.setHeight(700);
         stage.setWidth(675);
         stage.setResizable(true);
-
+        botImgs = new ArrayList<>();
         view = memoryScreenView;
+        playField = view.getPlayField();
 
         try {
-            topImg = new Image(new FileInputStream("resources\\top.png"));
+            loadImgs();
         } catch (Exception ex){
             // ¯\_(ツ)_/¯
+            System.out.println(ex.getMessage());
+            Platform.exit();
         }
 
+        setCursors();
         addEventHandler();
     }
-    private void genPlayfield(){
-        var tiles = new ArrayList<ImageView>();
-        for (var file : new File("resources\\bottom").listFiles()) {
-            try {
-                var image = new Image(new FileInputStream(file.getAbsolutePath()));//ONLY CREATE ONE INSTANCE OF THE IMAGE! Otherwise we get different hashcodes
 
-                var firstTile = new ImageView(topImg);
-                var secondTile = new ImageView(topImg);
-                firstTile.setOnMouseClicked(m -> onTileClick(image, firstTile));
-                secondTile.setOnMouseClicked(m -> onTileClick(image, secondTile));
-                firstTile.setCursor(Cursor.HAND);
-                secondTile.setCursor(Cursor.HAND);
-                tiles.add(firstTile);
-                tiles.add(secondTile);
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
+    private void setCursors(){
+        for (var observable:playField.getChildren()) {
+            var img = (ImageView) observable;
+            img.setCursor(Cursor.HAND);
         }
-
-        Collections.shuffle(tiles);
-
-        Pane playField = new Pane();
-        for (int i = 0; i < tiles.size(); i++) {
-            ImageView tile = tiles.get(i);
-            tile.setTranslateX(128 * (i % 4));
-            tile.setTranslateY(128 * (i / 4));
-            playField.getChildren().add(tile);
-        }
-        //view.initPlayfield(playField);
     }
-
+    private void loadImgs() throws FileNotFoundException{
+        topImg = new Image(new FileInputStream("resources\\top.png"));
+        for (var file:new File("resources\\bottom").listFiles()) {
+            var img = new Image(new FileInputStream(file.getAbsolutePath()));
+            botImgs.add(img);
+            botImgs.add(img);
+        }
+        Collections.shuffle(botImgs);
+    }
     private void onTileClick(Image originalImg, ImageView view){
         view.setImage(originalImg);
     }
@@ -99,7 +90,14 @@ public class MemoryScreenPresenter {
             stage.setScene(new Scene(sbView));
             stage.show();
         });
-
         view.getMenu3().setOnAction(b -> Platform.exit());
+
+        int i = 0;
+        for (var observable:playField.getChildren()) {
+            var img = (ImageView) observable;
+            var botImg = botImgs.get(i); //Fetch image here since this is not allowed in lambda expressions
+            img.setOnMouseClicked(m -> onTileClick(botImg, img));
+            i++;
+        }
     }
 }
