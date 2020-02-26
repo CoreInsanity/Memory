@@ -40,7 +40,7 @@ public class MainMenuScreenPresenter {
         view.getBtnNewGame().setOnMouseClicked(b-> {
             var pcView = new PlayerCreationScreenView();
             new PlayerCreationScreenPresenter(pcView, stage);
-            stage.setScene(new Scene(pcView));
+            view.setCenter(pcView);
         });
 
         view.getBtnExit().setOnMouseClicked(b -> Platform.exit());
@@ -68,22 +68,11 @@ public class MainMenuScreenPresenter {
         });
     }
     private void setCursors(){
-        view.getGitImg().setOnMouseEntered(m -> stage.getScene().setCursor(Cursor.HAND));
-        view.getGitImg().setOnMouseExited(m -> stage.getScene().setCursor(Cursor.DEFAULT));
-
-        view.getmTwitterImg().setOnMouseEntered(m -> stage.getScene().setCursor(Cursor.HAND));
-        view.getmTwitterImg().setOnMouseExited(m -> stage.getScene().setCursor(Cursor.DEFAULT));
-
-        view.getlTwitterImg().setOnMouseEntered(m -> stage.getScene().setCursor(Cursor.HAND));
-        view.getlTwitterImg().setOnMouseExited(m -> stage.getScene().setCursor(Cursor.DEFAULT));
-
-        view.getBtnNewGame().setOnMouseEntered(m -> stage.getScene().setCursor(Cursor.HAND));
-        view.getBtnNewGame().setOnMouseExited(m -> stage.getScene().setCursor(Cursor.DEFAULT));
-
-        view.getBtnScoreboard().setOnMouseEntered(m -> stage.getScene().setCursor(Cursor.HAND));
-        view.getBtnScoreboard().setOnMouseExited(m -> stage.getScene().setCursor(Cursor.DEFAULT));
-
-        view.getBtnExit().setOnMouseEntered(m -> stage.getScene().setCursor(Cursor.HAND));
-        view.getBtnExit().setOnMouseExited(m -> stage.getScene().setCursor(Cursor.DEFAULT));
+        view.getGitImg().setCursor(Cursor.HAND);
+        view.getlTwitterImg().setCursor(Cursor.HAND);
+        view.getmTwitterImg().setCursor(Cursor.HAND);
+        view.getBtnNewGame().setCursor(Cursor.HAND);
+        view.getBtnExit().setCursor(Cursor.HAND);
+        view.getBtnScoreboard().setCursor(Cursor.HAND);
     }
 }

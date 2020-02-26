@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="Added MenuBar with eventhandler(not working yet)">
+    <list default="true" id="194903f0-932a-4cc8-b557-339fc8cda202" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenView.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +129,7 @@
       <workItem from="1582286179889" duration="1049000" />
       <workItem from="1582311012301" duration="758000" />
       <workItem from="1582618245996" duration="16855000" />
-      <workItem from="1582653343401" duration="8499000" />
+      <workItem from="1582653343401" duration="15387000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>
@@ -192,7 +194,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576877802951</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added MenuBar with eventhandler(not working yet)&#10;+ small changes">
+      <created>1582664319754</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1582664319754</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -221,7 +230,8 @@
     <MESSAGE value="Improved scoreboard presentation + code fixes" />
     <MESSAGE value="Now ordering results in scoreboard by (gameTime - score)" />
     <MESSAGE value="Improved card value shuffling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved card value shuffling" />
+    <MESSAGE value="Added MenuBar with eventhandler(not working yet)&#10;+ small changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added MenuBar with eventhandler(not working yet)&#10;+ small changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="178" key="#Project_Structure" timestamp="1582146313985">

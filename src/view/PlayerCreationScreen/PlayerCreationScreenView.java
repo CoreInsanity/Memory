@@ -20,6 +20,8 @@ public class PlayerCreationScreenView extends GridPane {
     private TextField txtAge;
     private Button playBtn;
     private HBox playBtnBox;
+    private Button backBtn;
+    private HBox backBtnBox;
 
     public PlayerCreationScreenView(){
         initNodes();
@@ -32,25 +34,39 @@ public class PlayerCreationScreenView extends GridPane {
         txtAge = new TextField();
         playBtn = new Button("Play");
         playBtnBox = new HBox(10);
+        backBtn = new Button("Back");
+        backBtnBox = new HBox(10);
     }
     private void layoutNodes(){
         setAlignment(Pos.CENTER);
         setHgap(10);
         setVgap(10);
         setPadding(new Insets(25, 25, 25, 25));
-        setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        setBackground(new Background(new BackgroundFill(Color.rgb(42, 45, 54), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        lblAge.setTextFill(Color.rgb(197, 178, 0));
+        lblName.setTextFill(Color.rgb(197, 178, 0));
+        playBtn.setBackground(new Background(new BackgroundFill(Color.YELLOW,CornerRadii.EMPTY,Insets.EMPTY)));
+        backBtn.setBackground(new Background(new BackgroundFill(Color.YELLOW,CornerRadii.EMPTY,Insets.EMPTY)));
+
 
         playBtnBox.setAlignment(Pos.BOTTOM_RIGHT);
         playBtnBox.getChildren().add(playBtn);
+
+        backBtnBox.setAlignment(Pos.BOTTOM_LEFT);
+        backBtnBox.getChildren().add(backBtn);
 
         add(lblName,0, 1);
         add(txtName,1, 1);
         add(lblAge, 0, 2);
         add(txtAge, 1, 2);
         add(playBtnBox, 1, 3);
+        add(backBtnBox,0,3);
+
     }
 
     TextField getName(){return txtName;}
     TextField getAge(){return txtAge;}
     Button getPlayBtn(){return playBtn;}
+    Button getBackBtn(){return backBtn;}
 }

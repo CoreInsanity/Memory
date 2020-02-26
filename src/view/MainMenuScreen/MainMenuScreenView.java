@@ -67,6 +67,9 @@ public class MainMenuScreenView extends BorderPane {
         setLeft(leftBox);
         setCenter(menuBox);
     }
+    private void transition(GridPane box ){
+        setCenter(box);
+    }
 
     private void layoutNodes() {
         btnNewGame.setPrefWidth(100);
@@ -132,5 +135,9 @@ public class MainMenuScreenView extends BorderPane {
 
     ImageView getlTwitterImg() {
         return lTwitterImg;
+    }
+
+    public VBox getMenuBox() {
+        return menuBox;
     }
 }

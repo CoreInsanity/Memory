@@ -44,6 +44,7 @@ public class MemoryScreenPresenter {
         view = memoryScreenView;
 
         genPlayfield();
+        addEventHandler();
     }
     private void genPlayfield(){
         var tiles = new ArrayList<ImageView>();
@@ -73,7 +74,7 @@ public class MemoryScreenPresenter {
 
     }
 
-    private void addEventHandler() {  //TODO menuitems aren't eligible for events so need to find a work around.
+    private void addEventHandler() {
         view.getMenu1().setOnAction(b -> {
             var mmView = new MainMenuScreenView();
             new MainMenuScreenPresenter(mmView, stage);
@@ -83,6 +84,7 @@ public class MemoryScreenPresenter {
             var sbView = new ScoreboardScreenView();
             new ScoreboardScreenPresenter(sbView, stage);
             stage.setScene(new Scene(sbView));
+            stage.show();
         });
 
         view.getMenu3().setOnAction(b -> Platform.exit());

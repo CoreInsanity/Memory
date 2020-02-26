@@ -1,7 +1,9 @@
 package view.MemoryScreen;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,26 +35,30 @@ public class MemoryScreenView extends BorderPane {
     private Menu menu = new Menu("Menu");
     private Label timer;
     private Label score;
-
+    private ImageView menulogo;
 
 
     public MemoryScreenView() {
         initNodes();
         layoutNodes();
     }
-    private void initNodes(){
+
+    private void initNodes() {
         try {
             topImg = new ImageView(new Image(new FileInputStream("resources\\top.png")));
-        } catch (Exception ex){
+            menulogo = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
         menuBar = new MenuBar();
         menuBar.getMenus().add(menu);
-        menu.getItems().addAll(menu1,menu2,menu3);
+        menu.getItems().addAll(menu1, menu2, menu3);
+        menu.setGraphic(menulogo);
         timer = new Label("Timer: ");
         score = new Label("Score: ");
     }
-    private void layoutNodes(){
+
+    private void layoutNodes() {
         setTop(menuBar);
 
         setLeft(timer);
@@ -66,16 +72,27 @@ public class MemoryScreenView extends BorderPane {
         score.setPrefWidth(50);
         score.setMaxHeight(20);
 
+        menulogo.setFitWidth(25);
+        menulogo.setFitHeight(25);
+
 
     }
-    public void initPlayfield(Pane pane){
-        setBackground(new Background(new BackgroundFill(Color.rgb(42, 45, 54),CornerRadii.EMPTY,Insets.EMPTY)));
-        setCenter(pane);
-        setPrefSize(1000,1000);
+
+    public void initPlayfield(Pane pane) {
+        setBackground(new Background(new BackgroundFill(Color.rgb(42, 45, 54), CornerRadii.EMPTY, Insets.EMPTY)));
+        super.setCenter(pane);
+        setMargin(pane, new Insets(10));
+        positionInArea(pane,10,10,10,10,10, HPos.CENTER, VPos.CENTER);
+        setPrefSize(1000, 1000);
     }
 
-    List<ImageView> getTiles(){return tiles;}
-    ImageView getTopImg() {return topImg;}
+    List<ImageView> getTiles() {
+        return tiles;
+    }
+
+    ImageView getTopImg() {
+        return topImg;
+    }
 
     public MenuItem getMenu1() {
         return menu1;
