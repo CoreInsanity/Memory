@@ -20,6 +20,8 @@ public class Menu extends Application {
         stage.setResizable(false);
         stage.setTitle("Tarkov Memory");
 
+        stage.initStyle(StageStyle.UNDECORATED);
+
         var view = new MainMenuScreenView();
         new MainMenuScreenPresenter(view, stage);
 
