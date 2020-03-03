@@ -32,7 +32,6 @@ public class PlayerCreationScreenPresenter {
         addEventhandlers();
     }
     private void addEventhandlers(){
-        view.getBackBtn().setCursor(Cursor.HAND);
         view.getPlayBtn().setOnAction(b -> {
             var viewer = new MemoryScreenView();
             new MemoryScreenPresenter(viewer, stage);
@@ -45,5 +44,7 @@ public class PlayerCreationScreenPresenter {
             new MainMenuScreenPresenter(mmView, stage);
             stage.setScene(new Scene(mmView));
         });
+
+        view.getBackBtn().setCursor(Cursor.HAND);
     }
 }
