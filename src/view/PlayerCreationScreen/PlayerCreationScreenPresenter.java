@@ -3,6 +3,7 @@ package view.PlayerCreationScreen;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
+import models.Game;
 import view.MainMenuScreen.MainMenuScreenPresenter;
 import view.MainMenuScreen.MainMenuScreenView;
 import view.MemoryScreen.MemoryScreenPresenter;
@@ -32,9 +33,12 @@ public class PlayerCreationScreenPresenter {
         });
     }
     private void startGame(){
-        //if(!fieldsCheck()) return;                        ENABLE ON LIVE BUILD
+        if(!fieldsCheck()) return;
+        var game = new Game();
+        game.getPlayer().setName(view.getName().getText());
+        game.getPlayer().setAge(Integer.parseInt(view.getAge().getText()));
         var viewer = new MemoryScreenView();
-        new MemoryScreenPresenter(viewer, stage);
+        new MemoryScreenPresenter(viewer, stage, game);
         stage.setScene(new Scene(viewer));
     }
     private boolean fieldsCheck(){

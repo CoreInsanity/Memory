@@ -1,5 +1,5 @@
 package view.MemoryScreen;
-
+import models.Game;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
@@ -31,6 +31,7 @@ import java.util.*;
  */
 public class MemoryScreenPresenter {
     private Stage stage;
+    private Game game;
     private MemoryScreenView view;
     private Image topImg;
     private Image topSelImg;
@@ -42,23 +43,22 @@ public class MemoryScreenPresenter {
     private Scene scene;
     private Timer gameTimer;
     private int timerSec;
+    private int foundMatches;
     private MediaPlayer tickPlayer; //Only use this one for timer ticks
     private MediaPlayer cflipPlayer; //Only use this one for card flips
     private MediaPlayer sfPlayer; //Use this one for all the other SFX
     private Thread onClickThread;
 
-    public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage) {
+    public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage, Game gameMod) {
         initStage(curStage);
-
         view = memoryScreenView;
-
+        game = gameMod;
         scene = stage.getScene();
         playField = view.getPlayField();
-
         botImgs = new ArrayList<>();
         gameTimer = new Timer();
-
         timerSec = 0;
+        foundMatches = 0;
 
         try {
             loadImgs();
@@ -133,6 +133,12 @@ public class MemoryScreenPresenter {
                 lastClickIndex = null;
                 sfPlayer.seek(Duration.ZERO);
                 sfPlayer.play();
+                game.adjustScore(50);
+                foundMatches++;
+                if(foundMatches == botImgs.size()/2) {
+                    game.setGameTime(timerSec);
+                    Platform.exit();
+                }
             }
             return;
         }
@@ -144,11 +150,6 @@ public class MemoryScreenPresenter {
             var mmView = new MainMenuScreenView();
             new MainMenuScreenPresenter(mmView, stage);
             stage.setScene(new Scene(mmView));
-        });
-        view.getMenu4().setOnAction(b -> {
-            var mView = new MemoryScreenView();
-            new MemoryScreenPresenter(mView, stage);
-            stage.setScene(new Scene(mView));
         });
         view.getMenu2().setOnAction(b -> {
             var sbView = new ScoreboardScreenView();
@@ -176,7 +177,7 @@ public class MemoryScreenPresenter {
                 }
                 else if(m.getClickCount() == 2){
                     onClickThread.interrupt(); //Kill the previously generated onclick thread
-                    getHint(img, botImgs.get(index));
+                    game.getHint(img, botImgs.get(index), topImg);
                 }
             });
             i++;
@@ -193,7 +194,7 @@ public class MemoryScreenPresenter {
             img.setFocusTraversable(true);
 
             img.setOnKeyPressed(i -> {
-                if(new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i)) getHint(img, botImgs.get(index));
+                if(new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i)) game.getHint(img, botImgs.get(index), topImg);
                 else switch (i.getCode()){
                     case UP:
                         setHoverView(index-4);
@@ -214,21 +215,6 @@ public class MemoryScreenPresenter {
             });
 
         }
-    }
-    private void getHint(ImageView view, Image botImg){
-        view.setImage(botImg);
-
-        var resetTileTask = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                Thread.sleep(1000);
-                view.setImage(topImg);
-                return null;
-            }
-        };
-
-        var thread = new Thread(resetTileTask);
-        thread.start();
     }
     private void setHoverView(int index){
         var i = 0;
