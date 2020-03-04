@@ -1,17 +1,13 @@
 package view.MemoryScreen;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import models.Tile;
 import view.MainMenuScreen.MainMenuScreenPresenter;
 import view.MainMenuScreen.MainMenuScreenView;
 import view.ScoreboardScreen.ScoreboardScreenPresenter;
@@ -29,7 +25,6 @@ import java.util.TimerTask;
  * 19/02/2020.
  */
 public class MemoryScreenPresenter {
-    private Tile tile;
     private Stage stage;
     private MemoryScreenView view;
     private Image topImg;
@@ -43,32 +38,55 @@ public class MemoryScreenPresenter {
     private Image checkmarkimg;
     private int index;
     private Scene scene;
-    private Timer timer = new Timer();
-    private TimerTask timerTask;
+    private Timer gameTimer;
+    private int timerSec;
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage) {
-        stage = curStage;
-        stage.setHeight(700);
-        stage.setWidth(675);
+        initStage(curStage);
+
+        view = memoryScreenView;
+
+        scene = stage.getScene();
+        playField = view.getPlayField();
+
         botImgs = new ArrayList<>();
         checkmark = new ArrayList<>();
-        view = memoryScreenView;
-        playField = view.getPlayField();
+        gameTimer = new Timer();
+
         index = 0;
-        tile = new Tile();
+        timerSec = 0;
 
         try {
             loadImgs();
         } catch (Exception ex){
-            // ¯\_(ツ)_/¯
             System.out.println(ex.getMessage());
             Platform.exit();
         }
-        tile.startTimer();
-        scene = stage.getScene();
+
         setCursors();
         addEventHandlers();
         keycontrols();
+        startTimer();
+    }
+    private void initStage(Stage stg){
+        stage = stg;
+        stage.setHeight(700);
+        stage.setWidth(675);
+    }
+    private void startTimer(){
+        gameTimer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                timerSec++;
+
+                int Minutes = timerSec/60;
+                int Seconds = timerSec%60;
+                var minutes = (Minutes < 10? "0":"") + Minutes;
+                var seconds = (Seconds < 10? "0":"") + Seconds;
+
+                Platform.runLater(p -> view.getTimer().setText("Time:" + minutes + ":"+ seconds));
+            }
+        },1000,1000);
     }
     private void loadImgs() throws FileNotFoundException{
         topImg = view.getTopImg();
@@ -137,7 +155,6 @@ public class MemoryScreenPresenter {
             i++;
         }
     }
-
     private void keycontrols() {
         view.setFocusTraversable(true);
 
