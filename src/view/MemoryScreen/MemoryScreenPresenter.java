@@ -167,7 +167,7 @@ public class MemoryScreenPresenter {
                     onClickThread = new Thread(new Task<Void>() {
                         @Override
                         protected Void call() throws Exception {
-                            Thread.sleep(250);
+                            Thread.sleep(250); //Add slight delay, if the user clicks again within 250ms this thread will be killed
                             onTileClick(botImgs.get(index), img, index); //We can assume it was a single click
                             return null;
                         }
@@ -175,7 +175,7 @@ public class MemoryScreenPresenter {
                     onClickThread.start();
                 }
                 else if(m.getClickCount() == 2){
-                    onClickThread.stop(); //Kill the onclick thread
+                    onClickThread.interrupt(); //Kill the previously generated onclick thread
                     getHint(img, botImgs.get(index));
                 }
             });
