@@ -3,6 +3,7 @@ package view.MainMenuScreen;
 import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import java.awt.Desktop;
 import java.io.IOException;
@@ -28,26 +29,20 @@ public class MainMenuScreenPresenter {
         view = mmView;
         stage = curStage;
 
-        setCursors();
         handleEvents();
 
         stage.setHeight(400);
         stage.setWidth(600);
     }
     private void handleEvents(){
-        view.getBtnNewGame().setOnMouseClicked(b-> {
-            var pcView = new PlayerCreationScreenView();
-            new PlayerCreationScreenPresenter(pcView, stage);
-            view.setCenter(pcView);
-        });
+        view.getBtnNewGame().setOnMouseClicked(b-> startNewGame());
+        view.getBtnNewGame().setOnKeyPressed(k -> {if (k.getCode() == KeyCode.ENTER) startNewGame();});
 
         view.getBtnExit().setOnMouseClicked(b -> Platform.exit());
+        view.getBtnExit().setOnKeyPressed(k -> {if(k.getCode() == KeyCode.ENTER) Platform.exit();});
 
-        view.getBtnScoreboard().setOnMouseClicked(b -> {
-            var sbView = new ScoreboardScreenView();
-            new ScoreboardScreenPresenter(sbView, stage);
-            stage.setScene(new Scene(sbView));
-        });
+        view.getBtnScoreboard().setOnMouseClicked(b -> showScoreboard());
+        view.getBtnScoreboard().setOnKeyPressed(k -> {if(k.getCode() == KeyCode.ENTER) showScoreboard();});
 
         view.getGitImg().setOnMouseClicked(b -> {
             try {
@@ -65,12 +60,14 @@ public class MainMenuScreenPresenter {
             } catch (Exception ex) {}
         });
     }
-    private void setCursors(){
-        view.getGitImg().setCursor(Cursor.HAND);
-        view.getlTwitterImg().setCursor(Cursor.HAND);
-        view.getmTwitterImg().setCursor(Cursor.HAND);
-        view.getBtnNewGame().setCursor(Cursor.HAND);
-        view.getBtnExit().setCursor(Cursor.HAND);
-        view.getBtnScoreboard().setCursor(Cursor.HAND);
+    private void startNewGame(){
+        var pcView = new PlayerCreationScreenView();
+        new PlayerCreationScreenPresenter(pcView, stage);
+        view.setCenter(pcView);
+    }
+    private void showScoreboard(){
+        var sbView = new ScoreboardScreenView();
+        new ScoreboardScreenPresenter(sbView, stage);
+        stage.setScene(new Scene(sbView));
     }
 }

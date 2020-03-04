@@ -2,6 +2,7 @@ package view.PlayerCreationScreen;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -49,6 +50,8 @@ public class PlayerCreationScreenView extends GridPane {
         playBtn.setBackground(new Background(new BackgroundFill(Color.YELLOW,CornerRadii.EMPTY,Insets.EMPTY)));
         backBtn.setBackground(new Background(new BackgroundFill(Color.YELLOW,CornerRadii.EMPTY,Insets.EMPTY)));
 
+        playBtn.setCursor(Cursor.HAND);
+        backBtn.setCursor(Cursor.HAND);
 
         playBtnBox.setAlignment(Pos.BOTTOM_RIGHT);
         playBtnBox.getChildren().add(playBtn);

@@ -3,6 +3,7 @@ package view.MainMenuScreen;
 
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.scene.Cursor;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
@@ -41,6 +42,7 @@ public class MainMenuScreenView extends BorderPane {
         initNodes();
         layoutNodes();
         initTooltips();
+        setCursors();
     }
 
     private void initNodes() {
@@ -121,6 +123,14 @@ public class MainMenuScreenView extends BorderPane {
         Tooltip.install(btnNewGame, new Tooltip("Open the profile creator and start a game"));
         Tooltip.install(btnScoreboard, new Tooltip("Show the scoreboard"));
         Tooltip.install(btnExit, new Tooltip("Close this application"));
+    }
+    private void setCursors(){
+        gitImg.setCursor(Cursor.HAND);
+        lTwitterImg.setCursor(Cursor.HAND);
+        mTwitterImg.setCursor(Cursor.HAND);
+        btnNewGame.setCursor(Cursor.HAND);
+        btnExit.setCursor(Cursor.HAND);
+        btnScoreboard.setCursor(Cursor.HAND);
     }
 
     Button getBtnNewGame() {
