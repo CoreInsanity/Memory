@@ -1,6 +1,7 @@
 
 package view.MainMenuScreen;
 
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
@@ -15,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Maxim Van den Eede
@@ -28,6 +30,7 @@ public class MainMenuScreenView extends BorderPane {
     private VBox leftBox;
     private HBox webLinks;
     private ImageView tarkovImg;
+    private ImageView tarkovTitle;
     private ImageView mTwitterImg;
     private ImageView lTwitterImg;
     private ImageView gitImg;
@@ -51,24 +54,27 @@ public class MainMenuScreenView extends BorderPane {
         botPane = new BorderPane();
 
         try {
-            tarkovImg = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
-            gitImg = new ImageView(new Image(new FileInputStream("resources\\github.png")));
-            mTwitterImg = new ImageView(new Image(new FileInputStream("resources\\twitter.png")));
-            lTwitterImg = new ImageView(new Image(new FileInputStream("resources\\twitter.png")));
+            loadImgs();
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            Platform.exit();
         }
 
         webLinks.getChildren().addAll(gitImg, new Rectangle(5, 0), lTwitterImg, new Rectangle(5, 0), mTwitterImg);
         topPane.setBottom(tarkovImg);
         botPane.setBottom(webLinks);
         leftBox.getChildren().addAll(topPane, botPane);
-        menuBox.getChildren().addAll(btnNewGame, btnScoreboard, btnExit);
+        menuBox.getChildren().addAll(tarkovTitle, new Rectangle(0, 20), btnNewGame, btnScoreboard, btnExit);
 
         setLeft(leftBox);
         setCenter(menuBox);
     }
-    private void transition(GridPane box ){
-        setCenter(box);
+    private void loadImgs() throws FileNotFoundException{
+        tarkovImg = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
+        tarkovTitle = new ImageView(new Image(new FileInputStream("resources\\tarkov_title.png")));
+        gitImg = new ImageView(new Image(new FileInputStream("resources\\github.png")));
+        mTwitterImg = new ImageView(new Image(new FileInputStream("resources\\twitter.png")));
+        lTwitterImg = new ImageView(new Image(new FileInputStream("resources\\twitter.png")));
     }
 
     private void layoutNodes() {
@@ -81,6 +87,10 @@ public class MainMenuScreenView extends BorderPane {
         tarkovImg.setFitWidth(100);
         tarkovImg.setFitHeight(70);
         tarkovImg.setOpacity(0.85);
+
+        tarkovTitle.setFitWidth(500);
+        tarkovTitle.setFitHeight(50);
+        tarkovTitle.setOpacity(0.85);
 
         gitImg.setFitWidth(25);
         gitImg.setFitHeight(25);
@@ -137,7 +147,5 @@ public class MainMenuScreenView extends BorderPane {
         return lTwitterImg;
     }
 
-    public VBox getMenuBox() {
-        return menuBox;
-    }
+    public VBox getMenuBox() { return menuBox; }
 }
