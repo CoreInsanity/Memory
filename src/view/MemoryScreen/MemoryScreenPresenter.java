@@ -33,6 +33,7 @@ public class MemoryScreenPresenter {
     private Stage stage;
     private MemoryScreenView view;
     private Image topImg;
+    private Image topSelImg;
     private Pane playField;
     private ArrayList<Image> botImgs;
     private ArrayList<ImageView> checkmark;
@@ -68,15 +69,10 @@ public class MemoryScreenPresenter {
         setCursors();
         addEventHandlers();
         keycontrols();
-//        timer.scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                updateView();
-//            }
-//        }, 0, 1000);
     }
     private void loadImgs() throws FileNotFoundException{
-        topImg = new Image(new FileInputStream("resources\\top.png"));
+        topImg = view.getTopImg();
+        topSelImg = view.getTopSelImg();
         for (var file:new File("resources\\bottom").listFiles()) {
             var img = new Image(new FileInputStream(file.getAbsolutePath()));
             botImgs.add(img);
@@ -87,6 +83,7 @@ public class MemoryScreenPresenter {
     private void onTileClick(Image originalImg, ImageView view, Integer imgIndex){
         view.setImage(originalImg);
         view.setCursor(Cursor.DEFAULT);
+        view.setOpacity(1);
 
         if (toRemoveIndex != null && lastClickIndex != null){
             var toRemoveImg = (ImageView) playField.getChildren().get(toRemoveIndex);
@@ -143,58 +140,48 @@ public class MemoryScreenPresenter {
 
     private void keycontrols() {
         view.setFocusTraversable(true);
-        view.getPlayField().setOnKeyPressed(event -> {
-            switch (event.getCode()) {
-                case KP_RIGHT:
-                    System.out.println("Right");
-                    break;
-                case KP_LEFT:
-                    System.out.print("left nigga");
-                    break;
-                case KP_DOWN:
-                    System.out.print("down nigga");
-                    break;
-                case KP_UP:
-                    System.out.print("up nigga");
-                    break;
-            }
-        });
 
         int a = 0;
         for (var observable : playField.getChildren()) {
             var index = a;
             var img = (ImageView) observable;
             img.setFocusTraversable(true);
-            img.setOnContextMenuRequested(new EventHandler<ContextMenuEvent>() {
-                @Override
-                public void handle(ContextMenuEvent contextMenuEvent) {
-                    img.setStyle("-fx-border-color: Yellow; -fx-border-width: 5;");
 
-                }
-            });
-            img.setOnKeyPressed(new EventHandler<KeyEvent>() {
-                @Override
-                public void handle(KeyEvent e) {
-                    if (e.getCode() == KeyCode.ENTER) {
+            img.setOnKeyPressed(i -> {
+                switch (i.getCode()){
+                    case ENTER:
                         onTileClick(botImgs.get(index), img, index);
-                    }
+                        break;
+                    case UP:
+                        setHoverView(index-4);
+                        break;
+                    case DOWN:
+                        setHoverView(index+4);
+                        break;
+                    case LEFT:
+                        setHoverView(index-1);
+                        break;
+                    case RIGHT:
+                        setHoverView(index+1);
+                        break;
                 }
             });
             a++;
         }
     }
-
-
+    private void setHoverView(int index){
+        var i = 0;
+        for (var observable : playField.getChildren()) {
+            var img = (ImageView) observable;
+            if(i == index && img.getImage().hashCode() == topImg.hashCode()) img.setImage(topSelImg);
+            else if(img.getImage().hashCode() == topSelImg.hashCode()) img.setImage(topImg);
+            i++;
+        }
+    }
     private void setCursors(){
         for (var observable:playField.getChildren()) {
             var img = (ImageView) observable;
             img.setCursor(Cursor.HAND);
         }
     }
-
-    private void updateView() {
-//        view.getTimer().setText(tile.getString());
-    }
-
-    int a = 0;
 }

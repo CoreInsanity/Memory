@@ -25,6 +25,7 @@ import java.util.List;
 
 public class MemoryScreenView extends BorderPane {
     private Image topImg;
+    private Image topSelImg;
     private BorderPane playField;
     private MenuBar menuBar;
     private MenuItem menu1;
@@ -70,6 +71,7 @@ public class MemoryScreenView extends BorderPane {
     }
     private void loadImgs() throws FileNotFoundException{
         topImg = new Image(new FileInputStream("resources\\top.png"));
+        topSelImg = new Image(new FileInputStream("resources\\top_sel.png"));
         menulogo = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
     }
     private void layoutNodes() {
@@ -112,4 +114,6 @@ public class MemoryScreenView extends BorderPane {
     public MenuItem getMenu4() {return menu4;}
     public BorderPane getPlayField() {return (BorderPane) getCenter();}
     public Label getTimer() {return timer;}
+    public Image getTopImg(){return topImg;}
+    public Image getTopSelImg(){return topSelImg;}
 }
