@@ -9,6 +9,7 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import javafx.scene.input.MouseEvent;
 
 import javafx.stage.StageStyle;
 import view.PlayerCreationScreen.PlayerCreationScreenPresenter;
@@ -59,6 +60,12 @@ public class MainMenuScreenPresenter {
                 Desktop.getDesktop().browse(new URI("https://twitter.com/larskedl"));
             } catch (Exception ex) {}
         });
+
+        view.setOnMouseDragged(m -> {
+            stage.setX(m.getScreenX() - 0);
+            stage.setY(m.getScreenY() - 0);
+        });
+
     }
     private void startNewGame(){
         var pcView = new PlayerCreationScreenView();
