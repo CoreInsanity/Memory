@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a609ef0-f339-40b7-86f8-e78056d5e454" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/audio/card_flip.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/clock_tick.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/audio/match.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Tile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -134,7 +135,7 @@
       <workItem from="1582736714802" duration="15906000" />
       <workItem from="1583217941550" duration="2118000" />
       <workItem from="1583240665596" duration="7059000" />
-      <workItem from="1583319176512" duration="7013000" />
+      <workItem from="1583319176512" duration="9718000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>

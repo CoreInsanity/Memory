@@ -7,7 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import view.MainMenuScreen.MainMenuScreenPresenter;
 import view.MainMenuScreen.MainMenuScreenView;
 import view.ScoreboardScreen.ScoreboardScreenPresenter;
@@ -40,6 +43,11 @@ public class MemoryScreenPresenter {
     private Scene scene;
     private Timer gameTimer;
     private int timerSec;
+    private Media clockTickSf;
+    private Media cardFlipSf;
+    private Media matchSf;
+    private MediaPlayer tickPlayer; //Only use this one for timer ticks
+    private MediaPlayer sfPlayer; //Use this one for all the other SFX
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage) {
         initStage(curStage);
@@ -58,10 +66,13 @@ public class MemoryScreenPresenter {
 
         try {
             loadImgs();
+            loadAudio();
         } catch (Exception ex){
-            System.out.println(ex.getMessage());
+            System.out.println("Error while loading resources: " + ex.getMessage());
             Platform.exit();
         }
+
+        tickPlayer = new MediaPlayer(clockTickSf);
 
         setCursors();
         addEventHandlers();
@@ -84,7 +95,10 @@ public class MemoryScreenPresenter {
                 var minutes = (Minutes < 10? "0":"") + Minutes;
                 var seconds = (Seconds < 10? "0":"") + Seconds;
 
-                Platform.runLater(p -> view.getTimer().setText("Time:" + minutes + ":"+ seconds));
+                Platform.runLater(() -> view.getTimer().setText(minutes + ":"+ seconds));
+                tickPlayer.seek(Duration.ZERO);
+                tickPlayer.play();
+                System.out.println(timerSec);
             }
         },1000,1000);
     }
@@ -98,10 +112,16 @@ public class MemoryScreenPresenter {
         }
         Collections.shuffle(botImgs);
     }
+    private void loadAudio() throws FileNotFoundException{
+        clockTickSf = new Media(new File("resources\\audio\\clock_tick.mp3").toURI().toString());
+        cardFlipSf = new Media(new File("resources\\audio\\card_flip.mp3").toURI().toString());
+        matchSf = new Media(new File("resources\\audio\\match.mp3").toURI().toString());
+    }
     private void onTileClick(Image originalImg, ImageView view, Integer imgIndex){
+        sfPlayer = new MediaPlayer(cardFlipSf);
+        sfPlayer.play();
         view.setImage(originalImg);
         view.setCursor(Cursor.DEFAULT);
-        view.setOpacity(1);
 
         if (toRemoveIndex != null && lastClickIndex != null){
             var toRemoveImg = (ImageView) playField.getChildren().get(toRemoveIndex);
@@ -116,8 +136,11 @@ public class MemoryScreenPresenter {
             var lastClickedImg = (ImageView) playField.getChildren().get(lastClickIndex);
             if(view.getImage().hashCode() != lastClickedImg.getImage().hashCode())
                 toRemoveIndex = imgIndex;
-            else
+            else {
                 lastClickIndex = null;
+                sfPlayer = new MediaPlayer(matchSf);
+                sfPlayer.play();
+            }
             return;
         }
 
