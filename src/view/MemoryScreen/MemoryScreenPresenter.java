@@ -89,7 +89,6 @@ public class MemoryScreenPresenter {
                 Platform.runLater(() -> view.getTimer().setText(minutes + ":"+ seconds));
                 tickPlayer.seek(Duration.ZERO);
                 tickPlayer.play();
-                System.out.println(timerSec);
             }
         },1000,1000);
     }
@@ -208,9 +207,8 @@ public class MemoryScreenPresenter {
         var resetTileTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                try { Thread.sleep(1000); }catch (Exception ex){}
-                view.setImage(topImg);
-                System.out.println("nigga");
+                Thread.sleep(1000);
+                view.setImage(topSelImg);
                 return null;
             }
         };
