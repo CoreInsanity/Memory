@@ -3,6 +3,8 @@ package view.ScoreboardScreen;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import view.MainMenuScreen.MainMenuScreenPresenter;
@@ -26,7 +28,14 @@ public class ScoreboardScreenPresenter {
                 event.consume();
             }
         });
-
-
+        view.setFocusTraversable(true);
+        view.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ESCAPE){
+                var maView = new MainMenuScreenView();
+                new MainMenuScreenPresenter(maView, stage);
+                stage.setScene(new Scene(maView));
+                event.consume();
+            }
+        });
     }
 }

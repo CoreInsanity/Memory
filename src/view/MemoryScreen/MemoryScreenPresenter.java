@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -189,9 +191,6 @@ public class MemoryScreenPresenter {
 
             img.setOnKeyPressed(i -> {
                 switch (i.getCode()){
-                    case ENTER:
-                        onTileClick(botImgs.get(index), img, index);
-                        break;
                     case UP:
                         setHoverView(index-4);
                         break;
@@ -205,6 +204,13 @@ public class MemoryScreenPresenter {
                         setHoverView(index+1);
                         break;
                 }
+                if(new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i)){
+//                    tile.getHint(botImgs.get(index),index);
+                }
+                if(new KeyCodeCombination(KeyCode.ENTER).match(i)){
+                    onTileClick(botImgs.get(index),img,index);
+                }
+
             });
             a++;
         }
