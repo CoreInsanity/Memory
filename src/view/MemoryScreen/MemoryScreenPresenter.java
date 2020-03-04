@@ -1,6 +1,7 @@
 package view.MemoryScreen;
 
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -8,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -43,6 +45,7 @@ public class MemoryScreenPresenter {
     private MediaPlayer tickPlayer; //Only use this one for timer ticks
     private MediaPlayer cflipPlayer; //Only use this one for card flips
     private MediaPlayer sfPlayer; //Use this one for all the other SFX
+    private Thread onClickThread;
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage) {
         initStage(curStage);
@@ -158,11 +161,22 @@ public class MemoryScreenPresenter {
         for (var observable:playField.getChildren()) {
             var index = i;
             var img = (ImageView) observable;
-            img.setOnMouseClicked(m -> onTileClick(botImgs.get(index), img, index));
-            img.setOnKeyPressed(event -> {
-                if (event.getCode() == KeyCode.ENTER) {
-                    System.out.println("YEET");
-                    onTileClick(botImgs.get(index), img, index);
+
+            img.setOnMouseClicked(m -> {
+                if(m.getClickCount() == 1) {
+                    onClickThread = new Thread(new Task<Void>() {
+                        @Override
+                        protected Void call() throws Exception {
+                            Thread.sleep(250);
+                            onTileClick(botImgs.get(index), img, index); //We can assume it was a single click
+                            return null;
+                        }
+                    });
+                    onClickThread.start();
+                }
+                else if(m.getClickCount() == 2){
+                    onClickThread.stop(); //Kill the onclick thread
+                    getHint(img, botImgs.get(index));
                 }
             });
             i++;
@@ -208,7 +222,7 @@ public class MemoryScreenPresenter {
             @Override
             protected Void call() throws Exception {
                 Thread.sleep(1000);
-                view.setImage(topSelImg);
+                view.setImage(topImg);
                 return null;
             }
         };
