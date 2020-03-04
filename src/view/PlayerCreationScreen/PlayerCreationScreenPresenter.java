@@ -32,7 +32,7 @@ public class PlayerCreationScreenPresenter {
         });
     }
     private void startGame(){
-        if(!fieldsCheck()) return;
+        //if(!fieldsCheck()) return;                        ENABLE ON LIVE BUILD
         var viewer = new MemoryScreenView();
         new MemoryScreenPresenter(viewer, stage);
         stage.setScene(new Scene(viewer));

@@ -12,7 +12,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.Game;
-import scenes.Memory;
 
 public class PlayerCreationScreenView extends GridPane {
     private Label lblName;

@@ -13,16 +13,14 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.concurrent.Task;
 import view.MainMenuScreen.MainMenuScreenPresenter;
 import view.MainMenuScreen.MainMenuScreenView;
 import view.ScoreboardScreen.ScoreboardScreenPresenter;
 import view.ScoreboardScreen.ScoreboardScreenView;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 
 /**
@@ -36,19 +34,14 @@ public class MemoryScreenPresenter {
     private Image topSelImg;
     private Pane playField;
     private ArrayList<Image> botImgs;
-    private ArrayList<ImageView> checkmark;
     private Integer lastClickIndex;
     private Integer toRemoveIndex;
     private Integer toRemoveSecondIndex;
-    private Image checkmarkimg;
-    private int index;
     private Scene scene;
     private Timer gameTimer;
     private int timerSec;
-    private Media clockTickSf;
-    private Media cardFlipSf;
-    private Media matchSf;
     private MediaPlayer tickPlayer; //Only use this one for timer ticks
+    private MediaPlayer cflipPlayer; //Only use this one for card flips
     private MediaPlayer sfPlayer; //Use this one for all the other SFX
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage) {
@@ -60,10 +53,8 @@ public class MemoryScreenPresenter {
         playField = view.getPlayField();
 
         botImgs = new ArrayList<>();
-        checkmark = new ArrayList<>();
         gameTimer = new Timer();
 
-        index = 0;
         timerSec = 0;
 
         try {
@@ -73,8 +64,6 @@ public class MemoryScreenPresenter {
             System.out.println("Error while loading resources: " + ex.getMessage());
             Platform.exit();
         }
-
-        tickPlayer = new MediaPlayer(clockTickSf);
 
         setCursors();
         addEventHandlers();
@@ -115,13 +104,13 @@ public class MemoryScreenPresenter {
         Collections.shuffle(botImgs);
     }
     private void loadAudio() throws FileNotFoundException{
-        clockTickSf = new Media(new File("resources\\audio\\clock_tick.mp3").toURI().toString());
-        cardFlipSf = new Media(new File("resources\\audio\\card_flip.mp3").toURI().toString());
-        matchSf = new Media(new File("resources\\audio\\match.mp3").toURI().toString());
+        tickPlayer = new MediaPlayer(new Media(new File("resources\\audio\\clock_tick.mp3").toURI().toString()));
+        cflipPlayer = new MediaPlayer(new Media(new File("resources\\audio\\card_flip.mp3").toURI().toString()));
+        sfPlayer = new MediaPlayer(new Media(new File("resources\\audio\\match.mp3").toURI().toString()));
     }
     private void onTileClick(Image originalImg, ImageView view, Integer imgIndex){
-        sfPlayer = new MediaPlayer(cardFlipSf);
-        sfPlayer.play();
+        cflipPlayer.seek(Duration.ZERO);
+        cflipPlayer.play();
         view.setImage(originalImg);
         view.setCursor(Cursor.DEFAULT);
 
@@ -140,7 +129,7 @@ public class MemoryScreenPresenter {
                 toRemoveIndex = imgIndex;
             else {
                 lastClickIndex = null;
-                sfPlayer = new MediaPlayer(matchSf);
+                sfPlayer.seek(Duration.ZERO);
                 sfPlayer.play();
             }
             return;
@@ -186,11 +175,13 @@ public class MemoryScreenPresenter {
         int a = 0;
         for (var observable : playField.getChildren()) {
             var index = a;
+            a++;
             var img = (ImageView) observable;
             img.setFocusTraversable(true);
 
             img.setOnKeyPressed(i -> {
-                switch (i.getCode()){
+                if(new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i)) getHint(img, botImgs.get(index));
+                else switch (i.getCode()){
                     case UP:
                         setHoverView(index-4);
                         break;
@@ -203,17 +194,29 @@ public class MemoryScreenPresenter {
                     case RIGHT:
                         setHoverView(index+1);
                         break;
+                    case ENTER:
+                        onTileClick(botImgs.get(index),img,index);
+                        break;
                 }
-                if(new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i)){
-//                    tile.getHint(botImgs.get(index),index);
-                }
-                if(new KeyCodeCombination(KeyCode.ENTER).match(i)){
-                    onTileClick(botImgs.get(index),img,index);
-                }
-
             });
-            a++;
+
         }
+    }
+    private void getHint(ImageView view, Image botImg){
+        view.setImage(botImg);
+
+        var resetTileTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try { Thread.sleep(1000); }catch (Exception ex){}
+                view.setImage(topImg);
+                System.out.println("nigga");
+                return null;
+            }
+        };
+
+        var thread = new Thread(resetTileTask);
+        thread.start();
     }
     private void setHoverView(int index){
         var i = 0;
