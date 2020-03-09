@@ -94,13 +94,6 @@ public class MemoryScreenPresenter {
                 Platform.runLater(() -> view.getTimer().setText(minutes + ":"+ seconds));
                 tickPlayer.seek(Duration.ZERO);
                 tickPlayer.play();
-                if (timerSec == 90) {
-                    cancel();
-                    Platform.runLater(() -> {
-                        EndScreen();
-                    });
-                }
-
             }
         },1000,1000);
     }
@@ -124,6 +117,7 @@ public class MemoryScreenPresenter {
         cflipPlayer.play();
         view.setImage(originalImg);
         view.setCursor(Cursor.DEFAULT);
+        game.adjustClickAmount(1);
 
         if (toRemoveIndex != null && lastClickIndex != null){
             var toRemoveImg = (ImageView) playField.getChildren().get(toRemoveIndex);
@@ -142,11 +136,12 @@ public class MemoryScreenPresenter {
                 lastClickIndex = null;
                 sfPlayer.seek(Duration.ZERO);
                 sfPlayer.play();
-                game.adjustScore(50);
+                game.adjustScore(25);
                 foundMatches++;
                 if(foundMatches == botImgs.size()/2) {
                     game.setGameTime(timerSec);
-                    Platform.exit();
+                    gameTimer.cancel();
+                    game.showEndScreen(stage);
                 }
             }
             return;
@@ -232,29 +227,6 @@ public class MemoryScreenPresenter {
             if(i == index && img.getImage().hashCode() == topImg.hashCode()) img.setImage(topSelImg);
             else if(img.getImage().hashCode() == topSelImg.hashCode()) img.setImage(topImg);
             i++;
-        }
-    }
-    private void EndScreen(){
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Too bad, so Sad");
-        alert.setHeaderText("Game Over! you ran out of time");
-        view.setStyle("-fx-opacity: 0.5");
-        ButtonType restart = new ButtonType("Restart");
-        ButtonType mainmenu = new ButtonType("Main menu");
-
-        alert.getButtonTypes().clear();
-        alert.getButtonTypes().addAll(restart,mainmenu);
-
-        Optional<ButtonType> option = alert.showAndWait();
-
-        if (option.get() == restart) {
-            var mView = new MemoryScreenView();
-            new MemoryScreenPresenter(mView, stage, new Game());
-            stage.setScene(new Scene(mView));
-        } else if (option.get() == mainmenu) {
-            var mmView = new MainMenuScreenView();
-            new MainMenuScreenPresenter(mmView, stage);
-            stage.setScene(new Scene(mmView));
         }
     }
 

@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,6 +135,8 @@
       <workItem from="1583240665596" duration="7059000" />
       <workItem from="1583319176512" duration="9718000" />
       <workItem from="1583347318632" duration="1805000" />
+      <workItem from="1583351204335" duration="2522000" />
+      <workItem from="1583795053954" duration="557000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>
