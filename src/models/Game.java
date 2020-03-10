@@ -148,7 +148,7 @@ public class Game {
                 break;
         }
     }
-    public void onTileClick(Image originalImg, Image topImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
+    public void tileClick(Image originalImg, Image topImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
         playAudio(Audio.FLIP);
         tileView.setImage(originalImg);
         tileView.setCursor(Cursor.DEFAULT);

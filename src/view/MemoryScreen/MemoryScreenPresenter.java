@@ -34,17 +34,17 @@ import java.util.*;
  */
 public class MemoryScreenPresenter {
     private Stage stage;
-    private Game game;
+    private Scene scene;
     private MemoryScreenView view;
+    private Pane playField;
+    private Game game;
     private Image topImg;
     private Image topSelImg;
-    private Pane playField;
     private ArrayList<Image> botImgs;
-    private Scene scene;
-    private int foundMatches;
     private Thread onClickThread;
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage, Game gameMod) {
+        //Initialize variables
         initStage(curStage);
         view = memoryScreenView;
         game = gameMod;
@@ -52,15 +52,8 @@ public class MemoryScreenPresenter {
         scene = stage.getScene();
         playField = view.getPlayField();
         botImgs = new ArrayList<>();
-        foundMatches = 0;
 
-        try {
-            loadImgs();
-        } catch (Exception ex){
-            System.out.println("Error while loading resources: " + ex.getMessage());
-            Platform.exit();
-        }
-
+        loadImgs();
         setCursors();
         addEventHandlers();
         keycontrols();
@@ -70,15 +63,20 @@ public class MemoryScreenPresenter {
         stage.setHeight(700);
         stage.setWidth(675);
     }
-    private void loadImgs() throws FileNotFoundException{
-        topImg = view.getTopImg();
-        topSelImg = view.getTopSelImg();
-        for (var file:new File("resources\\bottom").listFiles()) {
-            var img = new Image(new FileInputStream(file.getAbsolutePath()));
-            botImgs.add(img);
-            botImgs.add(img);
+    private void loadImgs(){
+        try {
+            topImg = view.getTopImg();
+            topSelImg = view.getTopSelImg();
+            for (var file:new File("resources\\bottom").listFiles()) {
+                var img = new Image(new FileInputStream(file.getAbsolutePath()));
+                botImgs.add(img);
+                botImgs.add(img);
+            }
+            Collections.shuffle(botImgs);
+        } catch (Exception ex){
+            System.out.println("Error while loading resources: " + ex.getMessage());
+            Platform.exit();
         }
-        Collections.shuffle(botImgs);
     }
     private void addEventHandlers() {
         view.getMenu1().setOnAction(b -> {
@@ -93,6 +91,7 @@ public class MemoryScreenPresenter {
         });
         view.getMenu3().setOnAction(b -> Platform.exit());
 
+        // Set onClicks for each tile, also checking for doubleclicks
         int i = 0;
         for (var observable:playField.getChildren()) {
             var index = i;
@@ -104,7 +103,7 @@ public class MemoryScreenPresenter {
                         @Override
                         protected Void call() throws Exception {
                             Thread.sleep(250); //Add slight delay, if the user clicks again within 250ms this thread will be killed
-                            game.onTileClick(botImgs.get(index), topImg, img, index, playField, stage); //We can assume it was a single click
+                            game.tileClick(botImgs.get(index), topImg, img, index, playField, stage); //We can assume it was a single click
                             return null;
                         }
                     });
@@ -144,7 +143,7 @@ public class MemoryScreenPresenter {
                         setHoverView(index+1);
                         break;
                     case ENTER:
-                        game.onTileClick(botImgs.get(index), topImg, img,index, playField, stage);
+                        game.tileClick(botImgs.get(index), topImg, img,index, playField, stage);
                         break;
                 }
             });
