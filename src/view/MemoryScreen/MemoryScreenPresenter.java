@@ -91,6 +91,13 @@ public class MemoryScreenPresenter {
         });
         view.getMenu3().setOnAction(b -> Platform.exit());
 
+        view.getMenu4().setOnAction(b -> {
+            var game = new Game();
+            var viewer = new MemoryScreenView();
+            new MemoryScreenPresenter(viewer, stage, game);
+            stage.setScene(new Scene(viewer));
+        });
+
         // Set onClicks for each tile, also checking for doubleclicks
         int i = 0;
         for (var observable:playField.getChildren()) {
@@ -131,10 +138,16 @@ public class MemoryScreenPresenter {
                 if(new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i)) game.getHint(img, botImgs.get(index), topImg);
                 else switch (i.getCode()){
                     case UP:
+                        if(index < 4){
+                        }else{
                         setHoverView(index-4);
+                        }
                         break;
                     case DOWN:
-                        setHoverView(index+4);
+                        if(index > 15){
+                        }else{
+                            setHoverView(index+4);
+                        }
                         break;
                     case LEFT:
                         setHoverView(index-1);

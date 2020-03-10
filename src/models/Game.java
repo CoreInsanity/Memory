@@ -85,7 +85,7 @@ public class Game {
                 var minutes = (Minutes < 10? "0":"") + Minutes;
                 var seconds = (Seconds < 10? "0":"") + Seconds;
 
-                Platform.runLater(() -> view.getTimer().setText(minutes + ":"+ seconds));
+                Platform.runLater(() -> view.getTimer().setText( "Time: " + minutes + ":"+ seconds));
                 playAudio(Audio.TICK);
             }
         },1000,1000);
