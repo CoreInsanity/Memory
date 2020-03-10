@@ -1,6 +1,7 @@
 package view.MemoryScreen;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import models.Audio;
 import models.Game;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -39,32 +40,22 @@ public class MemoryScreenPresenter {
     private Image topSelImg;
     private Pane playField;
     private ArrayList<Image> botImgs;
-    private Integer lastClickIndex;
-    private Integer toRemoveIndex;
-    private Integer toRemoveSecondIndex;
     private Scene scene;
-    private Timer gameTimer;
-    private int timerSec;
     private int foundMatches;
-    private MediaPlayer tickPlayer; //Only use this one for timer ticks
-    private MediaPlayer cflipPlayer; //Only use this one for card flips
-    private MediaPlayer sfPlayer; //Use this one for all the other SFX
     private Thread onClickThread;
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage, Game gameMod) {
         initStage(curStage);
         view = memoryScreenView;
         game = gameMod;
+        game.startTimer(view);
         scene = stage.getScene();
         playField = view.getPlayField();
         botImgs = new ArrayList<>();
-        gameTimer = new Timer();
-        timerSec = 0;
         foundMatches = 0;
 
         try {
             loadImgs();
-            loadAudio();
         } catch (Exception ex){
             System.out.println("Error while loading resources: " + ex.getMessage());
             Platform.exit();
@@ -73,29 +64,11 @@ public class MemoryScreenPresenter {
         setCursors();
         addEventHandlers();
         keycontrols();
-        startTimer();
     }
     private void initStage(Stage stg){
         stage = stg;
         stage.setHeight(700);
         stage.setWidth(675);
-    }
-    private void startTimer(){
-        gameTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                timerSec++;
-
-                int Minutes = timerSec/60;
-                int Seconds = timerSec%60;
-                var minutes = (Minutes < 10? "0":"") + Minutes;
-                var seconds = (Seconds < 10? "0":"") + Seconds;
-
-                Platform.runLater(() -> view.getTimer().setText(minutes + ":"+ seconds));
-                tickPlayer.seek(Duration.ZERO);
-                tickPlayer.play();
-            }
-        },1000,1000);
     }
     private void loadImgs() throws FileNotFoundException{
         topImg = view.getTopImg();
@@ -106,48 +79,6 @@ public class MemoryScreenPresenter {
             botImgs.add(img);
         }
         Collections.shuffle(botImgs);
-    }
-    private void loadAudio() throws FileNotFoundException{
-        tickPlayer = new MediaPlayer(new Media(new File("resources\\audio\\clock_tick.mp3").toURI().toString()));
-        cflipPlayer = new MediaPlayer(new Media(new File("resources\\audio\\card_flip.mp3").toURI().toString()));
-        sfPlayer = new MediaPlayer(new Media(new File("resources\\audio\\match.mp3").toURI().toString()));
-    }
-    private void onTileClick(Image originalImg, ImageView view, Integer imgIndex){
-        cflipPlayer.seek(Duration.ZERO);
-        cflipPlayer.play();
-        view.setImage(originalImg);
-        view.setCursor(Cursor.DEFAULT);
-        game.adjustClickAmount(1);
-
-        if (toRemoveIndex != null && lastClickIndex != null){
-            var toRemoveImg = (ImageView) playField.getChildren().get(toRemoveIndex);
-            var toRemoveSecImg = (ImageView) playField.getChildren().get(lastClickIndex);
-            toRemoveImg.setImage(topImg);
-            toRemoveSecImg.setImage(topImg);
-            toRemoveIndex = null;
-            lastClickIndex = null;
-        }
-
-        if(lastClickIndex != null){
-            var lastClickedImg = (ImageView) playField.getChildren().get(lastClickIndex);
-            if(view.getImage().hashCode() != lastClickedImg.getImage().hashCode())
-                toRemoveIndex = imgIndex;
-            else {
-                lastClickIndex = null;
-                sfPlayer.seek(Duration.ZERO);
-                sfPlayer.play();
-                game.adjustScore(25);
-                foundMatches++;
-                if(foundMatches == botImgs.size()/2) {
-                    game.setGameTime(timerSec);
-                    gameTimer.cancel();
-                    game.showEndScreen(stage);
-                }
-            }
-            return;
-        }
-
-        lastClickIndex = imgIndex;
     }
     private void addEventHandlers() {
         view.getMenu1().setOnAction(b -> {
@@ -173,7 +104,7 @@ public class MemoryScreenPresenter {
                         @Override
                         protected Void call() throws Exception {
                             Thread.sleep(250); //Add slight delay, if the user clicks again within 250ms this thread will be killed
-                            onTileClick(botImgs.get(index), img, index); //We can assume it was a single click
+                            game.onTileClick(botImgs.get(index), topImg, img, index, playField, stage); //We can assume it was a single click
                             return null;
                         }
                     });
@@ -213,7 +144,7 @@ public class MemoryScreenPresenter {
                         setHoverView(index+1);
                         break;
                     case ENTER:
-                        onTileClick(botImgs.get(index),img,index);
+                        game.onTileClick(botImgs.get(index), topImg, img,index, playField, stage);
                         break;
                 }
             });
@@ -229,7 +160,6 @@ public class MemoryScreenPresenter {
             i++;
         }
     }
-
     private void setCursors(){
         for (var observable:playField.getChildren()) {
             var img = (ImageView) observable;
