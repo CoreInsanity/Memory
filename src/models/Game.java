@@ -1,5 +1,6 @@
 package models;
 
+import helpers.Scoreboard;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -31,9 +32,8 @@ import java.util.TimerTask;
  * 17/12/2019.
  */
 public class Game {
-    private int GameTime = 0;
-    private int Score = 0;
-    private int ClickAmount = 0;
+    private int GameTime;
+    private int ClickAmount;
     private Player Player;
     private Timer GameTimer;
     private MediaPlayer tickPlayer;
@@ -50,6 +50,8 @@ public class Game {
         GameTimer = new Timer();
         Player = new Player();
         foundMatches = 0;
+        ClickAmount = 0;
+        GameTime = 0;
 
         try{
             tickPlayer = new MediaPlayer(new Media(new File("resources\\audio\\clock_tick.mp3").toURI().toString()));
@@ -62,58 +64,17 @@ public class Game {
     }
 
     // Getters
-    public int getOrderScore() {return GameTime - Score; }
-    public int getScore() { return Score; }
+    public int getClickAmount() { return ClickAmount; }
     public int getGameTime() { return GameTime; }
-    public int getClickAmount(){ return ClickAmount; }
     public Player getPlayer() { return Player; }
 
     // Setters
-    public void adjustScore (int score) { Score += score; }
-    public void setScore (int score) {Score = score; }
+    public void setClickAmount (int clickAmount) {ClickAmount = clickAmount; }
     public void setGameTime(int gameTime) { GameTime = gameTime; }
     public void adjustClickAmount(int clicks) { ClickAmount += clicks; }
     public void adjustGameTime(int time) { GameTime += time; }
 
     // Functions
-    public void getHint(ImageView view, Image botImg, Image topImg){
-        view.setImage(botImg);
-        adjustGameTime(10);
-
-        var resetTileTask = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                Thread.sleep(1000);
-                view.setImage(topImg);
-                return null;
-            }
-        };
-
-        var thread = new Thread(resetTileTask);
-        thread.start();
-    }
-    public void showEndScreen(Stage stage){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("You won!");
-        alert.setHeaderText("Congratulations blyat");
-        ButtonType scoreboard = new ButtonType("Scoreboard");
-        ButtonType mainmenu = new ButtonType("Main menu");
-
-        alert.getButtonTypes().clear();
-        alert.getButtonTypes().addAll(scoreboard,mainmenu);
-
-        Optional<ButtonType> option = alert.showAndWait();
-
-        if (option.get() == scoreboard) {
-            var sView = new ScoreboardScreenView();
-            new ScoreboardScreenPresenter(sView, stage);
-            stage.setScene(new Scene(sView));
-        } else if (option.get() == mainmenu) {
-            var mmView = new MainMenuScreenView();
-            new MainMenuScreenPresenter(mmView, stage);
-            stage.setScene(new Scene(mmView));
-        }
-    }
     public void startTimer(MemoryScreenView view){
         GameTimer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -148,6 +109,40 @@ public class Game {
                 break;
         }
     }
+    public void showPopup(Stage stage, String title, String text){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(text);
+        ButtonType scoreboard = new ButtonType("Scoreboard");
+        ButtonType mainmenu = new ButtonType("Main menu");
+
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(scoreboard,mainmenu);
+
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get() == scoreboard) {
+            var sView = new ScoreboardScreenView();
+            new ScoreboardScreenPresenter(sView, stage);
+            stage.setScene(new Scene(sView));
+        } else if (option.get() == mainmenu) {
+            var mmView = new MainMenuScreenView();
+            new MainMenuScreenPresenter(mmView, stage);
+            stage.setScene(new Scene(mmView));
+        }
+    }
+    public void endGame(Stage stage){
+        stopTimer();
+
+        try {
+            Scoreboard.addGameData(this, "scoreboard.json");
+        }catch (Exception ex){
+            System.out.println("Something went wrong saving progress: " + ex.getMessage());
+            Platform.exit(); // Da's pech, progress weg
+        }
+
+        showPopup(stage, "You win!", "Congrats cyka");
+    }
     public void tileClick(Image originalImg, Image topImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
         playAudio(Audio.FLIP);
         tileView.setImage(originalImg);
@@ -170,16 +165,28 @@ public class Game {
             else {
                 lastClickIndex = null;
                 playAudio(Audio.MATCH);
-                adjustScore(25);
                 foundMatches++;
-                if(foundMatches == 10) {
-                    stopTimer();
-                    showEndScreen(stage);
-                }
+                if(foundMatches == 10) endGame(stage);
             }
             return;
         }
 
         lastClickIndex = imgIndex;
+    }
+    public void getHint(ImageView view, Image botImg, Image topImg){
+        view.setImage(botImg);
+        adjustGameTime(10);
+
+        var resetTileTask = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                Thread.sleep(1000);
+                view.setImage(topImg);
+                return null;
+            }
+        };
+
+        var thread = new Thread(resetTileTask);
+        thread.start();
     }
 }

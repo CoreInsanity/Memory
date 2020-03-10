@@ -11,7 +11,7 @@ public class Json {
         var jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\n");
         jsonBuilder.append("\"GameTime\":" + newGame.getGameTime());
-        jsonBuilder.append(",\n\"Score\":" + newGame.getScore());
+        jsonBuilder.append(",\n\"Clicks\":" + newGame.getClickAmount());
         jsonBuilder.append(",\n\"Player\":{");
         jsonBuilder.append("\n\"Name\":\"" + newGame.getPlayer().getName());
         jsonBuilder.append("\",\n\"Age\":" + newGame.getPlayer().getAge());
@@ -33,8 +33,8 @@ public class Json {
                 models.add(currentGame);
             if(cleanLine.startsWith("GameTime:"))
                 currentGame.setGameTime(Integer.parseInt(cleanLine.replace("GameTime:", "").replace(",", ""))); //Remove object name and comma
-            if(cleanLine.startsWith("Score:"))
-                currentGame.setScore(Integer.parseInt(cleanLine.replace("Score:", "").replace(",", ""))); //Remove object name and comma
+            if(cleanLine.startsWith("Clicks:"))
+                currentGame.setClickAmount(Integer.parseInt(cleanLine.replace("Clicks:", "").replace(",", ""))); //Remove object name and comma
             if(cleanLine.startsWith("Name:"))
                 currentGame.getPlayer().setName(cleanLine.replace("Name:", "").replace(",", "")); //Remove object name and comma
             if(cleanLine.startsWith("Age:"))
