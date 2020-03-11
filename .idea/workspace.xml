@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0a609ef0-f339-40b7-86f8-e78056d5e454" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scoreboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/scoreboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +68,18 @@
       <recent name="C:\Users\maxim\IdeaProjects\git\Memory\resources\bottom" />
       <recent name="C:\Users\maxim\IdeaProjects\git\Memory\resources" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">

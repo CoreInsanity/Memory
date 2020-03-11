@@ -99,6 +99,7 @@ public class MemoryScreenPresenter {
             var viewer = new MemoryScreenView();
             new MemoryScreenPresenter(viewer, stage, newGame);
             stage.setScene(new Scene(viewer));
+
         });
 
         // Set onClicks for each tile, also checking for doubleclicks
@@ -156,6 +157,7 @@ public class MemoryScreenPresenter {
                         setHoverView(index-1);
                         break;
                     case RIGHT:
+                    case TAB:
                         setHoverView(index+1);
                         break;
                     case ENTER:

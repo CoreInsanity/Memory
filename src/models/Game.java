@@ -72,7 +72,10 @@ public class Game {
     public void setClickAmount (int clickAmount) {ClickAmount = clickAmount; }
     public void setGameTime(int gameTime) { GameTime = gameTime; }
     public void adjustClickAmount(int clicks) { ClickAmount += clicks; }
-    public void adjustGameTime(int time) { GameTime += time; }
+
+    public void adjustGameTime(int time) {
+        GameTime += time;
+    }
 
     // Functions
     public void startTimer(MemoryScreenView view){
