@@ -92,9 +92,12 @@ public class MemoryScreenPresenter {
         view.getMenu3().setOnAction(b -> Platform.exit());
 
         view.getMenu4().setOnAction(b -> {
-            var game = new Game();
+            game.stopTimer();
+            var newGame = new Game();
+            newGame.getPlayer().setAge(game.getPlayer().getAge());
+            newGame.getPlayer().setName(game.getPlayer().getName());
             var viewer = new MemoryScreenView();
-            new MemoryScreenPresenter(viewer, stage, game);
+            new MemoryScreenPresenter(viewer, stage, newGame);
             stage.setScene(new Scene(viewer));
         });
 

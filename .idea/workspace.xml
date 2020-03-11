@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a609ef0-f339-40b7-86f8-e78056d5e454" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/scoreboard.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scoreboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/scoreboard.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,10 +52,10 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/P3 opdrachten/P3W3" />
+    <property name="last_opened_file_path" value="C:/Program Files/Java/javafx-sdk-11.0.2/lib/javafx.web.jar!/" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
@@ -70,18 +67,6 @@
       <recent name="C:\Users\maxim\IdeaProjects\git\Memory\resources\bottom" />
       <recent name="C:\Users\maxim\IdeaProjects\git\Memory\resources" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager">
     <configuration name="Menu" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -139,6 +124,8 @@
       <workItem from="1583347318632" duration="1805000" />
       <workItem from="1583351204335" duration="2522000" />
       <workItem from="1583795053954" duration="5327000" />
+      <workItem from="1583940724652" duration="7000" />
+      <workItem from="1583940935109" duration="574000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>
@@ -261,14 +248,44 @@
     <option name="LAST_COMMIT_MESSAGE" value="Keyevents added" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="552" y="178" key="#Project_Structure" />
-    <state x="552" y="178" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" />
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
-    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" />
-    <state x="440" y="94" key="SettingsEditor" />
-    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" />
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" />
-    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" />
+    <state x="552" y="178" key="#Project_Structure" timestamp="1583940723318" />
+    <state x="552" y="178" key="#Project_Structure/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583940723319" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1583941166702">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583940723319" />
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583941166702" />
+    <state x="666" y="261" key="FileChooserDialogImpl" timestamp="1583941087098">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="666" y="261" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1583941087098" />
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom" timestamp="1583941440385">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583941440385" />
+    <state width="1877" height="348" key="GridCell.Tab.0.center" timestamp="1583941440385">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583941440385" />
+    <state width="1877" height="348" key="GridCell.Tab.0.left" timestamp="1583941440385">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583941440385" />
+    <state width="1877" height="348" key="GridCell.Tab.0.right" timestamp="1583941440385">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583941440385" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1583941156645">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583940723319" />
+    <state x="440" y="94" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1583941156645" />
+    <state x="661" y="343" key="com.intellij.ide.util.TipDialog" timestamp="1583940726817">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="661" y="343" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583940726817" />
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1583940723319" />
+    <state x="769" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1583940723319" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
