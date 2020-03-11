@@ -154,9 +154,10 @@ public class MemoryScreenPresenter {
                         }
                         break;
                     case LEFT:
-                        setHoverView(index-1);
+                        if(index != 0 && index != 4 && index != 8 && index != 12 && index != 16 && index != 20)setHoverView(index-1);
                         break;
                     case RIGHT:
+                        if(index != 3 && index != 7 && index != 11 && index != 15 && index != 19)setHoverView(index +1);
                     case TAB:
                         setHoverView(index+1);
                         break;
