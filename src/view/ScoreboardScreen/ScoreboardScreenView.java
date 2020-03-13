@@ -1,37 +1,54 @@
 package view.ScoreboardScreen;
 
-import helpers.Json;
 import helpers.Scoreboard;
-import javafx.geometry.Insets;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import models.Game;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
-import models.Player;
 
-import javax.imageio.metadata.IIOMetadataNode;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ScoreboardScreenView extends BorderPane {
     private TableView<Game> table;
+    private MenuBar menuBar;
+    private MenuItem menu1;
+    private MenuItem menu2;
+    private Menu menu;
+    private ImageView menulogo;
 
     public ScoreboardScreenView() {
         initNodes();
         initTable();
         layoutNodes();
+
     }
 
     private void initNodes() {
         table = new TableView<>();
+
+        try {
+            loadImgs();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //Define all the Menu Items
+        menuBar = new MenuBar();
+        menu = new Menu("Menu");
+        menu1 = new MenuItem("Main menu");
+        menu2 = new MenuItem("Exit");
+    }
+
+    private void loadImgs() throws FileNotFoundException {
+        menulogo = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
     }
     private void initTable(){
         List<Game> gameModels = new ArrayList<>();
@@ -61,5 +78,23 @@ public class ScoreboardScreenView extends BorderPane {
     }
     private void layoutNodes() {
         setCenter(table);
+
+        menuBar.getMenus().add(menu);
+        menu.getItems().addAll(menu1, menu2);
+        menu.setGraphic(menulogo);
+
+        menulogo.setFitWidth(25);
+        menulogo.setFitHeight(25);
+
+        setTop(menuBar);
+
+    }
+
+    public MenuItem getMenu1() {
+        return menu1;
+    }
+
+    public MenuItem getMenu2() {
+        return menu2;
     }
 }

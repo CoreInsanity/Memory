@@ -1,7 +1,6 @@
 package models;
 
 import helpers.Scoreboard;
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.Cursor;
@@ -22,7 +21,6 @@ import view.ScoreboardScreen.ScoreboardScreenPresenter;
 import view.ScoreboardScreen.ScoreboardScreenView;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;

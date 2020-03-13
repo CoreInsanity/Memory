@@ -1,12 +1,8 @@
 package view.ScoreboardScreen;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import view.MainMenuScreen.MainMenuScreenPresenter;
 import view.MainMenuScreen.MainMenuScreenView;
 
@@ -15,27 +11,22 @@ import view.MainMenuScreen.MainMenuScreenView;
  * 19/02/2020.
  */
 public class ScoreboardScreenPresenter {
+    private ScoreboardScreenView scoreboardScreenView;
+    private Stage stage;
     public ScoreboardScreenPresenter(ScoreboardScreenView view, Stage stage){
+        this.scoreboardScreenView =view;
+        this.stage = stage;
+        addEventHandlers();
 
-        Platform.setImplicitExit(false);
-
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent event) {
-                var maView = new MainMenuScreenView();
-                new MainMenuScreenPresenter(maView, stage);
-                stage.setScene(new Scene(maView));
-                event.consume();
-            }
+    }
+    private void addEventHandlers(){
+        scoreboardScreenView.getMenu1().setOnAction(b -> {
+            var mmView = new MainMenuScreenView();
+            new MainMenuScreenPresenter(mmView, stage);
+            stage.setScene(new Scene(mmView));
         });
-        view.setFocusTraversable(true);
-        view.setOnKeyPressed(event -> {
-            if (event.getCode() == KeyCode.ESCAPE){
-                var maView = new MainMenuScreenView();
-                new MainMenuScreenPresenter(maView, stage);
-                stage.setScene(new Scene(maView));
-                event.consume();
-            }
+        scoreboardScreenView.getMenu2().setOnAction(b -> {
+            Platform.exit();
         });
     }
 }

@@ -57,13 +57,10 @@ public class MemoryScreenView extends BorderPane {
         menu2 = new MenuItem("ScoreBoard");
         menu3 = new MenuItem("Exit");
         menu4 = new MenuItem("Restart");
-        menuBar.getMenus().add(menu);
-        menu.getItems().addAll(menu1, menu4, menu2, menu3);
-        menu.setGraphic(menulogo);
 
-        //Define the Timer and the Score labels
+
+        //Define the Timer label
         timer = new Label("Timer: ");
-        score = new Label("Score: ");
 
         //Define the playField pane
         playField = new BorderPane();
@@ -79,10 +76,9 @@ public class MemoryScreenView extends BorderPane {
         timer.setMaxHeight(20);
         timer.setAlignment(Pos.CENTER_RIGHT);
 
-        score.setTextFill(Color.YELLOW);
-        score.setPrefWidth(100);
-        score.setMaxHeight(20);
-        score.setAlignment(Pos.CENTER_LEFT);
+        menuBar.getMenus().add(menu);
+        menu.getItems().addAll(menu1, menu4, menu2, menu3);
+        menu.setGraphic(menulogo);
 
         menulogo.setFitWidth(25);
         menulogo.setFitHeight(25);
@@ -104,7 +100,6 @@ public class MemoryScreenView extends BorderPane {
         setTop(menuBar);
         setCenter(playField);
         setLeft(timer);
-        setRight(score);
     }
 
     public MenuItem getMenu1() {return menu1;}
