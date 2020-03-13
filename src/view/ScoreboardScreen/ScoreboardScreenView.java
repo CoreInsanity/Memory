@@ -11,42 +11,55 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import models.Game;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
+import models.Player;
 
 import javax.imageio.metadata.IIOMetadataNode;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ScoreboardScreenView extends BorderPane {
-    private TextArea scores;
-    private Scoreboard scoreboard;
-    private Json json;
-    private String yeet;
+    private TableView<Game> table;
 
     public ScoreboardScreenView() {
         initNodes();
+        initTable();
+        layoutNodes();
     }
 
     private void initNodes() {
-        TableView tableView = new TableView();
-        TableColumn<String, Game> firstNameColumn = new TableColumn<>("First Name");
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-
-        TableColumn<String, Game> lastNameColumn = new TableColumn<>("Age");
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        table = new TableView<>();
     }
+    private void initTable(){
+        List<Game> gameModels = new ArrayList<>();
+        try {
+            gameModels = Scoreboard.readScoreBoard("scoreboard.json");
+        }catch (Exception ex)
+        {}
 
+        ObservableList<Game> games = FXCollections.observableList(gameModels);
+        table.setItems(games);
+
+        TableColumn colGames = new TableColumn("Games");
+
+        TableColumn<Game, String> colName = new TableColumn<>("Name");
+        TableColumn<Game, String> colAge = new TableColumn<>("Age");
+        TableColumn<Game, String> colGameTime = new TableColumn<>("GameTime");
+        TableColumn<Game, String> colClicks = new TableColumn<>("Clicks");
+
+        colName.setCellValueFactory(new PropertyValueFactory<Game, String>("Name"));
+        colAge.setCellValueFactory(new PropertyValueFactory<Game, String>("Age"));
+        colGameTime.setCellValueFactory(new PropertyValueFactory<Game, String>("GameTime"));
+        colClicks.setCellValueFactory(new PropertyValueFactory<Game, String>("ClickAmount"));
+
+        colGames.getColumns().addAll(colName, colAge, colGameTime, colClicks);
+
+        table.getColumns().add(colGames);
+    }
     private void layoutNodes() {
-
-
-//        try {
-//            for (var game:scoreboard.readScoreBoard("scoreboard.json")
-//            ) {
-//                yeet = new String(game.getPlayer().getName() + " " + game.getPlayer().getAge() + " " + game.getGameTime() + " " + game.getClickAmount());
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-////        }
-//        setBackground(new Background(new BackgroundFill(Color.DARKBLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-//    }
+        setCenter(table);
     }
 }

@@ -67,12 +67,13 @@ public class Game {
     public int getClickAmount() { return ClickAmount; }
     public int getGameTime() { return GameTime; }
     public Player getPlayer() { return Player; }
+    public String getName() { return Player.getName(); }
+    public Integer getAge() { return Player.getAge(); }
 
     // Setters
     public void setClickAmount (int clickAmount) {ClickAmount = clickAmount; }
     public void setGameTime(int gameTime) { GameTime = gameTime; }
     public void adjustClickAmount(int clicks) { ClickAmount += clicks; }
-
     public void adjustGameTime(int time) {
         GameTime += time;
     }
