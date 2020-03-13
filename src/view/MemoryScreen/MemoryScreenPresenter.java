@@ -139,24 +139,23 @@ public class MemoryScreenPresenter {
             img.setFocusTraversable(true);
 
             img.setOnKeyPressed(i -> {
+                //If user presses CTRL+Enter the getHint function should be called
                 if(new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i)) game.getHint(img, botImgs.get(index), topImg);
                 else switch (i.getCode()){
                     case UP:
-                        if(index < 4){
-                        }else{
-                        setHoverView(index-4);
-                        }
+                        //Make sure the selector is not on the top of the playfield
+                        if(index >= 4)setHoverView(index-4);
                         break;
                     case DOWN:
-                        if(index > 15){
-                        }else{
-                            setHoverView(index+4);
-                        }
+                        //Make sure the selector is not on the bottom of the playfield
+                        if(index <= 15)setHoverView(index+4);
                         break;
                     case LEFT:
+                        //Make sure the selector is not on the left side of the playfield
                         if(index != 0 && index != 4 && index != 8 && index != 12 && index != 16)setHoverView(index-1);
                         break;
                     case RIGHT:
+                        //Make sure the selector is not on the right side of the playfield
                         if(index != 3 && index != 7 && index != 11 && index != 15 && index != 19)setHoverView(index +1);
                         break;
                     case TAB:
