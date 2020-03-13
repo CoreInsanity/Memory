@@ -96,7 +96,7 @@ public class Game {
                 var minutes = (Minutes < 10? "0":"") + Minutes;
                 var seconds = (Seconds < 10? "0":"") + Seconds;
 
-                Platform.runLater(() -> view.getTimer().setText( "Time: " + minutes + ":"+ seconds));
+                Platform.runLater(() -> view.getTimer().setText( "  " + minutes + ":"+ seconds));
                 playAudio(Audio.TICK);
             }
         },1000,1000);
@@ -120,7 +120,7 @@ public class Game {
                 break;
         }
     }
-    public void showPopup(Stage stage, String title, String text, Alert.AlertType type, boolean isEndScreen){
+    public void showPopup(String title, String text, Alert.AlertType type, boolean isEndScreen, Stage... stage){
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(text);
@@ -143,12 +143,12 @@ public class Game {
 
         if (option.get() == scoreboard) {
             var sView = new ScoreboardScreenView();
-            new ScoreboardScreenPresenter(sView, stage);
-            stage.setScene(new Scene(sView));
+            new ScoreboardScreenPresenter(sView, stage[0]);
+            stage[0].setScene(new Scene(sView));
         } else if (option.get() == mainmenu) {
             var mmView = new MainMenuScreenView();
-            new MainMenuScreenPresenter(mmView, stage);
-            stage.setScene(new Scene(mmView));
+            new MainMenuScreenPresenter(mmView, stage[0]);
+            stage[0].setScene(new Scene(mmView));
         }
     }
     public void endGame(Stage stage){
@@ -161,7 +161,7 @@ public class Game {
             Platform.exit(); // Da's pech, progress weg
         }
 
-        showPopup(stage, "You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, true);
+        showPopup("You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, true, stage);
     }
     public void tileClick(Image originalImg, Image topImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
         playAudio(Audio.FLIP);

@@ -74,23 +74,28 @@ public class MemoryScreenPresenter {
             }
             Collections.shuffle(botImgs);
         } catch (Exception ex){
-            game.showPopup(stage, "Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
             System.out.println("Error while loading resources: " + ex.getMessage());
             Platform.exit();
         }
     }
     private void addEventHandlers() {
         view.getMenu1().setOnAction(b -> {
+            game.stopTimer();
             var mmView = new MainMenuScreenView();
             new MainMenuScreenPresenter(mmView, stage);
             stage.setScene(new Scene(mmView));
         });
         view.getMenu2().setOnAction(b -> {
+            game.stopTimer();
             var sbView = new ScoreboardScreenView();
             new ScoreboardScreenPresenter(sbView, stage);
             stage.setScene(new Scene(sbView));
         });
-        view.getMenu3().setOnAction(b -> Platform.exit());
+        view.getMenu3().setOnAction(b -> {
+            game.stopTimer();
+            Platform.exit();
+        });
 
         view.getMenu4().setOnAction(b -> {
             game.stopTimer();

@@ -12,6 +12,7 @@ import javafx.scene.layout.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
 import models.Game;
@@ -47,7 +48,7 @@ public class MemoryScreenView extends BorderPane {
         try {
             loadImgs();
         } catch (Exception ex) {
-            new Game().showPopup(new Stage(), "Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            new Game().showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
         }
 
         //Define all the Menu Items
@@ -60,7 +61,7 @@ public class MemoryScreenView extends BorderPane {
 
 
         //Define the Timer label
-        timer = new Label("Timer: ");
+        timer = new Label();
 
         //Define the playField pane
         playField = new BorderPane();
@@ -71,10 +72,13 @@ public class MemoryScreenView extends BorderPane {
         menulogo = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
     }
     private void layoutNodes() {
+        var timerBox = new VBox();
         timer.setTextFill(Color.YELLOW);
-        timer.setPrefWidth(100);
+        timer.setPrefWidth(75);
+        timer.setFont(new Font(20));
         timer.setMaxHeight(20);
-        timer.setAlignment(Pos.CENTER_RIGHT);
+        timer.setAlignment(Pos.CENTER);
+        timerBox.getChildren().addAll(new Rectangle(0, 7), timer);
 
         menuBar.getMenus().add(menu);
         menu.getItems().addAll(menu1, menu4, menu2, menu3);
@@ -99,7 +103,7 @@ public class MemoryScreenView extends BorderPane {
 
         setTop(menuBar);
         setCenter(playField);
-        setLeft(timer);
+        setLeft(timerBox);
     }
 
     public MenuItem getMenu1() {return menu1;}
