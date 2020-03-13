@@ -4,7 +4,7 @@
     <list default="true" id="0a609ef0-f339-40b7-86f8-e78056d5e454" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -139,7 +139,7 @@
       <workItem from="1583795053954" duration="5327000" />
       <workItem from="1583940724652" duration="7000" />
       <workItem from="1583940935109" duration="574000" />
-      <workItem from="1584114474232" duration="2402000" />
+      <workItem from="1584114474232" duration="3342000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>

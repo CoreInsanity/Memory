@@ -46,6 +46,15 @@ public class Game {
 
     // Constructor (Load ALL required resources here!)
     public Game(){
+        initGame();
+    }
+    public Game(String name, Integer age){
+        initGame();
+        Player.setName(name);
+        Player.setAge(age);
+    }
+
+    private void initGame(){
         //Initialize variables
         GameTimer = new Timer();
         Player = new Player();
@@ -153,6 +162,7 @@ public class Game {
         tileView.setCursor(Cursor.DEFAULT);
         adjustClickAmount(1);
 
+        //On first tile selection, revert previously flipped tiles
         if (toRemoveIndex != null && lastClickIndex != null){
             var toRemoveImg = (ImageView) playField.getChildren().get(toRemoveIndex);
             var toRemoveSecImg = (ImageView) playField.getChildren().get(lastClickIndex);
@@ -162,19 +172,24 @@ public class Game {
             lastClickIndex = null;
         }
 
+        //Only continue when it's not the first click
         if(lastClickIndex != null){
             var lastClickedImg = (ImageView) playField.getChildren().get(lastClickIndex);
+            //Check if second click matches the first click, if not, add it to the toRemoveIndex var
             if(tileView.getImage().hashCode() != lastClickedImg.getImage().hashCode())
                 toRemoveIndex = imgIndex;
             else {
+                //First click matches the second click, empty the lastClickIndex so the tiles wont get flipped on the next click
                 lastClickIndex = null;
                 playAudio(Audio.MATCH);
                 foundMatches++;
+                //Check if player flipped all cards, if so, start the endGame function
                 if(foundMatches == 10) endGame(stage);
             }
             return;
         }
 
+        //Used to identify the first tile that was flipped (fe. when on second click)
         lastClickIndex = imgIndex;
     }
     public void getHint(ImageView view, Image botImg, Image topImg){

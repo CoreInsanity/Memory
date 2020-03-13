@@ -34,9 +34,7 @@ public class PlayerCreationScreenPresenter {
     }
     private void startGame(){
         if(!fieldsCheck()) return;
-        var game = new Game();
-        game.getPlayer().setName(view.getName().getText());
-        game.getPlayer().setAge(Integer.parseInt(view.getAge().getText()));
+        var game = new Game(view.getName().getText(), Integer.parseInt(view.getAge().getText()));
         var viewer = new MemoryScreenView();
         new MemoryScreenPresenter(viewer, stage, game);
         stage.setScene(new Scene(viewer));
