@@ -54,8 +54,9 @@ public class ScoreboardScreenView extends BorderPane {
         List<Game> gameModels = new ArrayList<>();
         try {
             gameModels = Scoreboard.readScoreBoard("scoreboard.json");
-        }catch (Exception ex)
-        {}
+        }catch (Exception ex) {
+            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+        }
 
         ObservableList<Game> games = FXCollections.observableList(gameModels);
         table.setItems(games);
@@ -87,14 +88,8 @@ public class ScoreboardScreenView extends BorderPane {
         menulogo.setFitHeight(25);
 
         setTop(menuBar);
-
     }
 
-    public MenuItem getMenu1() {
-        return menu1;
-    }
-
-    public MenuItem getMenu2() {
-        return menu2;
-    }
+    public MenuItem getMenu1() { return menu1; }
+    public MenuItem getMenu2() { return menu2; }
 }

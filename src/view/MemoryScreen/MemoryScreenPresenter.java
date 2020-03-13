@@ -1,4 +1,5 @@
 package view.MemoryScreen;
+
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import models.Audio;
@@ -53,29 +54,30 @@ public class MemoryScreenPresenter {
         playField = view.getPlayField();
         botImgs = new ArrayList<>();
 
-        loadImgs();
+        try {
+            loadImgs();
+        } catch (Exception ex) {
+            game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+        }
+
         setCursors();
         addEventHandlers();
         keycontrols();
     }
-    private void initStage(Stage stg){
+    private void initStage(Stage stg) {
         stage = stg;
         stage.setHeight(700);
         stage.setWidth(675);
     }
-    private void loadImgs(){
-        try {
-            topImg = view.getTopImg();
-            topSelImg = view.getTopSelImg();
-            for (var file:new File("resources\\bottom").listFiles()) {
-                var img = new Image(new FileInputStream(file.getAbsolutePath()));
-                botImgs.add(img);
-                botImgs.add(img);
-            }
-            Collections.shuffle(botImgs);
-        } catch (Exception ex){
-            game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+    private void loadImgs() throws IOException {
+        topImg = view.getTopImg();
+        topSelImg = view.getTopSelImg();
+        for (var file : new File("resources\\bottom").listFiles()) {
+            var img = new Image(new FileInputStream(file.getAbsolutePath()));
+            botImgs.add(img);
+            botImgs.add(img);
         }
+        Collections.shuffle(botImgs);
     }
     private void addEventHandlers() {
         view.getMenu1().setOnAction(b -> {
@@ -103,19 +105,19 @@ public class MemoryScreenPresenter {
                 new MemoryScreenPresenter(viewer, stage, newGame);
                 game = null;
                 stage.setScene(new Scene(viewer));
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
             }
         });
 
         // Set onClicks for each tile, also checking for doubleclicks
         int i = 0;
-        for (var observable:playField.getChildren()) {
+        for (var observable : playField.getChildren()) {
             var index = i;
             var img = (ImageView) observable;
 
             img.setOnMouseClicked(m -> {
-                if(m.getClickCount() == 1) {
+                if (m.getClickCount() == 1) {
                     onClickThread = new Thread(new Task<Void>() {
                         @Override
                         protected Void call() throws Exception {
@@ -125,8 +127,7 @@ public class MemoryScreenPresenter {
                         }
                     });
                     onClickThread.start();
-                }
-                else if(m.getClickCount() == 2){
+                } else if (m.getClickCount() == 2) {
                     onClickThread.interrupt(); //Kill the previously generated onclick thread
                     game.getHint(img, botImgs.get(index), topImg);
                 }
@@ -146,46 +147,49 @@ public class MemoryScreenPresenter {
 
             img.setOnKeyPressed(i -> {
                 //If user presses CTRL+Enter the getHint function should be called
-                if(new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i)) game.getHint(img, botImgs.get(index), topImg);
-                else switch (i.getCode()){
+                if (new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i))
+                    game.getHint(img, botImgs.get(index), topImg);
+                else switch (i.getCode()) {
                     case UP:
                         //Make sure the selector is not on the top of the playfield
-                        if(index >= 4)setHoverView(index-4);
+                        if (index >= 4) setHoverView(index - 4);
                         break;
                     case DOWN:
                         //Make sure the selector is not on the bottom of the playfield
-                        if(index <= 15)setHoverView(index+4);
+                        if (index <= 15) setHoverView(index + 4);
                         break;
                     case LEFT:
                         //Make sure the selector is not on the left side of the playfield
-                        if(index != 0 && index != 4 && index != 8 && index != 12 && index != 16)setHoverView(index-1);
+                        if (index != 0 && index != 4 && index != 8 && index != 12 && index != 16)
+                            setHoverView(index - 1);
                         break;
                     case RIGHT:
                         //Make sure the selector is not on the right side of the playfield
-                        if(index != 3 && index != 7 && index != 11 && index != 15 && index != 19)setHoverView(index +1);
+                        if (index != 3 && index != 7 && index != 11 && index != 15 && index != 19)
+                            setHoverView(index + 1);
                         break;
                     case TAB:
-                        setHoverView(index+1);
+                        setHoverView(index + 1);
                         break;
                     case ENTER:
-                        game.tileClick(botImgs.get(index), topImg, img,index, playField, stage);
+                        game.tileClick(botImgs.get(index), topImg, img, index, playField, stage);
                         break;
                 }
             });
 
         }
     }
-    private void setHoverView(int index){
+    private void setHoverView(int index) {
         var i = 0;
         for (var observable : playField.getChildren()) {
             var img = (ImageView) observable;
-            if(i == index && img.getImage().hashCode() == topImg.hashCode()) img.setImage(topSelImg);
-            else if(img.getImage().hashCode() == topSelImg.hashCode()) img.setImage(topImg);
+            if (i == index && img.getImage().hashCode() == topImg.hashCode()) img.setImage(topSelImg);
+            else if (img.getImage().hashCode() == topSelImg.hashCode()) img.setImage(topImg);
             i++;
         }
     }
-    private void setCursors(){
-        for (var observable:playField.getChildren()) {
+    private void setCursors() {
+        for (var observable : playField.getChildren()) {
             var img = (ImageView) observable;
             img.setCursor(Cursor.HAND);
         }
