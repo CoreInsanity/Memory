@@ -122,10 +122,19 @@ public class Game {
                 break;
         }
     }
-    public void showPopup(Stage stage, String title, String text){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    public void showPopup(Stage stage, String title, String text, Alert.AlertType type, boolean isEndScreen){
+        Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(text);
+
+        if(!isEndScreen) {
+            ButtonType quit = new ButtonType("Quit");
+            alert.getButtonTypes().clear();
+            alert.getButtonTypes().add(quit);
+            Optional<ButtonType> option = alert.showAndWait();
+            if(option.get() == quit) Platform.exit();
+        };
+
         ButtonType scoreboard = new ButtonType("Scoreboard");
         ButtonType mainmenu = new ButtonType("Main menu");
 
@@ -154,7 +163,7 @@ public class Game {
             Platform.exit(); // Da's pech, progress weg
         }
 
-        showPopup(stage, "You win!", "Congrats cyka");
+        showPopup(stage, "You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, true);
     }
     public void tileClick(Image originalImg, Image topImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
         playAudio(Audio.FLIP);

@@ -74,6 +74,7 @@ public class MemoryScreenPresenter {
             }
             Collections.shuffle(botImgs);
         } catch (Exception ex){
+            game.showPopup(stage, "Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
             System.out.println("Error while loading resources: " + ex.getMessage());
             Platform.exit();
         }
