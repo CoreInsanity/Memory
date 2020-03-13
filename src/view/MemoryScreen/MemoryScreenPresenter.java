@@ -75,8 +75,6 @@ public class MemoryScreenPresenter {
             Collections.shuffle(botImgs);
         } catch (Exception ex){
             game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
-            System.out.println("Error while loading resources: " + ex.getMessage());
-            Platform.exit();
         }
     }
     private void addEventHandlers() {
@@ -99,13 +97,15 @@ public class MemoryScreenPresenter {
 
         view.getMenu4().setOnAction(b -> {
             game.stopTimer();
-            var newGame = new Game();
-            newGame.getPlayer().setAge(game.getPlayer().getAge());
-            newGame.getPlayer().setName(game.getPlayer().getName());
-            var viewer = new MemoryScreenView();
-            new MemoryScreenPresenter(viewer, stage, newGame);
-            stage.setScene(new Scene(viewer));
-
+            try {
+                var newGame = new Game(game.getName(), game.getAge());
+                var viewer = new MemoryScreenView();
+                new MemoryScreenPresenter(viewer, stage, newGame);
+                game = null;
+                stage.setScene(new Scene(viewer));
+            }catch (Exception ex){
+                game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            }
         });
 
         // Set onClicks for each tile, also checking for doubleclicks

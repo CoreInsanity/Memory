@@ -1,6 +1,7 @@
 package view.PlayerCreationScreen;
 
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import models.Game;
@@ -34,12 +35,24 @@ public class PlayerCreationScreenPresenter {
     }
     private void startGame(){
         if(!fieldsCheck()) return;
-        var game = new Game(view.getName().getText(), Integer.parseInt(view.getAge().getText()));
-        var viewer = new MemoryScreenView();
-        new MemoryScreenPresenter(viewer, stage, game);
-        stage.setScene(new Scene(viewer));
+
+        try {
+            var game = new Game(view.getName().getText(), Integer.parseInt(view.getAge().getText()));
+            var viewer = new MemoryScreenView();
+            new MemoryScreenPresenter(viewer, stage, game);
+            stage.setScene(new Scene(viewer));
+        }catch (Exception ex){
+            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+        }
+
     }
     private boolean fieldsCheck(){
+        try{
+            Integer.parseInt(view.getAge().getText());
+        }catch (Exception ex){
+            return false;
+        }
+
         var name = view.getName().getText();
         var age = Integer.parseInt(view.getAge().getText());
 

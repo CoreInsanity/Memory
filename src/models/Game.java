@@ -21,6 +21,7 @@ import view.ScoreboardScreen.ScoreboardScreenPresenter;
 import view.ScoreboardScreen.ScoreboardScreenView;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,15 +45,15 @@ public class Game {
 
     // Constructor (Load ALL required resources here!)
     public Game(){
-        initGame();
+        Player = new Player();
     }
-    public Game(String name, Integer age){
+    public Game(String name, Integer age) throws Exception{
         initGame();
         Player.setName(name);
         Player.setAge(age);
     }
 
-    private void initGame(){
+    private void initGame() throws IOException {
         //Initialize variables
         GameTimer = new Timer();
         Player = new Player();
@@ -60,14 +61,9 @@ public class Game {
         ClickAmount = 0;
         GameTime = 0;
 
-        try{
-            tickPlayer = new MediaPlayer(new Media(new File("resources\\audio\\clock_tick.mp3").toURI().toString()));
-            flipPlayer = new MediaPlayer(new Media(new File("resources\\audio\\card_flip.mp3").toURI().toString()));
-            matchPlayer = new MediaPlayer(new Media(new File("resources\\audio\\match.mp3").toURI().toString()));
-        }catch (Exception ex){
-            System.out.println("Error while loading resources: " + ex.getMessage());
-            Platform.exit();
-        }
+        tickPlayer = new MediaPlayer(new Media(new File("resources\\audio\\clock_tick.mp3").toURI().toString()));
+        flipPlayer = new MediaPlayer(new Media(new File("resources\\audio\\card_flip.mp3").toURI().toString()));
+        matchPlayer = new MediaPlayer(new Media(new File("resources\\audio\\match.mp3").toURI().toString()));
     }
 
     // Getters
@@ -118,37 +114,6 @@ public class Game {
                 matchPlayer.seek(Duration.ZERO);
                 matchPlayer.play();
                 break;
-        }
-    }
-    public void showPopup(String title, String text, Alert.AlertType type, boolean isEndScreen, Stage... stage){
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(text);
-
-        if(!isEndScreen) {
-            ButtonType quit = new ButtonType("Quit");
-            alert.getButtonTypes().clear();
-            alert.getButtonTypes().add(quit);
-            Optional<ButtonType> option = alert.showAndWait();
-            if(option.get() == quit) Platform.exit();
-        };
-
-        ButtonType scoreboard = new ButtonType("Scoreboard");
-        ButtonType mainmenu = new ButtonType("Main menu");
-
-        alert.getButtonTypes().clear();
-        alert.getButtonTypes().addAll(scoreboard,mainmenu);
-
-        Optional<ButtonType> option = alert.showAndWait();
-
-        if (option.get() == scoreboard) {
-            var sView = new ScoreboardScreenView();
-            new ScoreboardScreenPresenter(sView, stage[0]);
-            stage[0].setScene(new Scene(sView));
-        } else if (option.get() == mainmenu) {
-            var mmView = new MainMenuScreenView();
-            new MainMenuScreenPresenter(mmView, stage[0]);
-            stage[0].setScene(new Scene(mmView));
         }
     }
     public void endGame(Stage stage){
@@ -214,5 +179,36 @@ public class Game {
 
         var thread = new Thread(resetTileTask);
         thread.start();
+    }
+    public static void showPopup(String title, String text, Alert.AlertType type, boolean isEndScreen, Stage... stage){
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(text);
+
+        if(!isEndScreen) {
+            ButtonType quit = new ButtonType("Quit");
+            alert.getButtonTypes().clear();
+            alert.getButtonTypes().add(quit);
+            Optional<ButtonType> option = alert.showAndWait();
+            if(option.get() == quit) Platform.exit();
+        };
+
+        ButtonType scoreboard = new ButtonType("Scoreboard");
+        ButtonType mainmenu = new ButtonType("Main menu");
+
+        alert.getButtonTypes().clear();
+        alert.getButtonTypes().addAll(scoreboard,mainmenu);
+
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.get() == scoreboard) {
+            var sView = new ScoreboardScreenView();
+            new ScoreboardScreenPresenter(sView, stage[0]);
+            stage[0].setScene(new Scene(sView));
+        } else if (option.get() == mainmenu) {
+            var mmView = new MainMenuScreenView();
+            new MainMenuScreenPresenter(mmView, stage[0]);
+            stage[0].setScene(new Scene(mmView));
+        }
     }
 }
