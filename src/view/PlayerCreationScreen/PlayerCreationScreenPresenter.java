@@ -30,7 +30,10 @@ public class PlayerCreationScreenPresenter {
         view.getBackBtn().setOnAction(b -> Scene.showMainMenu(stage));
     }
     private void startGame(){
-        if(!fieldsCheck()) return;
+        if(!fieldsCheck()){
+            Game.showPopup("Incorrect data", "Please make sure all fields are correct", Alert.AlertType.WARNING);
+            return;
+        }
         try {
             var game = new Game(view.getName().getText(), Integer.parseInt(view.getAge().getText()));
             helpers.Scene.showMemory(stage, game);

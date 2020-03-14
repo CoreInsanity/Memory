@@ -50,12 +50,6 @@ public class Game {
         Player = new Player();
     }
     public Game(String name, Integer age) throws Exception{
-        initGame();
-        Player.setName(name);
-        Player.setAge(age);
-    }
-
-    private void initGame() throws IOException {
         //Initialize variables
         GameTimer = new Timer();
         Player = new Player();
@@ -66,6 +60,8 @@ public class Game {
         tickPlayer = new MediaPlayer(new Media(new File("resources\\audio\\clock_tick.mp3").toURI().toString()));
         flipPlayer = new MediaPlayer(new Media(new File("resources\\audio\\card_flip.mp3").toURI().toString()));
         matchPlayer = new MediaPlayer(new Media(new File("resources\\audio\\match.mp3").toURI().toString()));
+        Player.setName(name);
+        Player.setAge(age);
     }
 
     // Getters
