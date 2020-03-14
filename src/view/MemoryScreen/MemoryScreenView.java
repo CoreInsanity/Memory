@@ -56,9 +56,9 @@ public class MemoryScreenView extends BorderPane {
         menuBar = new MenuBar();
         menu = new Menu("Menu");
         mainMenu = new MenuItem("Main menu");
-        restart = new MenuItem("ScoreBoard");
-        scoreboard = new MenuItem("Exit");
-        exit = new MenuItem("Restart");
+        restart = new MenuItem("Restart");
+        scoreboard = new MenuItem("Scoreboard");
+        exit = new MenuItem("Exit");
 
 
         //Define the Timer label

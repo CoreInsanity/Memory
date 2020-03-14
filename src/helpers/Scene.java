@@ -11,18 +11,24 @@ import view.ScoreboardScreen.ScoreboardScreenView;
 
 public class Scene {
     public static void showMainMenu(Stage stage){
-        var mmView = new MainMenuScreenView();
-        new MainMenuScreenPresenter(mmView, stage);
-        stage.setScene(new javafx.scene.Scene(mmView));
+        stage.setHeight(400);
+        stage.setWidth(600);
+        var viewer = new MainMenuScreenView();
+        new MainMenuScreenPresenter(viewer, stage);
+        stage.setScene(new javafx.scene.Scene(viewer));
     }
     public static void showMemory(Stage stage, Game game){
+        stage.setHeight(700);
+        stage.setWidth(675);
         var viewer = new MemoryScreenView();
         new MemoryScreenPresenter(viewer, stage, game);
         stage.setScene(new javafx.scene.Scene(viewer));
     }
     public static void showScoreboard(Stage stage){
-        var sView = new ScoreboardScreenView();
-        new ScoreboardScreenPresenter(sView, stage);
-        stage.setScene(new javafx.scene.Scene(sView));
+        stage.setHeight(700);
+        stage.setWidth(452);
+        var viewer = new ScoreboardScreenView();
+        new ScoreboardScreenPresenter(viewer, stage);
+        stage.setScene(new javafx.scene.Scene(viewer));
     }
 }

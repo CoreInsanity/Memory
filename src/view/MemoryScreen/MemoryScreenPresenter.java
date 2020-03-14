@@ -46,7 +46,7 @@ public class MemoryScreenPresenter {
 
     public MemoryScreenPresenter(MemoryScreenView memoryScreenView, Stage curStage, Game gameMod) {
         //Initialize variables
-        initStage(curStage);
+        stage = curStage;
         view = memoryScreenView;
         game = gameMod;
         game.startTimer(view);
@@ -64,11 +64,6 @@ public class MemoryScreenPresenter {
         setCursors();
         addEventHandlers();
         keycontrols();
-    }
-    private void initStage(Stage stg) {
-        stage = stg;
-        stage.setHeight(700);
-        stage.setWidth(675);
     }
     private void loadImgs() throws IOException {
         topImg = view.getTopImg();
@@ -98,7 +93,7 @@ public class MemoryScreenPresenter {
             try {
                 var newGame = new Game(game.getName(), game.getAge());
                 game = null;
-                helpers.Scene.showMemory(stage, game);
+                helpers.Scene.showMemory(stage, newGame);
             } catch (Exception ex) {
                 game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             }

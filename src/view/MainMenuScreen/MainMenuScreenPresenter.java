@@ -31,9 +31,6 @@ public class MainMenuScreenPresenter {
         stage = curStage;
 
         handleEvents();
-
-        stage.setHeight(400);
-        stage.setWidth(600);
     }
     private void handleEvents(){
         view.getBtnNewGame().setOnMouseClicked(b-> startNewGame());
