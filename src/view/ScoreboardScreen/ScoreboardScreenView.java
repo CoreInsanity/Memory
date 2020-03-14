@@ -43,7 +43,7 @@ public class ScoreboardScreenView extends BorderPane {
         try {
             loadImgs();
         } catch (Exception ex) {
-            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
+            Game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
 
@@ -64,7 +64,7 @@ public class ScoreboardScreenView extends BorderPane {
         try {
             gameModels = Scoreboard.readScoreBoard("scoreboard.json");
         }catch (Exception ex) {
-            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
+            Game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
         }
 
         gameModels.sort(Comparator.comparing(Game::getGameTime));

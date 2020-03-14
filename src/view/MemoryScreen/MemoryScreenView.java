@@ -48,7 +48,7 @@ public class MemoryScreenView extends BorderPane {
         try {
             loadImgs();
         } catch (Exception ex) {
-            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
+            Game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
 

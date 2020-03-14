@@ -38,7 +38,7 @@ public class PlayerCreationScreenPresenter {
             var game = new Game(view.getName().getText(), Integer.parseInt(view.getAge().getText()));
             helpers.Scene.showMemory(stage, game);
         }catch (Exception ex){
-            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
+            Game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
     }

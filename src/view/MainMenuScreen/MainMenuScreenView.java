@@ -136,26 +136,20 @@ public class MainMenuScreenView extends BorderPane {
     Button getBtnNewGame() {
         return btnNewGame;
     }
-
     Button getBtnScoreboard() {
         return btnScoreboard;
     }
-
     Button getBtnExit() {
         return btnExit;
     }
-
     ImageView getGitImg() {
         return gitImg;
     }
-
     ImageView getmTwitterImg() {
         return mTwitterImg;
     }
-
     ImageView getlTwitterImg() {
         return lTwitterImg;
     }
-
     public VBox getMenuBox() { return menuBox; }
 }

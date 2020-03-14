@@ -118,7 +118,7 @@ public class Game {
         try {
             Scoreboard.addGameData(this, "scoreboard.json");
         }catch (Exception ex){
-            showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
+            showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
         }
 
         //Show the endscreen popup
