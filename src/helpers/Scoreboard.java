@@ -13,7 +13,7 @@ import java.util.*;
  * 13/12/2019.
  */
 public class Scoreboard {
-    public static void addGameData(models.Game newGame, String scoreboardPath) throws IOException {
+    public static void addGameData(models.Game newGame, String scoreboardPath) throws Exception {
         var scoreboardFile = new File(scoreboardPath);
         if(!scoreboardFile.exists())scoreboardFile.createNewFile();
 
@@ -26,10 +26,15 @@ public class Scoreboard {
         scoreboardWriter.close();
     }
 
-    public static List<Game> readScoreBoard(String scoreboardPath) throws IOException {
+    public static List<Game> readScoreBoard(String scoreboardPath) throws Exception {
         var scoreboardFile = new File(scoreboardPath);
         if(!scoreboardFile.exists())scoreboardFile.createNewFile();
 
         return helpers.Json.jsonToModels(new String(Files.readAllBytes(scoreboardFile.toPath())));
+    }
+
+    public static boolean clearScoreBoard(String scoreboardPath) {
+        var file = new File(scoreboardPath);
+        return file.delete();
     }
 }

@@ -6,6 +6,7 @@ import javafx.concurrent.Task;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +23,7 @@ import view.ScoreboardScreen.ScoreboardScreenView;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -77,9 +79,7 @@ public class Game {
     public void setClickAmount (int clickAmount) {ClickAmount = clickAmount; }
     public void setGameTime(int gameTime) { GameTime = gameTime; }
     public void adjustClickAmount(int clicks) { ClickAmount += clicks; }
-    public void adjustGameTime(int time) {
-        GameTime += time;
-    }
+    public void adjustGameTime(int time) { GameTime += time; }
 
     // Functions
     public void startTimer(MemoryScreenView view){
@@ -122,16 +122,29 @@ public class Game {
         try {
             Scoreboard.addGameData(this, "scoreboard.json");
         }catch (Exception ex){
-            System.out.println("Something went wrong saving progress: " + ex.getMessage());
+            showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit(); // Da's pech, progress weg
         }
 
-        showPopup("You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, true, stage);
+        //Show the endscreen popup
+        var buttons = new ArrayList<ButtonType>();
+        buttons.add(new ButtonType("Main menu"));
+        buttons.add(new ButtonType("Scoreboard"));
+        var popup = showPopup("You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, buttons);
+        if(popup.isPresent() && popup.get().getText() == "Scoreboard"){
+            var sView = new ScoreboardScreenView();
+            new ScoreboardScreenPresenter(sView, stage);
+            stage.setScene(new Scene(sView));
+        }else{
+            var mmView = new MainMenuScreenView();
+            new MainMenuScreenPresenter(mmView, stage);
+            stage.setScene(new Scene(mmView));
+        }
     }
     public void tileClick(Image botImg, Image topImg, Image topSelImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
         //Make sure user only clicks topImg or topSelImg
         if(tileView.getImage().hashCode() != topImg.hashCode() && tileView.getImage().hashCode() != topSelImg.hashCode()){
-            showPopup("Oops!", "This tile has already been flipped!", Alert.AlertType.WARNING, false);
+            showPopup("Oops!", "This tile has already been flipped!", Alert.AlertType.WARNING);
             return;
         }
 
@@ -173,7 +186,7 @@ public class Game {
     public void getHint(ImageView view, Image botImg, Image topImg, Image topSelImg){
         //Make sure user only clicks topImg or topSelImg
         if(view.getImage().hashCode() != topImg.hashCode() && view.getImage().hashCode() != topSelImg.hashCode()){
-            showPopup("Oops!", "Can't show hint for tile that is already flipped!", Alert.AlertType.WARNING, false);
+            showPopup("Oops!", "Can't show hint for tile that is already flipped!", Alert.AlertType.WARNING);
             return;
         }
 
@@ -192,35 +205,13 @@ public class Game {
         var thread = new Thread(resetTileTask);
         thread.start();
     }
-    public static void showPopup(String title, String text, Alert.AlertType type, boolean isEndScreen, Stage... stage){
+    public static Optional<ButtonType> showPopup(String title, String text, Alert.AlertType type, ArrayList<ButtonType>... buttons){
         Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(text);
-
-        if(!isEndScreen) {
-            ButtonType btnOk = new ButtonType("Ok");
-            alert.getButtonTypes().clear();
-            alert.getButtonTypes().add(btnOk);
-            Optional<ButtonType> option = alert.showAndWait();
-            if(option.get() == btnOk) return;
-        };
-
-        ButtonType scoreboard = new ButtonType("Scoreboard");
-        ButtonType mainmenu = new ButtonType("Main menu");
-
         alert.getButtonTypes().clear();
-        alert.getButtonTypes().addAll(scoreboard,mainmenu);
-
-        Optional<ButtonType> option = alert.showAndWait();
-
-        if (option.get() == scoreboard) {
-            var sView = new ScoreboardScreenView();
-            new ScoreboardScreenPresenter(sView, stage[0]);
-            stage[0].setScene(new Scene(sView));
-        } else if (option.get() == mainmenu) {
-            var mmView = new MainMenuScreenView();
-            new MainMenuScreenPresenter(mmView, stage[0]);
-            stage[0].setScene(new Scene(mmView));
-        }
+        if(buttons.length > 0) alert.getButtonTypes().addAll(buttons[0]);
+        else alert.getButtonTypes().add(new ButtonType("Ok"));
+        return alert.showAndWait();
     }
 }

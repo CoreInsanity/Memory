@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Json {
-    public static String modelToJson(models.Game newGame) {
+    public static String modelToJson(models.Game newGame) throws Exception {
         var jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\n");
         jsonBuilder.append("\"GameTime\":" + newGame.getGameTime());
@@ -19,7 +19,7 @@ public class Json {
         jsonBuilder.append("\n},");
         return jsonBuilder.toString();
     }
-    public static List<Game> jsonToModels(String json){
+    public static List<Game> jsonToModels(String json) throws Exception{
         List<Game> models = new ArrayList<Game>();
         var currentGame = new Game();
 
@@ -42,8 +42,7 @@ public class Json {
         }
         return models;
     }
-    public static String mergeJson(String oldJson, String newJson)
-    {
+    public static String mergeJson(String oldJson, String newJson) throws Exception{
         var merge = new StringBuilder();
         merge.append("[\n");
 

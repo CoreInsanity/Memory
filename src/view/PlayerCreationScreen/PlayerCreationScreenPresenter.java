@@ -43,7 +43,7 @@ public class PlayerCreationScreenPresenter {
             new MemoryScreenPresenter(viewer, stage, game);
             stage.setScene(new Scene(viewer));
         }catch (Exception ex){
-            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
 

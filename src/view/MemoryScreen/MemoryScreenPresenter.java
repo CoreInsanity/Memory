@@ -57,7 +57,7 @@ public class MemoryScreenPresenter {
         try {
             loadImgs();
         } catch (Exception ex) {
-            game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
 
@@ -107,7 +107,7 @@ public class MemoryScreenPresenter {
                 game = null;
                 stage.setScene(new Scene(viewer));
             } catch (Exception ex) {
-                game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+                game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
             }
         });
 

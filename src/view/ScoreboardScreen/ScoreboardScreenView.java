@@ -7,6 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.shape.Rectangle;
 import models.Game;
 import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
@@ -20,9 +21,11 @@ import java.util.List;
 public class ScoreboardScreenView extends BorderPane {
     private TableView<Game> table;
     private MenuBar menuBar;
-    private MenuItem menu1;
-    private MenuItem menu2;
+    private MenuItem mainMenu;
+    private MenuItem exit;
+    private MenuItem delete;
     private Menu menu;
+    private Menu scoreboard;
     private ImageView menulogo;
 
     public ScoreboardScreenView() {
@@ -38,15 +41,17 @@ public class ScoreboardScreenView extends BorderPane {
         try {
             loadImgs();
         } catch (Exception ex) {
-            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
 
         //Define all the Menu Items
         menuBar = new MenuBar();
         menu = new Menu("Menu");
-        menu1 = new MenuItem("Main menu");
-        menu2 = new MenuItem("Exit");
+        scoreboard = new Menu("Scoreboard");
+        mainMenu = new MenuItem("Main menu");
+        exit = new MenuItem("Exit");
+        delete = new MenuItem("Delete scoreboard");
     }
 
     private void loadImgs() throws FileNotFoundException {
@@ -57,7 +62,7 @@ public class ScoreboardScreenView extends BorderPane {
         try {
             gameModels = Scoreboard.readScoreBoard("scoreboard.json");
         }catch (Exception ex) {
-            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
         }
 
         ObservableList<Game> games = FXCollections.observableList(gameModels);
@@ -80,18 +85,22 @@ public class ScoreboardScreenView extends BorderPane {
         table.getColumns().add(colGames);
     }
     private void layoutNodes() {
-        setCenter(table);
-
-        menuBar.getMenus().add(menu);
-        menu.getItems().addAll(menu1, menu2);
-        menu.setGraphic(menulogo);
-
         menulogo.setFitWidth(25);
         menulogo.setFitHeight(25);
 
+        menuBar.getMenus().addAll(menu, scoreboard);
+
+        menu.getItems().addAll(mainMenu, exit);
+        scoreboard.getItems().addAll(delete);
+
+        scoreboard.setGraphic(new Rectangle(0, 25));
+        menu.setGraphic(menulogo);
+
+        setCenter(table);
         setTop(menuBar);
     }
 
-    public MenuItem getMenu1() { return menu1; }
-    public MenuItem getMenu2() { return menu2; }
+    public MenuItem getMainMenu() { return mainMenu; }
+    public MenuItem getExit() { return exit; }
+    public MenuItem getDelete() { return delete; }
 }
