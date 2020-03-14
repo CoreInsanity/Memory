@@ -1,5 +1,5 @@
+import helpers.Scene;
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import view.MainMenuScreen.MainMenuScreenPresenter;
@@ -18,10 +18,7 @@ public class Menu extends Application {
 
         stage.initStyle(StageStyle.UNDECORATED);
 
-        var view = new MainMenuScreenView();
-        new MainMenuScreenPresenter(view, stage);
-
-        stage.setScene(new Scene(view));
+        Scene.showMainMenu(stage);
         stage.setResizable(true);
         stage.show();
     }

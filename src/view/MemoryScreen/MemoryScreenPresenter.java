@@ -81,31 +81,24 @@ public class MemoryScreenPresenter {
         Collections.shuffle(botImgs);
     }
     private void addEventHandlers() {
-        view.getMenu1().setOnAction(b -> {
+        view.getMainMenu().setOnAction(b -> {
             game.stopTimer();
-            var mmView = new MainMenuScreenView();
-            new MainMenuScreenPresenter(mmView, stage);
-            stage.setScene(new Scene(mmView));
+            helpers.Scene.showMainMenu(stage);
         });
-        view.getMenu2().setOnAction(b -> {
+        view.getScoreboard().setOnAction(b -> {
             game.stopTimer();
-            var sbView = new ScoreboardScreenView();
-            new ScoreboardScreenPresenter(sbView, stage);
-            stage.setScene(new Scene(sbView));
+            helpers.Scene.showScoreboard(stage);
         });
-        view.getMenu3().setOnAction(b -> {
+        view.getExit().setOnAction(b -> {
             game.stopTimer();
             Platform.exit();
         });
-
-        view.getMenu4().setOnAction(b -> {
+        view.getRestart().setOnAction(b -> {
             game.stopTimer();
             try {
                 var newGame = new Game(game.getName(), game.getAge());
-                var viewer = new MemoryScreenView();
-                new MemoryScreenPresenter(viewer, stage, newGame);
                 game = null;
-                stage.setScene(new Scene(viewer));
+                helpers.Scene.showMemory(stage, game);
             } catch (Exception ex) {
                 game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
             }

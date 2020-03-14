@@ -123,7 +123,6 @@ public class Game {
             Scoreboard.addGameData(this, "scoreboard.json");
         }catch (Exception ex){
             showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
-            Platform.exit(); // Da's pech, progress weg
         }
 
         //Show the endscreen popup
@@ -131,15 +130,8 @@ public class Game {
         buttons.add(new ButtonType("Main menu"));
         buttons.add(new ButtonType("Scoreboard"));
         var popup = showPopup("You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, buttons);
-        if(popup.isPresent() && popup.get().getText() == "Scoreboard"){
-            var sView = new ScoreboardScreenView();
-            new ScoreboardScreenPresenter(sView, stage);
-            stage.setScene(new Scene(sView));
-        }else{
-            var mmView = new MainMenuScreenView();
-            new MainMenuScreenPresenter(mmView, stage);
-            stage.setScene(new Scene(mmView));
-        }
+        if(popup.isPresent() && popup.get().getText() == "Scoreboard") helpers.Scene.showScoreboard(stage) ;
+        else helpers.Scene.showMainMenu(stage);
     }
     public void tileClick(Image botImg, Image topImg, Image topSelImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
         //Make sure user only clicks topImg or topSelImg

@@ -29,10 +29,10 @@ public class MemoryScreenView extends BorderPane {
     private Image topSelImg;
     private BorderPane playField;
     private MenuBar menuBar;
-    private MenuItem menu1;
-    private MenuItem menu2;
-    private MenuItem menu3;
-    private MenuItem menu4;
+    private MenuItem mainMenu;
+    private MenuItem restart;
+    private MenuItem scoreboard;
+    private MenuItem exit;
     private Menu menu;
     private Label timer;
     private Label score;
@@ -55,10 +55,10 @@ public class MemoryScreenView extends BorderPane {
         //Define all the Menu Items
         menuBar = new MenuBar();
         menu = new Menu("Menu");
-        menu1 = new MenuItem("Main menu");
-        menu2 = new MenuItem("ScoreBoard");
-        menu3 = new MenuItem("Exit");
-        menu4 = new MenuItem("Restart");
+        mainMenu = new MenuItem("Main menu");
+        restart = new MenuItem("ScoreBoard");
+        scoreboard = new MenuItem("Exit");
+        exit = new MenuItem("Restart");
 
 
         //Define the Timer label
@@ -82,7 +82,7 @@ public class MemoryScreenView extends BorderPane {
         timerBox.getChildren().addAll(new Rectangle(0, 7), timer);
 
         menuBar.getMenus().add(menu);
-        menu.getItems().addAll(menu1, menu4, menu2, menu3);
+        menu.getItems().addAll(mainMenu, restart, scoreboard, exit);
         menu.setGraphic(menulogo);
 
         menulogo.setFitWidth(25);
@@ -107,10 +107,10 @@ public class MemoryScreenView extends BorderPane {
         setLeft(timerBox);
     }
 
-    public MenuItem getMenu1() {return menu1;}
-    public MenuItem getMenu2() {return menu2;}
-    public MenuItem getMenu3() {return menu3;}
-    public MenuItem getMenu4() {return menu4;}
+    public MenuItem getMainMenu() {return mainMenu;}
+    public MenuItem getRestart() {return restart;}
+    public MenuItem getScoreboard() {return scoreboard;}
+    public MenuItem getExit() {return exit;}
     public BorderPane getPlayField() {return (BorderPane) getCenter();}
     public Label getTimer() {return timer;}
     public Image getTopImg(){return topImg;}

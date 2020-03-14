@@ -15,6 +15,8 @@ import javafx.collections.FXCollections;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -64,6 +66,10 @@ public class ScoreboardScreenView extends BorderPane {
         }catch (Exception ex) {
             Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
         }
+
+        gameModels.sort(Comparator.comparing(Game::getGameTime));
+        gameModels.sort(Comparator.comparing(Game::getClickAmount));
+        Collections.reverse(gameModels);
 
         ObservableList<Game> games = FXCollections.observableList(gameModels);
         table.setItems(games);

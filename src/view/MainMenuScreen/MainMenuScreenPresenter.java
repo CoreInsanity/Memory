@@ -1,8 +1,8 @@
 package view.MainMenuScreen;
 
+import helpers.Scene;
 import javafx.application.Platform;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import java.awt.Desktop;
@@ -42,8 +42,8 @@ public class MainMenuScreenPresenter {
         view.getBtnExit().setOnMouseClicked(b -> Platform.exit());
         view.getBtnExit().setOnKeyPressed(k -> {if(k.getCode() == KeyCode.ENTER) Platform.exit();});
 
-        view.getBtnScoreboard().setOnMouseClicked(b -> showScoreboard());
-        view.getBtnScoreboard().setOnKeyPressed(k -> {if(k.getCode() == KeyCode.ENTER) showScoreboard();});
+        view.getBtnScoreboard().setOnMouseClicked(b -> Scene.showScoreboard(stage));
+        view.getBtnScoreboard().setOnKeyPressed(k -> {if(k.getCode() == KeyCode.ENTER) Scene.showScoreboard(stage);});
 
         view.getGitImg().setOnMouseClicked(b -> {
             try {
@@ -71,10 +71,5 @@ public class MainMenuScreenPresenter {
         var pcView = new PlayerCreationScreenView();
         new PlayerCreationScreenPresenter(pcView, stage);
         view.setCenter(pcView);
-    }
-    private void showScoreboard(){
-        var sbView = new ScoreboardScreenView();
-        new ScoreboardScreenPresenter(sbView, stage);
-        stage.setScene(new Scene(sbView));
     }
 }

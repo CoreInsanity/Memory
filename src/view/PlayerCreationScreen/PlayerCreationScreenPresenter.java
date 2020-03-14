@@ -1,7 +1,7 @@
 package view.PlayerCreationScreen;
 
+import helpers.Scene;
 import javafx.application.Platform;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
@@ -27,26 +27,17 @@ public class PlayerCreationScreenPresenter {
     private void addEventhandlers(){
         view.getPlayBtn().setOnAction(b -> startGame());
         view.getAge().setOnKeyPressed(k -> {if(k.getCode() == KeyCode.ENTER) startGame();});
-
-        view.getBackBtn().setOnAction(b -> {
-            var mmView = new MainMenuScreenView();
-            new MainMenuScreenPresenter(mmView, stage);
-            stage.setScene(new Scene(mmView));
-        });
+        view.getBackBtn().setOnAction(b -> Scene.showMainMenu(stage));
     }
     private void startGame(){
         if(!fieldsCheck()) return;
-
         try {
             var game = new Game(view.getName().getText(), Integer.parseInt(view.getAge().getText()));
-            var viewer = new MemoryScreenView();
-            new MemoryScreenPresenter(viewer, stage, game);
-            stage.setScene(new Scene(viewer));
+            helpers.Scene.showMemory(stage, game);
         }catch (Exception ex){
             Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
-
     }
     private boolean fieldsCheck(){
         try{
