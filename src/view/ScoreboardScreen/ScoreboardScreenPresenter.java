@@ -20,7 +20,11 @@ public class ScoreboardScreenPresenter {
         this.scoreboardScreenView =view;
         this.stage = stage;
         addEventHandlers();
-
+        initStage();
+    }
+    private void initStage(){
+        stage.setMaxHeight(1000);
+        stage.setMaxWidth(452);
     }
     private void addEventHandlers(){
         scoreboardScreenView.getMainMenu().setOnAction(b -> Scene.showMainMenu(stage));
