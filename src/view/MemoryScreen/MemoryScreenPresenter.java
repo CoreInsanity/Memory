@@ -111,7 +111,7 @@ public class MemoryScreenPresenter {
                         @Override
                         protected Void call() throws Exception {
                             Thread.sleep(250); //Add slight delay, if the user clicks again within 250ms this thread will be killed
-                            game.tileClick(botImgs.get(index), topImg, topSelImg, img, index, playField, stage); //We can assume it was a single click
+                            Platform.runLater(()->game.tileClick(botImgs.get(index), topImg, topSelImg, img, index, playField, stage)); //We can assume it was a single click
                             return null;
                         }
                     });
