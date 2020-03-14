@@ -1,6 +1,7 @@
 package view.ScoreboardScreen;
 
 import helpers.Scoreboard;
+import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -36,8 +37,9 @@ public class ScoreboardScreenView extends BorderPane {
 
         try {
             loadImgs();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            Platform.exit();
         }
 
         //Define all the Menu Items

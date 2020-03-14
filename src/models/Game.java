@@ -128,9 +128,15 @@ public class Game {
 
         showPopup("You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, true, stage);
     }
-    public void tileClick(Image originalImg, Image topImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
+    public void tileClick(Image botImg, Image topImg, Image topSelImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
+        //Make sure user only clicks topImg or topSelImg
+        if(tileView.getImage().hashCode() != topImg.hashCode() && tileView.getImage().hashCode() != topSelImg.hashCode()){
+            showPopup("Oops!", "This tile has already been flipped!", Alert.AlertType.WARNING, false);
+            return;
+        }
+
         playAudio(Audio.FLIP);
-        tileView.setImage(originalImg);
+        tileView.setImage(botImg);
         tileView.setCursor(Cursor.DEFAULT);
         adjustClickAmount(1);
 
@@ -164,7 +170,13 @@ public class Game {
         //Used to identify the first tile that was flipped (fe. when on second click)
         lastClickIndex = imgIndex;
     }
-    public void getHint(ImageView view, Image botImg, Image topImg){
+    public void getHint(ImageView view, Image botImg, Image topImg, Image topSelImg){
+        //Make sure user only clicks topImg or topSelImg
+        if(view.getImage().hashCode() != topImg.hashCode() && view.getImage().hashCode() != topSelImg.hashCode()){
+            showPopup("Oops!", "Can't show hint for tile that is already flipped!", Alert.AlertType.WARNING, false);
+            return;
+        }
+
         view.setImage(botImg);
         adjustGameTime(10);
 
@@ -186,11 +198,11 @@ public class Game {
         alert.setHeaderText(text);
 
         if(!isEndScreen) {
-            ButtonType quit = new ButtonType("Quit");
+            ButtonType btnOk = new ButtonType("Ok");
             alert.getButtonTypes().clear();
-            alert.getButtonTypes().add(quit);
+            alert.getButtonTypes().add(btnOk);
             Optional<ButtonType> option = alert.showAndWait();
-            if(option.get() == quit) Platform.exit();
+            if(option.get() == btnOk) return;
         };
 
         ButtonType scoreboard = new ButtonType("Scoreboard");

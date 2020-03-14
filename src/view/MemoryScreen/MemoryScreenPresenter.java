@@ -58,6 +58,7 @@ public class MemoryScreenPresenter {
             loadImgs();
         } catch (Exception ex) {
             game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            Platform.exit();
         }
 
         setCursors();
@@ -122,14 +123,14 @@ public class MemoryScreenPresenter {
                         @Override
                         protected Void call() throws Exception {
                             Thread.sleep(250); //Add slight delay, if the user clicks again within 250ms this thread will be killed
-                            game.tileClick(botImgs.get(index), topImg, img, index, playField, stage); //We can assume it was a single click
+                            game.tileClick(botImgs.get(index), topImg, topSelImg, img, index, playField, stage); //We can assume it was a single click
                             return null;
                         }
                     });
                     onClickThread.start();
                 } else if (m.getClickCount() == 2) {
                     onClickThread.interrupt(); //Kill the previously generated onclick thread
-                    game.getHint(img, botImgs.get(index), topImg);
+                    game.getHint(img, botImgs.get(index), topImg, topSelImg);
                 }
             });
             i++;
@@ -148,7 +149,7 @@ public class MemoryScreenPresenter {
             img.setOnKeyPressed(i -> {
                 //If user presses CTRL+Enter the getHint function should be called
                 if (new KeyCodeCombination(KeyCode.ENTER, KeyCombination.CONTROL_DOWN).match(i))
-                    game.getHint(img, botImgs.get(index), topImg);
+                    game.getHint(img, botImgs.get(index), topImg, topSelImg);
                 else switch (i.getCode()) {
                     case UP:
                         //Make sure the selector is not on the top of the playfield
@@ -172,7 +173,7 @@ public class MemoryScreenPresenter {
                         setHoverView(index + 1);
                         break;
                     case ENTER:
-                        game.tileClick(botImgs.get(index), topImg, img, index, playField, stage);
+                        game.tileClick(botImgs.get(index), topImg, topSelImg, img, index, playField, stage);
                         break;
                 }
             });

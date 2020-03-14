@@ -49,6 +49,7 @@ public class MemoryScreenView extends BorderPane {
             loadImgs();
         } catch (Exception ex) {
             Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            Platform.exit();
         }
 
         //Define all the Menu Items

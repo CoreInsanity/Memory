@@ -1,5 +1,6 @@
 package view.PlayerCreationScreen;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
@@ -43,6 +44,7 @@ public class PlayerCreationScreenPresenter {
             stage.setScene(new Scene(viewer));
         }catch (Exception ex){
             Game.showPopup("Oopsie woopsie, sumting went vewwy vewwy wong", ex.getMessage(), Alert.AlertType.ERROR, false);
+            Platform.exit();
         }
 
     }
