@@ -68,6 +68,7 @@ public class ScoreboardScreenView extends BorderPane {
         }
 
         gameModels.sort(Comparator.comparing(Game::getGameTime));
+        Collections.reverse(gameModels);
         gameModels.sort(Comparator.comparing(Game::getClickAmount));
         Collections.reverse(gameModels);
 
