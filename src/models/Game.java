@@ -1,6 +1,5 @@
 package models;
 
-import helpers.Popup;
 import helpers.Scoreboard;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -119,21 +118,21 @@ public class Game {
         try {
             Scoreboard.addGameData(this, "scoreboard.json");
         }catch (Exception ex){
-            Popup.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
+            showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
         }
 
         //Show the endscreen popup
         var buttons = new ArrayList<ButtonType>();
         buttons.add(new ButtonType("Main menu"));
         buttons.add(new ButtonType("Scoreboard"));
-        var popup = Popup.showPopup("You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, buttons);
+        var popup = showPopup("You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, buttons);
         if(popup.isPresent() && popup.get().getText() == "Scoreboard") helpers.Scene.showScoreboard(stage) ;
         else helpers.Scene.showMainMenu(stage);
     }
     public void tileClick(Image botImg, Image topImg, Image topSelImg, ImageView tileView, Integer imgIndex, Pane playField, Stage stage){
         //Make sure user only clicks topImg or topSelImg
         if(tileView.getImage().hashCode() != topImg.hashCode() && tileView.getImage().hashCode() != topSelImg.hashCode()){
-            Popup.showPopup("Oops!", "This tile has already been flipped!", Alert.AlertType.WARNING);
+            showPopup("Oops!", "This tile has already been flipped!", Alert.AlertType.WARNING);
             return;
         }
 
@@ -175,7 +174,7 @@ public class Game {
     public void getHint(ImageView view, Image botImg, Image topImg, Image topSelImg){
         //Make sure user only clicks topImg or topSelImg
         if(view.getImage().hashCode() != topImg.hashCode() && view.getImage().hashCode() != topSelImg.hashCode()){
-            Popup.showPopup("Oops!", "Can't show hint for tile that is already flipped!", Alert.AlertType.WARNING);
+            showPopup("Oops!", "Can't show hint for tile that is already flipped!", Alert.AlertType.WARNING);
             return;
         }
 
@@ -193,5 +192,14 @@ public class Game {
 
         var thread = new Thread(resetTileTask);
         thread.start();
+    }
+    public static Optional<ButtonType> showPopup(String title, String text, Alert.AlertType type, ArrayList<ButtonType>... buttons){
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(text);
+        alert.getButtonTypes().clear();
+        if(buttons.length > 0) alert.getButtonTypes().addAll(buttons[0]);
+        else alert.getButtonTypes().add(new ButtonType("Ok"));
+        return alert.showAndWait();
     }
 }
