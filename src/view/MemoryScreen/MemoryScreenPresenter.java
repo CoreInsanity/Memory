@@ -2,13 +2,9 @@ package view.MemoryScreen;
 
 import helpers.Popup;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import models.Audio;
 import models.Game;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -17,11 +13,6 @@ import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.concurrent.Task;
-import view.MainMenuScreen.MainMenuScreenPresenter;
-import view.MainMenuScreen.MainMenuScreenView;
-import view.ScoreboardScreen.ScoreboardScreenPresenter;
-import view.ScoreboardScreen.ScoreboardScreenView;
-
 import java.io.*;
 import java.util.*;
 
@@ -32,7 +23,6 @@ import java.util.*;
  */
 public class MemoryScreenPresenter {
     private Stage stage;
-    private Scene scene;
     private MemoryScreenView view;
     private Pane playField;
     private Game game;
@@ -47,7 +37,6 @@ public class MemoryScreenPresenter {
         view = memoryScreenView;
         game = gameMod;
         game.startTimer(view);
-        scene = stage.getScene();
         playField = view.getPlayField();
         botImgs = new ArrayList<>();
 

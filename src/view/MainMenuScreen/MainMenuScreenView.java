@@ -12,7 +12,6 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 
 import java.io.FileInputStream;
@@ -156,5 +155,4 @@ public class MainMenuScreenView extends BorderPane {
     ImageView getlTwitterImg() {
         return lTwitterImg;
     }
-    public VBox getMenuBox() { return menuBox; }
 }

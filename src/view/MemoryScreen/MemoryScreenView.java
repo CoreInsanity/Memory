@@ -4,9 +4,6 @@ import helpers.Popup;
 import javafx.application.Platform;
 import javafx.geometry.*;
 import javafx.scene.Cursor;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -14,16 +11,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import javafx.scene.layout.Pane;
-import models.Game;
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.File;
-import java.io.InputStream;
-import java.util.*;
-import java.util.List;
+
 
 public class MemoryScreenView extends BorderPane {
     private Image topImg;
@@ -36,7 +26,6 @@ public class MemoryScreenView extends BorderPane {
     private MenuItem exit;
     private Menu menu;
     private Label timer;
-    private Label score;
     private ImageView menulogo;
 
 

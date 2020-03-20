@@ -15,10 +15,7 @@ import javafx.collections.FXCollections;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+
 
 
 public class ScoreboardScreenView extends BorderPane {

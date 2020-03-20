@@ -6,9 +6,6 @@ import helpers.Scoreboard;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import models.Game;
-import view.MainMenuScreen.MainMenuScreenPresenter;
-import view.MainMenuScreen.MainMenuScreenView;
 
 /**
  * Maxim Van den Eede

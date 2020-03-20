@@ -5,9 +5,7 @@ import helpers.Scoreboard;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.scene.Cursor;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,14 +14,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import view.MainMenuScreen.MainMenuScreenPresenter;
-import view.MainMenuScreen.MainMenuScreenView;
 import view.MemoryScreen.MemoryScreenView;
-import view.ScoreboardScreen.ScoreboardScreenPresenter;
-import view.ScoreboardScreen.ScoreboardScreenView;
+
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 

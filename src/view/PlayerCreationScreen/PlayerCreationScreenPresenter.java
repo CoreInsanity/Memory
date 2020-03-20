@@ -7,10 +7,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import models.Game;
-import view.MainMenuScreen.MainMenuScreenPresenter;
 import view.MainMenuScreen.MainMenuScreenView;
-import view.MemoryScreen.MemoryScreenPresenter;
-import view.MemoryScreen.MemoryScreenView;
+
 
 public class PlayerCreationScreenPresenter {
     private PlayerCreationScreenView view;

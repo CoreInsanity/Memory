@@ -2,20 +2,13 @@ package view.MainMenuScreen;
 
 import helpers.Scene;
 import javafx.application.Platform;
-import javafx.scene.Cursor;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 import java.awt.Desktop;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import javafx.scene.input.MouseEvent;
-
-import javafx.stage.StageStyle;
 import view.PlayerCreationScreen.PlayerCreationScreenPresenter;
 import view.PlayerCreationScreen.PlayerCreationScreenView;
-import view.ScoreboardScreen.ScoreboardScreenPresenter;
-import view.ScoreboardScreen.ScoreboardScreenView;
+
 
 /**
  * Maxim Van den Eede

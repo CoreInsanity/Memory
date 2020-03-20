@@ -5,11 +5,7 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import models.Game;
-import view.MainMenuScreen.MainMenuScreenPresenter;
-import view.MainMenuScreen.MainMenuScreenView;
 
-import java.io.IOException;
 
 /**
  * Maxim Van den Eede
