@@ -13,9 +13,6 @@ import view.MainMenuScreen.MainMenuScreenView;
 public class PlayerCreationScreenPresenter {
     private PlayerCreationScreenView view;
     private Stage stage;
-    private String name;
-    private int age;
-    private MainMenuScreenView mainMenuScreenView;
 
     public PlayerCreationScreenPresenter(PlayerCreationScreenView plView, Stage curstage){
         view = plView;

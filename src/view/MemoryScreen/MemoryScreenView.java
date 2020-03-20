@@ -82,7 +82,6 @@ public class MemoryScreenView extends BorderPane {
             imgView.setCursor(Cursor.HAND);
             imgView.setTranslateX(135 * (i % 4));
             imgView.setTranslateY(135 * (int) (i / 4));
-            imgView.setStyle("-fx-border-color: Yellow;-fx-border-width: 5;");
             playField.getChildren().add(imgView);
         }
 

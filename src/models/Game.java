@@ -37,7 +37,6 @@ public class Game {
     private MediaPlayer matchPlayer;
     private Integer lastClickIndex;
     private Integer toRemoveIndex;
-    private Integer toRemoveSecondIndex;
     private Integer foundMatches;
 
     // Constructor (Load ALL required resources here!)
