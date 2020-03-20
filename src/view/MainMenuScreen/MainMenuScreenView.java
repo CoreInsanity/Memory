@@ -1,15 +1,13 @@
 
 package view.MainMenuScreen;
 
+import helpers.Popup;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.shape.Rectangle;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
@@ -58,7 +56,7 @@ public class MainMenuScreenView extends BorderPane {
         try {
             loadImgs();
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            Popup.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
 

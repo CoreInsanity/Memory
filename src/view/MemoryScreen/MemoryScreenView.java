@@ -1,5 +1,6 @@
 package view.MemoryScreen;
 
+import helpers.Popup;
 import javafx.application.Platform;
 import javafx.geometry.*;
 import javafx.scene.Cursor;
@@ -48,7 +49,7 @@ public class MemoryScreenView extends BorderPane {
         try {
             loadImgs();
         } catch (Exception ex) {
-            Game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
+            Popup.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
 

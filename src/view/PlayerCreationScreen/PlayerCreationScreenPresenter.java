@@ -1,5 +1,6 @@
 package view.PlayerCreationScreen;
 
+import helpers.Popup;
 import helpers.Scene;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
@@ -31,14 +32,14 @@ public class PlayerCreationScreenPresenter {
     }
     private void startGame(){
         if(!fieldsCheck()){
-            Game.showPopup("Incorrect data", "Please make sure all fields are correct", Alert.AlertType.WARNING);
+            Popup.showPopup("Incorrect data", "Please make sure all fields are correct", Alert.AlertType.WARNING);
             return;
         }
         try {
             var game = new Game(view.getName().getText(), Integer.parseInt(view.getAge().getText()));
             helpers.Scene.showMemory(stage, game);
         }catch (Exception ex){
-            Game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
+            Popup.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
     }

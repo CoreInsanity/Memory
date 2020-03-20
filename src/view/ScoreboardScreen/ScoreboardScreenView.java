@@ -1,5 +1,6 @@
 package view.ScoreboardScreen;
 
+import helpers.Popup;
 import helpers.Scoreboard;
 import javafx.application.Platform;
 import javafx.scene.control.*;
@@ -21,7 +22,8 @@ import java.util.List;
 
 
 public class ScoreboardScreenView extends BorderPane {
-    private TableView<Game> table;
+    private TableView<Game> scoreboardTable;
+    private ObservableList<Game> gameModels;
     private MenuBar menuBar;
     private MenuItem mainMenu;
     private MenuItem exit;
@@ -34,16 +36,16 @@ public class ScoreboardScreenView extends BorderPane {
         initNodes();
         initTable();
         layoutNodes();
-
     }
 
     private void initNodes() {
-        table = new TableView<>();
+        scoreboardTable = new TableView<>();
 
         try {
             loadImgs();
+            gameModels = FXCollections.observableList(Scoreboard.readScoreBoard("scoreboard.json"));
         } catch (Exception ex) {
-            Game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
+            Popup.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
 
@@ -60,19 +62,7 @@ public class ScoreboardScreenView extends BorderPane {
         menulogo = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
     }
     private void initTable(){
-        List<Game> gameModels = new ArrayList<>();
-        try {
-            gameModels = Scoreboard.readScoreBoard("scoreboard.json");
-        }catch (Exception ex) {
-            Game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
-        }
-
-        gameModels.sort(Comparator.comparing(Game::getGameTime));
-        gameModels.sort(Comparator.comparing(Game::getClickAmount));
-        Collections.reverse(gameModels);
-
-        ObservableList<Game> games = FXCollections.observableList(gameModels);
-        table.setItems(games);
+        scoreboardTable.setItems(gameModels);
 
         TableColumn colGames = new TableColumn("Games");
 
@@ -93,21 +83,19 @@ public class ScoreboardScreenView extends BorderPane {
 
         colGames.getColumns().addAll(colName, colAge, colGameTime, colClicks);
 
-        table.getColumns().add(colGames);
+        scoreboardTable.getColumns().add(colGames);
     }
     private void layoutNodes() {
         menulogo.setFitWidth(25);
         menulogo.setFitHeight(25);
-
         menuBar.getMenus().addAll(menu, scoreboard);
-
         menu.getItems().addAll(mainMenu, exit);
-        scoreboard.getItems().addAll(delete);
-
-        scoreboard.setGraphic(new Rectangle(0, 25));
         menu.setGraphic(menulogo);
 
-        setCenter(table);
+        scoreboard.getItems().addAll(delete);
+        scoreboard.setGraphic(new Rectangle(0, 25));
+
+        setCenter(scoreboardTable);
         setTop(menuBar);
     }
 

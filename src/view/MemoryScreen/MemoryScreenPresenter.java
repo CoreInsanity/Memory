@@ -1,5 +1,6 @@
 package view.MemoryScreen;
 
+import helpers.Popup;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import models.Audio;
@@ -57,7 +58,7 @@ public class MemoryScreenPresenter {
         try {
             loadImgs();
         } catch (Exception ex) {
-            game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
+            Popup.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             Platform.exit();
         }
 
@@ -95,7 +96,7 @@ public class MemoryScreenPresenter {
                 game = null;
                 helpers.Scene.showMemory(stage, newGame);
             } catch (Exception ex) {
-                game.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
+                Popup.showPopup("Something went wrong", ex.getMessage(), Alert.AlertType.ERROR);
             }
         });
 

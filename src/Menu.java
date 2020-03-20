@@ -1,3 +1,4 @@
+import helpers.Popup;
 import helpers.Scene;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -26,7 +27,7 @@ public class Menu extends Application {
             stage.setResizable(true);
             stage.show();
         }catch (Exception ex){
-            Game.showPopup("What have you done?", "This shouldn't happen, please report this issue to the devs\n\nError: "+ex.getMessage()+"\n\nStacktrace: "+ex.getStackTrace(), Alert.AlertType.ERROR);
+            Popup.showPopup("What have you done?", "This shouldn't happen, please report this issue to the devs\n\nError: "+ex.getMessage()+"\n\nStacktrace: "+ex.getStackTrace().toString(), Alert.AlertType.ERROR);
             Platform.exit();
         }
     }

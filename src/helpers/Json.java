@@ -3,6 +3,7 @@ package helpers;
 import models.Game;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -40,6 +41,8 @@ public class Json {
             if(cleanLine.startsWith("Age:"))
                 currentGame.getPlayer().setAge(Integer.parseInt(cleanLine.replace("Age:", "").replace(",", ""))); //Remove object name and comma
         }
+        models.sort(Comparator.comparing(Game::getGameTime));
+        models.sort(Comparator.comparing(Game::getClickAmount));
         return models;
     }
     public static String mergeJson(String oldJson, String newJson) throws Exception{
