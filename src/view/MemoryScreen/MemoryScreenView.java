@@ -61,7 +61,6 @@ public class MemoryScreenView extends BorderPane {
         scoreboard = new MenuItem("Scoreboard");
         exit = new MenuItem("Exit");
 
-
         //Define the Timer label
         timer = new Label();
 
@@ -92,8 +91,8 @@ public class MemoryScreenView extends BorderPane {
         for (int i = 0; i < 20; i++) {
             var imgView = new ImageView(topImg);
             imgView.setCursor(Cursor.HAND);
-            imgView.setTranslateX(128 * (i % 4));
-            imgView.setTranslateY(128 * (int) (i / 4));
+            imgView.setTranslateX(135 * (i % 4));
+            imgView.setTranslateY(135 * (int) (i / 4));
             imgView.setStyle("-fx-border-color: Yellow;-fx-border-width: 5;");
             playField.getChildren().add(imgView);
         }

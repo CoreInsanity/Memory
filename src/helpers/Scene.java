@@ -18,8 +18,8 @@ public class Scene {
         stage.setScene(new javafx.scene.Scene(viewer));
     }
     public static void showMemory(Stage stage, Game game){
-        stage.setHeight(700);
-        stage.setWidth(675);
+        stage.setHeight(730);
+        stage.setWidth(700);
         var viewer = new MemoryScreenView();
         new MemoryScreenPresenter(viewer, stage, game);
         stage.setScene(new javafx.scene.Scene(viewer));

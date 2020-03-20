@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -35,6 +36,7 @@ public class MainMenuScreenView extends BorderPane {
     private ImageView gitImg;
     private BorderPane topPane;
     private BorderPane botPane;
+    private Font font;
 
     public MainMenuScreenView() {
         initNodes();
@@ -44,6 +46,7 @@ public class MainMenuScreenView extends BorderPane {
     }
 
     private void initNodes() {
+        font = new Font("Segoe UI", 13);
         menuBox = new VBox();
         leftBox = new VBox();
         webLinks = new HBox();
@@ -65,9 +68,6 @@ public class MainMenuScreenView extends BorderPane {
         botPane.setBottom(webLinks);
         leftBox.getChildren().addAll(topPane, botPane);
         menuBox.getChildren().addAll(tarkovTitle, new Rectangle(0, 20), btnNewGame, btnScoreboard, btnExit);
-
-        setLeft(leftBox);
-        setCenter(menuBox);
     }
     private void loadImgs() throws FileNotFoundException{
         tarkovImg = new ImageView(new Image(new FileInputStream("resources\\tarkov.png")));
@@ -78,6 +78,10 @@ public class MainMenuScreenView extends BorderPane {
     }
 
     private void layoutNodes() {
+        btnNewGame.setFont(font);
+        btnScoreboard.setFont(font);
+        btnExit.setFont(font);
+
         btnNewGame.setPrefWidth(100);
         btnScoreboard.setPrefWidth(100);
         btnNewGame.setPrefHeight(40);
@@ -111,6 +115,9 @@ public class MainMenuScreenView extends BorderPane {
         menuBox.setSpacing(20);
         menuBox.setAlignment(Pos.CENTER);
         menuBox.setBackground(new Background(new BackgroundFill(Color.rgb(42, 45, 54), CornerRadii.EMPTY, Insets.EMPTY)));
+
+        setLeft(leftBox);
+        setCenter(menuBox);
     }
 
     private void initTooltips() {

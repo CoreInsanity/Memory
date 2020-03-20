@@ -10,8 +10,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import models.Game;
+
 
 public class PlayerCreationScreenView extends GridPane {
     private Label lblName;
@@ -22,12 +24,14 @@ public class PlayerCreationScreenView extends GridPane {
     private HBox playBtnBox;
     private Button backBtn;
     private HBox backBtnBox;
+    private Font font;
 
     public PlayerCreationScreenView(){
         initNodes();
         layoutNodes();
     }
     private void initNodes(){
+        font = new Font("Segoe UI", 15);
         lblName = new Label("Name:");
         txtName = new TextField();
         lblAge = new Label("Age:");
@@ -46,8 +50,12 @@ public class PlayerCreationScreenView extends GridPane {
 
         lblAge.setTextFill(Color.rgb(197, 178, 0));
         lblName.setTextFill(Color.rgb(197, 178, 0));
+        lblAge.setFont(font);
+        lblName.setFont(font);
         playBtn.setBackground(new Background(new BackgroundFill(Color.YELLOW,CornerRadii.EMPTY,Insets.EMPTY)));
         backBtn.setBackground(new Background(new BackgroundFill(Color.YELLOW,CornerRadii.EMPTY,Insets.EMPTY)));
+        playBtn.setFont(font);
+        backBtn.setFont(font);
 
         playBtn.setCursor(Cursor.HAND);
         backBtn.setCursor(Cursor.HAND);
@@ -64,7 +72,6 @@ public class PlayerCreationScreenView extends GridPane {
         add(txtAge, 1, 2);
         add(playBtnBox, 1, 3);
         add(backBtnBox,0,3);
-
     }
 
     TextField getName(){return txtName;}
