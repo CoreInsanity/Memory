@@ -2,17 +2,18 @@ package helpers;
 
 import models.Game;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Json {
+    private static String dateFormat = "dd/MM/yyyy_HH:mm:ss";
+
     public static String modelToJson(models.Game newGame) throws Exception {
         var jsonBuilder = new StringBuilder();
         jsonBuilder.append("{\n");
         jsonBuilder.append("\"GameTime\":" + newGame.getGameTime());
         jsonBuilder.append(",\n\"Clicks\":" + newGame.getClickAmount());
+        jsonBuilder.append(",\n\"GameDate\":" + new SimpleDateFormat(dateFormat).format(new Date()));
         jsonBuilder.append(",\n\"Player\":{");
         jsonBuilder.append("\n\"Name\":\"" + newGame.getPlayer().getName());
         jsonBuilder.append("\",\n\"Age\":" + newGame.getPlayer().getAge());
@@ -34,6 +35,8 @@ public class Json {
                 models.add(currentGame);
             if(cleanLine.startsWith("GameTime:"))
                 currentGame.setGameTime(Integer.parseInt(cleanLine.replace("GameTime:", "").replace(",", ""))); //Remove object name and comma
+            if(cleanLine.startsWith("GameDate:"))
+                currentGame.setGameDate(new SimpleDateFormat(dateFormat).parse(cleanLine.replace("GameDate:", "").replace(",", ""))); //Remove object name and comma
             if(cleanLine.startsWith("Clicks:"))
                 currentGame.setClickAmount(Integer.parseInt(cleanLine.replace("Clicks:", "").replace(",", ""))); //Remove object name and comma
             if(cleanLine.startsWith("Name:"))

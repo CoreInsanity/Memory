@@ -68,20 +68,23 @@ public class ScoreboardScreenView extends BorderPane {
 
         TableColumn<Game, String> colName = new TableColumn<>("Name");
         TableColumn<Game, String> colAge = new TableColumn<>("Age");
+        TableColumn<Game, String> colGameDate = new TableColumn<>("GameDate");
         TableColumn<Game, String> colGameTime = new TableColumn<>("GameTime");
         TableColumn<Game, String> colClicks = new TableColumn<>("Clicks");
 
         colName.setMinWidth(150);
         colAge.setMinWidth(100);
+        colGameDate.setMinWidth(120);
         colGameTime.setMinWidth(100);
         colClicks.setMinWidth(100);
 
         colName.setCellValueFactory(new PropertyValueFactory<Game, String>("Name"));
         colAge.setCellValueFactory(new PropertyValueFactory<Game, String>("Age"));
+        colGameDate.setCellValueFactory(new PropertyValueFactory<Game, String>("GameDate"));
         colGameTime.setCellValueFactory(new PropertyValueFactory<Game, String>("GameTime"));
         colClicks.setCellValueFactory(new PropertyValueFactory<Game, String>("ClickAmount"));
 
-        colGames.getColumns().addAll(colName, colAge, colGameTime, colClicks);
+        colGames.getColumns().addAll(colGameDate, colName, colAge, colGameTime, colClicks);
 
         scoreboardTable.getColumns().add(colGames);
     }

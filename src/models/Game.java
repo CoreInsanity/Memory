@@ -24,10 +24,8 @@ import view.ScoreboardScreen.ScoreboardScreenView;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Maxim Van den Eede
@@ -38,6 +36,8 @@ public class Game {
     private int ClickAmount;
     private Player Player;
     private Timer GameTimer;
+    private Date GameDate;
+
     private MediaPlayer tickPlayer;
     private MediaPlayer flipPlayer;
     private MediaPlayer matchPlayer;
@@ -68,6 +68,7 @@ public class Game {
     // Getters
     public int getClickAmount() { return ClickAmount; }
     public int getGameTime() { return GameTime; }
+    public String getGameDate() { return new SimpleDateFormat("dd/MM/yyyy HH:mm").format(GameDate); }
     public Player getPlayer() { return Player; }
     public String getName() { return Player.getName(); }
     public Integer getAge() { return Player.getAge(); }
@@ -75,6 +76,7 @@ public class Game {
     // Setters
     public void setClickAmount (int clickAmount) {ClickAmount = clickAmount; }
     public void setGameTime(int gameTime) { GameTime = gameTime; }
+    public void setGameDate(Date date) { GameDate = date; }
     public void adjustClickAmount(int clicks) { ClickAmount += clicks; }
     public void adjustGameTime(int time) { GameTime += time; }
 
@@ -126,7 +128,7 @@ public class Game {
         var buttons = new ArrayList<ButtonType>();
         buttons.add(new ButtonType("Main menu"));
         buttons.add(new ButtonType("Scoreboard"));
-        var popup = Popup.showPopup("You win!", "Congrats cyka", Alert.AlertType.CONFIRMATION, buttons);
+        var popup = Popup.showPopup("You win!", "Congrats " + getPlayer().getName(), Alert.AlertType.CONFIRMATION, buttons);
         if(popup.isPresent() && popup.get().getText() == "Scoreboard") helpers.Scene.showScoreboard(stage) ;
         else helpers.Scene.showMainMenu(stage);
     }

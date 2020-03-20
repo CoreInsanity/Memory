@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0a609ef0-f339-40b7-86f8-e78056d5e454" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/helpers/Popup.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scoreboard_example.json" beforeDir="false" afterPath="$PROJECT_DIR$/scoreboard_example.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/helpers/Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Json.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/helpers/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/Scene.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/models/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MainMenuScreen/MainMenuScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/MemoryScreen/MemoryScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/PlayerCreationScreen/PlayerCreationScreenPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/ScoreboardScreen/ScoreboardScreenView.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -150,7 +145,7 @@
       <workItem from="1584114474232" duration="5298000" />
       <workItem from="1584185222283" duration="1750000" />
       <workItem from="1584201476787" duration="11186000" />
-      <workItem from="1584709401598" duration="1707000" />
+      <workItem from="1584709401598" duration="3367000" />
     </task>
     <task id="LOCAL-00001" summary="testcommit">
       <created>1576245780884</created>

@@ -2,6 +2,7 @@
 {
 "GameTime":43,
 "Clicks":42,
+"GameDate":20/03/2020_14:58:00,
 "Player":{
 "Name":"Maxim",
 "Age":19
@@ -10,6 +11,7 @@
 {
 "GameTime":78,
 "Clicks":87,
+"GameDate":20/03/2020_14:58:00,
 "Player":{
 "Name":"Pestily",
 "Age":31
@@ -18,6 +20,7 @@
 {
 "GameTime":80,
 "Clicks":70,
+"GameDate":20/03/2020_14:58:00,
 "Player":{
 "Name":"Peter",
 "Age":23
@@ -26,6 +29,7 @@
 {
 "GameTime":65,
 "Clicks":87,
+"GameDate":20/03/2020_14:58:00,
 "Player":{
 "Name":"Dirk",
 "Age":46
@@ -34,6 +38,7 @@
 {
 "GameTime":160,
 "Clicks":48,
+"GameDate":20/03/2020_14:58:00,
 "Player":{
 "Name":"Patrick",
 "Age":38
@@ -42,6 +47,7 @@
 {
 "GameTime":30,
 "Clicks":100,
+"GameDate":20/03/2020_14:58:00,
 "Player":{
 "Name":"Foo",
 "Age":12

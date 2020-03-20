@@ -26,7 +26,7 @@ public class Scene {
     }
     public static void showScoreboard(Stage stage){
         stage.setHeight(700);
-        stage.setWidth(452);
+        stage.setWidth(572);
         var viewer = new ScoreboardScreenView();
         new ScoreboardScreenPresenter(viewer, stage);
         stage.setScene(new javafx.scene.Scene(viewer));
