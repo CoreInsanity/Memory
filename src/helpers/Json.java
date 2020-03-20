@@ -13,8 +13,8 @@ public class Json {
         jsonBuilder.append("{\n");
         jsonBuilder.append("\"GameTime\":" + newGame.getGameTime());
         jsonBuilder.append(",\n\"Clicks\":" + newGame.getClickAmount());
-        jsonBuilder.append(",\n\"GameDate\":" + new SimpleDateFormat(dateFormat).format(new Date()));
-        jsonBuilder.append(",\n\"Player\":{");
+        jsonBuilder.append(",\n\"GameDate\":\"" + new SimpleDateFormat(dateFormat).format(new Date()));
+        jsonBuilder.append("\",\n\"Player\":{");
         jsonBuilder.append("\n\"Name\":\"" + newGame.getPlayer().getName());
         jsonBuilder.append("\",\n\"Age\":" + newGame.getPlayer().getAge());
         jsonBuilder.append("\n}");
